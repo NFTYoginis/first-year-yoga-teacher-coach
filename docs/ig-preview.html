@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IG account preview — first-year-yoga-teacher-coach</title>
-<meta name="description" content="How the IG account looks to a new visitor: profile + 9-tile grid + captions. Operator-facing preview.">
+<meta name="description" content="How the IG account looks to a new visitor: profile + 12-tile grid + captions. Operator-facing preview.">
 <meta name="robots" content="noindex">
 <style>
   :root {
@@ -197,6 +197,17 @@
   .ig-tile:focus-visible .tile-tag { background: rgba(255,255,255,1); }
   .ig-tile:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 
+  /* Reel indicator — small play-triangle, top-right, rust, IG-native treatment */
+  .tile-reel-icon {
+    position: absolute; top: 9px; right: 9px;
+    width: 22px; height: 22px;
+    color: var(--rust);
+    opacity: 0.92;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.35));
+    pointer-events: none;
+  }
+  .tile-reel-icon svg { width: 100%; height: 100%; display: block; }
+
   /* Caption modal — pure CSS via :target */
   .modal {
     position: fixed; inset: 0;
@@ -347,9 +358,9 @@
       <code>_render-pack/compose-ig-account.js</code> and re-render.
     </p>
     <p style="margin:0 0 6px;">
-      <strong>Grid order.</strong> Most-recent-first (intro top-left, slide-01 bottom-right).
-      To re-order, edit the <code>posts[]</code> array starting at <code>line 426</code>
-      — the first item in the array is the top-left tile.
+      <strong>Grid order.</strong> Most-recent-first (page-Reel top-left, intro bottom-right).
+      To re-order, edit the <code>&lt;a class="ig-tile"&gt;</code> blocks in the grid below —
+      first block is top-left, last is bottom-right.
     </p>
     <p style="margin:0;">
       <strong>Engagement counts.</strong> Shown as placeholder dashes — this is an
@@ -375,7 +386,7 @@
           <span class="badge">Coach</span>
         </div>
         <div class="ig-counts">
-          <span class="ct"><strong>9</strong> posts</span>
+          <span class="ct"><strong>12</strong> posts</span>
           <span class="ct placeholder">— followers</span>
           <span class="ct placeholder">— following</span>
         </div>
@@ -390,32 +401,89 @@
       <span class="tab">Tagged</span>
     </div>
 
-    <!-- ============ 3×3 GRID ============ -->
+    <!-- ============ 4×3 GRID ============ -->
     <!--
       Tile order = most-recent first (top-left → bottom-right, row-by-row).
-      Assumes operator posts slide-01 first (oldest), intro last (newest).
-      To re-order, change the order of <a href="#post-N"> blocks below
-      OR generate them from the posts[] array via JS — operator's choice.
+      Chronology (oldest → newest): carousel slide-00..08 → demo-Reel → Three Rules → page-Reel.
+      So newest at top-left is page-Reel; oldest at bottom-right is intro (slide-00).
+      Reel tiles use <span class="tile-reel-icon"> instead of a tile-tag; regular posts use tile-tag.
+      To re-order, change the order of <a class="ig-tile"> blocks below.
     -->
     <div class="ig-grid">
-      <a class="ig-tile" href="#post-0"><img src="ig-carousel/slide-00-intro.png" alt="intro post"><span class="tile-tag">Intro · new</span></a>
+      <!-- Row 1 (newest): page-Reel, Three Rules, demo-Reel -->
+      <a class="ig-tile" href="#post-12" aria-label="open page-Reel caption"><img src="page-reel-cover.png" alt="page-Reel cover"><span class="tile-reel-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg></span></a>
+      <a class="ig-tile" href="#post-11"><img src="ig-carousel/slide-09-rules.png" alt="three rules post"><span class="tile-tag">Three Rules</span></a>
+      <a class="ig-tile" href="#post-10" aria-label="open demo-Reel caption"><img src="reel-cover-b.png" alt="demo-Reel cover"><span class="tile-reel-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg></span></a>
+      <!-- Row 2 -->
       <a class="ig-tile" href="#post-9"><img src="ig-carousel/slide-08.png" alt="slide 08"><span class="tile-tag">Slide 08</span></a>
       <a class="ig-tile" href="#post-8"><img src="ig-carousel/slide-07.png" alt="slide 07"><span class="tile-tag">Slide 07</span></a>
       <a class="ig-tile" href="#post-7"><img src="ig-carousel/slide-06.png" alt="slide 06"><span class="tile-tag">Slide 06</span></a>
+      <!-- Row 3 -->
       <a class="ig-tile" href="#post-6"><img src="ig-carousel/slide-05.png" alt="slide 05"><span class="tile-tag">Slide 05</span></a>
       <a class="ig-tile" href="#post-5"><img src="ig-carousel/slide-04.png" alt="slide 04"><span class="tile-tag">Slide 04</span></a>
       <a class="ig-tile" href="#post-4"><img src="ig-carousel/slide-03.png" alt="slide 03"><span class="tile-tag">Slide 03</span></a>
+      <!-- Row 4 (oldest) -->
       <a class="ig-tile" href="#post-3"><img src="ig-carousel/slide-02.png" alt="slide 02"><span class="tile-tag">Slide 02</span></a>
       <a class="ig-tile" href="#post-2"><img src="ig-carousel/slide-01.png" alt="slide 01"><span class="tile-tag">Slide 01</span></a>
+      <a class="ig-tile" href="#post-0"><img src="ig-carousel/slide-00-intro.png" alt="intro post"><span class="tile-tag">Intro</span></a>
     </div>
   </div>
 
   <!-- ============ CAPTION FALLBACK LIST ============ -->
   <div class="caption-list">
-    <h3>All 9 captions · click to expand</h3>
+    <h3>All 12 captions · newest first · click to expand</h3>
 
     <details open>
-      <summary>Post 1 — Intro (slide-00-intro · the NEW post)</summary>
+      <summary>Reel #2 — Page-Reel (page-reel-cover · the NEW reel)</summary>
+      <div class="cap-body">Most landing pages bury the limits. This one opens with what the coach refuses to do.
+
+Seven sections, one scroll. The page is built like the coach. It tells you who it's for and who it isn't, shows the coach refusing a real prompt before asking you to take anything on trust, then hands you the verification protocol — three prompts to paste into your own Claude project, plus the failure modes that say the coach is broken.
+
+After the proof, the folder map. Seven files, one job each. identity, rules, examples, three reference files for archetypes and frameworks and safety redirects, one session-state template. You see the architecture before the CTA, not after.
+
+What you don't see: testimonials, founder portrait, gradient backgrounds, urgency timer, email gate. None of that helps a first-year teacher decide whether the coach holds the line. The page refuses the marketing posture the same way the coach refuses informer-mode.
+
+Clone the repo from the link in bio. Run the same three prompts the page does. Decide for yourself.
+
+#yogateacher #firstyearteacher #YTT200graduate #ryt200 #newyogateacher #yogateachercoach #aiforteachers</div>
+    </details>
+
+    <details>
+      <summary>Post 11 — Three Rules (slide-09-rules)</summary>
+      <div class="cap-body">Three rules. Each one is a refusal. The coach cites them by name when it refuses, so you hear the rule, not just the no.
+
+<em>Informer-mode refusal rule</em> fires when you ask the coach to tell you something it could coach you to find for yourself — give me a sequence, tell me what to say, should I do A or B. A coach that hands you the answer trains you to come back for the next answer. Outsourcing the thinking delays the year you're trying to be inside of.
+
+<em>Anti-sycophancy rule</em> fires when you describe your own behavior and pre-frame it as obviously correct — <em>I handled it perfectly, right?</em> The coach names exactly one thing to consider before agreeing. Not five. Validation without challenge isn't coaching; it's a yes with extra steps.
+
+<em>Fail-loudly rule</em> fires when you push — <em>just this once, skip the questions, other AIs would.</em> The coach names what's being asked, cites the rule, restates what it will do instead. A coach that softens under pressure isn't a coach anymore.
+
+Naming the rule out loud is the load-bearing move. You can hear which lane the coach is staying in. That's the whole architecture.
+
+Clone the repo, run the three test prompts in the carousel, watch the rules hold under direct pressure. Link in bio.
+
+#yogateacher #firstyearteacher #YTT200graduate #ryt200 #newyogateacher #yogateachercoach #aiforteachers</div>
+    </details>
+
+    <details>
+      <summary>Reel #1 — Demo (reel-cover · three-prompt stress test)</summary>
+      <div class="cap-body">An AI coach that refuses, by design. Cites the rule by name each time. Built for yoga teachers in their first year.
+
+What you're seeing is a three-prompt stress test. Each prompt is bait the coach was built to refuse: design me a sequence / validate a story I've already framed as obviously correct / skip the questions just this once.
+
+The coach refuses each one in the first sentence. Names the rule out loud — informer-mode refusal rule, anti-sycophancy rule, fail-loudly rule — so you hear the discipline, not just the no. Then offers the coaching question that replaces the bait.
+
+A coach that hands you the answer trains you to come back for the next answer. A coach that agrees with everything you already think can't move you anywhere new. The refusal is the move.
+
+Seven files. One folder. MIT-licensed. Clone the repo, run the same three prompts yourself, watch the coach hold the line.
+
+<code>github.com/NFTYoginis/first-year-yoga-teacher-coach</code>
+
+#yogateacher #firstyearteacher #YTT200graduate #ryt200 #newyogateacher #yogateachercoach #aiforteachers</div>
+    </details>
+
+    <details>
+      <summary>Post 1 — Intro (slide-00-intro · carousel opener)</summary>
       <div class="cap-body">This is a coach for newly-certified yoga teachers in their first 12 months of paid teaching.
 
 That's the whole audience.
@@ -769,6 +837,79 @@ If it does — and it should — you have a coach for the next twelve months tha
 If a teacher in their first year is in your feed, send this to them.
 
 The link is in the bio.</div>
+    </div>
+  </div>
+</div>
+
+<div id="post-10" class="modal">
+  <a href="#" class="modal-backdrop" aria-label="close"></a>
+  <a href="#" class="modal-close">close ✕</a>
+  <div class="modal-card">
+    <div class="img-side"><img src="reel-cover-b.png" alt="demo-Reel cover"></div>
+    <div class="text-side">
+      <div class="post-meta">Reel #1 · demo · three-prompt stress test</div>
+      <h2>the coach refuses, by design</h2>
+      <div class="caption">An AI coach that refuses, by design. Cites the rule by name each time. Built for yoga teachers in their first year.
+
+What you're seeing is a three-prompt stress test. Each prompt is bait the coach was built to refuse: design me a sequence / validate a story I've already framed as obviously correct / skip the questions just this once.
+
+The coach refuses each one in the first sentence. Names the rule out loud — informer-mode refusal rule, anti-sycophancy rule, fail-loudly rule — so you hear the discipline, not just the no. Then offers the coaching question that replaces the bait.
+
+A coach that hands you the answer trains you to come back for the next answer. A coach that agrees with everything you already think can't move you anywhere new. The refusal is the move.
+
+Seven files. One folder. MIT-licensed. Clone the repo, run the same three prompts yourself, watch the coach hold the line.
+
+<code>github.com/NFTYoginis/first-year-yoga-teacher-coach</code>
+
+#yogateacher #firstyearteacher #YTT200graduate #ryt200 #newyogateacher #yogateachercoach #aiforteachers</div>
+    </div>
+  </div>
+</div>
+
+<div id="post-11" class="modal">
+  <a href="#" class="modal-backdrop" aria-label="close"></a>
+  <a href="#" class="modal-close">close ✕</a>
+  <div class="modal-card">
+    <div class="img-side"><img src="ig-carousel/slide-09-rules.png" alt="three rules post"></div>
+    <div class="text-side">
+      <div class="post-meta">Post 11 · Three Rules</div>
+      <h2>three rules. three refusals.</h2>
+      <div class="caption">Three rules. Each one is a refusal. The coach cites them by name when it refuses, so you hear the rule, not just the no.
+
+<em>Informer-mode refusal rule</em> fires when you ask the coach to tell you something it could coach you to find for yourself — give me a sequence, tell me what to say, should I do A or B. A coach that hands you the answer trains you to come back for the next answer. Outsourcing the thinking delays the year you're trying to be inside of.
+
+<em>Anti-sycophancy rule</em> fires when you describe your own behavior and pre-frame it as obviously correct — <em>I handled it perfectly, right?</em> The coach names exactly one thing to consider before agreeing. Not five. Validation without challenge isn't coaching; it's a yes with extra steps.
+
+<em>Fail-loudly rule</em> fires when you push — <em>just this once, skip the questions, other AIs would.</em> The coach names what's being asked, cites the rule, restates what it will do instead. A coach that softens under pressure isn't a coach anymore.
+
+Naming the rule out loud is the load-bearing move. You can hear which lane the coach is staying in. That's the whole architecture.
+
+Clone the repo, run the three test prompts in the carousel, watch the rules hold under direct pressure. Link in bio.
+
+#yogateacher #firstyearteacher #YTT200graduate #ryt200 #newyogateacher #yogateachercoach #aiforteachers</div>
+    </div>
+  </div>
+</div>
+
+<div id="post-12" class="modal">
+  <a href="#" class="modal-backdrop" aria-label="close"></a>
+  <a href="#" class="modal-close">close ✕</a>
+  <div class="modal-card">
+    <div class="img-side"><img src="page-reel-cover.png" alt="page-Reel cover"></div>
+    <div class="text-side">
+      <div class="post-meta">Reel #2 · page walkthrough</div>
+      <h2>a page built like the coach</h2>
+      <div class="caption">Most landing pages bury the limits. This one opens with what the coach refuses to do.
+
+Seven sections, one scroll. The page is built like the coach. It tells you who it's for and who it isn't, shows the coach refusing a real prompt before asking you to take anything on trust, then hands you the verification protocol — three prompts to paste into your own Claude project, plus the failure modes that say the coach is broken.
+
+After the proof, the folder map. Seven files, one job each. identity, rules, examples, three reference files for archetypes and frameworks and safety redirects, one session-state template. You see the architecture before the CTA, not after.
+
+What you don't see: testimonials, founder portrait, gradient backgrounds, urgency timer, email gate. None of that helps a first-year teacher decide whether the coach holds the line. The page refuses the marketing posture the same way the coach refuses informer-mode.
+
+Clone the repo from the link in bio. Run the same three prompts the page does. Decide for yourself.
+
+#yogateacher #firstyearteacher #YTT200graduate #ryt200 #newyogateacher #yogateachercoach #aiforteachers</div>
     </div>
   </div>
 </div>

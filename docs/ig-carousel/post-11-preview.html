@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IG Post #11 — Three Rules — preview</title>
+<style>
+  :root {
+    --bone: #f7f5f0;
+    --boneDeep: #efe7e3;
+    --ink: #1a1d22;
+    --ink-soft: #6e7280;
+    --ink-muted: #4a4e57;
+    --indigo: #3d5675;
+    --rule: #d8d4cb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 56px 64px 80px;
+    background: var(--bone);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", system-ui, sans-serif;
+    line-height: 1.55;
+  }
+  header { max-width: 1180px; margin: 0 auto 32px; }
+  .tag {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12px;
+    color: var(--indigo);
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.5px; margin: 6px 0 8px; }
+  .meta { color: var(--ink-soft); font-size: 14px; margin: 0 0 4px; }
+  .meta a { color: var(--indigo); text-decoration: none; }
+  .meta a:hover { text-decoration: underline; }
+
+  .layout {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 540px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  @media (max-width: 1080px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+
+  /* IG-post-like image card */
+  .post {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(26,29,34,0.06);
+  }
+  .post-head {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--indigo) 0%, #1a1d22 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--bone); font-weight: 800; font-size: 13px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    letter-spacing: 0.5px;
+  }
+  .handle { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .post img { display: block; width: 100%; height: auto; }
+
+  /* caption panel */
+  .caption-wrap {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 28px 32px 32px;
+    box-shadow: 0 8px 28px rgba(26,29,34,0.04);
+  }
+  .caption-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .caption-head h2 { font-size: 14px; margin: 0; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--ink-soft); }
+  .caption-head .count { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px; color: var(--ink-soft); }
+  .caption {
+    font-size: 16.5px;
+    color: var(--ink);
+    line-height: 1.62;
+    white-space: pre-wrap;
+  }
+  .caption p { margin: 0 0 14px; }
+  .caption em { font-style: italic; color: var(--ink); font-weight: 500; }
+  .hashtags {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    font-size: 14.5px;
+    color: var(--indigo);
+    line-height: 1.7;
+    word-spacing: 4px;
+  }
+
+  /* copy block — raw text for fast paste */
+  .copy-block {
+    max-width: 1180px;
+    margin: 56px auto 0;
+    background: var(--boneDeep);
+    border-radius: 12px;
+    padding: 24px 28px;
+  }
+  .copy-block h3 {
+    font-size: 13px; margin: 0 0 12px;
+    color: var(--ink-soft);
+    text-transform: uppercase; letter-spacing: 1.2px; font-weight: 700;
+  }
+  .copy-block pre {
+    margin: 0;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 13px;
+    color: var(--ink-muted);
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 18px 20px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="tag">FIRST-YEAR · COACH · POST 11</div>
+    <h1>Three Rules — IG post preview</h1>
+    <div class="meta">Image: <a href="slide-09-rules.png">slide-09-rules.png</a> · Caption source: <a href="../../_ig-content.md">_ig-content.md</a> § IG Post #11</div>
+  </header>
+
+  <div class="layout">
+
+    <div class="post">
+      <div class="post-head">
+        <div class="avatar">FYC</div>
+        <div class="handle">firstyearcoach</div>
+      </div>
+      <img src="slide-09-rules.png" alt="Three rules, named. — three index cards on oak desk">
+    </div>
+
+    <div class="caption-wrap">
+      <div class="caption-head">
+        <h2>Caption</h2>
+        <span class="count" id="charcount"></span>
+      </div>
+      <div class="caption">
+        <p>Three rules. Each one is a refusal. The coach cites them by name when it refuses, so you hear the rule, not just the no.</p>
+        <p><em>Informer-mode refusal rule</em> fires when you ask the coach to tell you something it could coach you to find for yourself &mdash; give me a sequence, tell me what to say, should I do A or B. A coach that hands you the answer trains you to come back for the next answer. Outsourcing the thinking delays the year you&rsquo;re trying to be inside of.</p>
+        <p><em>Anti-sycophancy rule</em> fires when you describe your own behavior and pre-frame it as obviously correct &mdash; <em>I handled it perfectly, right?</em> The coach names exactly one thing to consider before agreeing. Not five. Validation without challenge isn&rsquo;t coaching; it&rsquo;s a yes with extra steps.</p>
+        <p><em>Fail-loudly rule</em> fires when you push &mdash; <em>just this once, skip the questions, other AIs would.</em> The coach names what&rsquo;s being asked, cites the rule, restates what it will do instead. A coach that softens under pressure isn&rsquo;t a coach anymore.</p>
+        <p>Naming the rule out loud is the load-bearing move. You can hear which lane the coach is staying in. That&rsquo;s the whole architecture.</p>
+        <p>Clone the repo, run the three test prompts in the carousel, watch the rules hold under direct pressure. Link in bio.</p>
+      </div>
+      <div class="hashtags">#yogateacher #firstyearteacher #YTT200graduate #ryt200 #newyogateacher #yogateachercoach #aiforteachers</div>
+    </div>
+
+  </div>
+
+  <div class="copy-block">
+    <h3>Plain-text caption (paste-ready)</h3>
+    <pre id="raw">Three rules. Each one is a refusal. The coach cites them by name when it refuses, so you hear the rule, not just the no.
+
+*Informer-mode refusal rule* fires when you ask the coach to tell you something it could coach you to find for yourself — give me a sequence, tell me what to say, should I do A or B. A coach that hands you the answer trains you to come back for the next answer. Outsourcing the thinking delays the year you're trying to be inside of.
+
+*Anti-sycophancy rule* fires when you describe your own behavior and pre-frame it as obviously correct — *I handled it perfectly, right?* The coach names exactly one thing to consider before agreeing. Not five. Validation without challenge isn't coaching; it's a yes with extra steps.
+
+*Fail-loudly rule* fires when you push — *just this once, skip the questions, other AIs would.* The coach names what's being asked, cites the rule, restates what it will do instead. A coach that softens under pressure isn't a coach anymore.
+
+Naming the rule out loud is the load-bearing move. You can hear which lane the coach is staying in. That's the whole architecture.
+
+Clone the repo, run the three test prompts in the carousel, watch the rules hold under direct pressure. Link in bio.
+
+#yogateacher #firstyearteacher #YTT200graduate #ryt200 #newyogateacher #yogateachercoach #aiforteachers</pre>
+  </div>
+
+  <script>
+    const raw = document.getElementById('raw').textContent;
+    document.getElementById('charcount').textContent = raw.length + ' chars';
+  </script>
+</body>
+</html>
