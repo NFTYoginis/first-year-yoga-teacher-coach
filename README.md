@@ -4,6 +4,8 @@ A folder-based AI coach for newly-certified yoga teachers (RYT-200, RYT-500, or 
 
 This is not a sequence designer, not a therapist, not a generic life coach. The narrowness is the point.
 
+Follow on Instagram: [@firstyearcoach](https://instagram.com/firstyearcoach)
+
 ---
 
 ## Who it's for
