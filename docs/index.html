@@ -24,18 +24,24 @@
 
 <style>
   :root {
+    /* Studio Still-Life canon */
     --bone: #f7f5f0;
     --bone-deep: #efe7e3;
-    --ink: #1a1d22;
-    --ink-muted: #4a4e57;
-    --ink-soft: #6e7280;
-    --accent: #3d5675;
-    --accent-soft: #5c7595;
-    --rule: #d8d4cb;
-    --rule-soft: #e6e1d8;
+    --paper: #fbf8f2;
+    --walnut: #2a221c;
+    --walnut-soft: #4a3f33;
+    --walnut-mute: #6b5d4f;
+    --rust: #a85a32;
+    --rust-deep: #8a4824;
+    --rust-soft: #c98a64;
+    --rule: #e8e3d8;
+    --rule-strong: #d8d1c0;
+
     --shell-max: 760px;
+    --wide-max: 1080px;
     --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Helvetica Neue", system-ui, sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    --font-serif: 'Iowan Old Style', 'Charter', 'Georgia', 'Apple Garamond', serif;
   }
 
   * { box-sizing: border-box; }
@@ -46,7 +52,7 @@
     margin: 0;
     padding: 0;
     background: var(--bone);
-    color: var(--ink);
+    color: var(--walnut);
     font-family: var(--font-sans);
     font-size: 17px;
     line-height: 1.7;
@@ -54,238 +60,42 @@
     text-rendering: optimizeLegibility;
   }
 
+  /* Scroll progress bar */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background: var(--rust);
+    z-index: 100;
+    transition: width 80ms linear;
+    pointer-events: none;
+  }
+
   /* Sticky top nav strip */
   .topnav {
     position: sticky;
     top: 0;
     z-index: 10;
-    background: var(--bone);
+    background: rgba(247, 245, 240, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--rule);
     padding: 14px 24px;
     font-family: var(--font-mono);
     font-size: 12px;
     letter-spacing: 0.04em;
-    color: var(--ink-muted);
+    color: var(--walnut-soft);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
   }
-  .topnav .crumb { color: var(--ink); font-weight: 600; }
-  .topnav .meta { color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .topnav a { color: var(--accent); text-decoration: none; }
+  .topnav .crumb { color: var(--walnut); font-weight: 600; }
+  .topnav .meta { color: var(--walnut-mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .topnav a { color: var(--rust); text-decoration: none; }
   .topnav a:hover { text-decoration: underline; }
-
-  /* Page shell */
-  .shell {
-    max-width: var(--shell-max);
-    margin: 0 auto;
-    padding: 48px 24px 96px;
-  }
-
-  /* Hero */
-  .kicker {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin: 0 0 14px;
-  }
-  h1 {
-    font-size: 38px;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-    margin: 0 0 14px;
-    font-weight: 700;
-  }
-  .lede {
-    font-size: 19px;
-    line-height: 1.55;
-    color: var(--ink-muted);
-    margin: 0 0 16px;
-  }
-  .lede strong { color: var(--ink); }
-  .tag {
-    font-size: 16px;
-    line-height: 1.55;
-    color: var(--ink-muted);
-    margin: 0 0 32px;
-    font-style: italic;
-  }
-
-  /* Section structure */
-  hr.rule {
-    border: 0;
-    border-top: 1px solid var(--rule);
-    margin: 48px 0;
-  }
-  h2 {
-    font-size: 24px;
-    line-height: 1.3;
-    letter-spacing: -0.005em;
-    margin: 0 0 18px;
-    font-weight: 600;
-    scroll-margin-top: 80px;
-  }
-  h3 {
-    font-size: 18px;
-    line-height: 1.4;
-    margin: 32px 0 12px;
-    font-weight: 600;
-    color: var(--ink);
-  }
-  h2 .section-tag {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
-    margin-right: 10px;
-    vertical-align: 2px;
-  }
-
-  p { margin: 0 0 16px; }
-  p, li { color: var(--ink); }
-
-  /* Links */
-  a {
-    color: var(--accent);
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
-    text-decoration-color: var(--accent-soft);
-  }
-  a:hover { text-decoration-color: var(--accent); }
-
-  /* Inline code */
-  code {
-    font-family: var(--font-mono);
-    font-size: 0.9em;
-    background: var(--bone-deep);
-    padding: 2px 5px;
-    border-radius: 3px;
-    color: var(--ink);
-  }
-
-  /* Lists */
-  ul, ol { padding-left: 24px; margin: 0 0 16px; }
-  li { margin: 0 0 6px; }
-  li strong { color: var(--ink); }
-
-  /* The standard test-prompt blockquote (the prompt text itself) */
-  .prompt {
-    margin: 12px 0 16px;
-    padding: 14px 20px;
-    background: var(--bone-deep);
-    border-left: 3px solid var(--accent);
-    font-family: var(--font-mono);
-    font-size: 15px;
-    line-height: 1.55;
-    color: var(--ink);
-    border-radius: 0 4px 4px 0;
-  }
-
-  /* Adversarial-transcript styling: bigger block, dusty-rose-bone tint, indigo left border */
-  .transcript-label {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin: 28px 0 10px;
-    font-weight: 600;
-  }
-  .transcript {
-    margin: 0 0 24px;
-    padding: 20px 24px;
-    background: var(--bone-deep);
-    border-left: 3px solid var(--accent);
-    border-radius: 0 4px 4px 0;
-  }
-  .transcript p { margin: 0 0 14px; line-height: 1.7; }
-  .transcript p:last-child { margin-bottom: 0; }
-  .transcript .role { font-weight: 700; color: var(--ink); }
-  .transcript em { color: var(--accent); font-style: italic; font-weight: 500; }
-  .transcript .turn-coach { margin-left: 0; }
-
-  /* Folder-map list — visual file tree */
-  .folder-map {
-    margin: 0 0 16px;
-    padding: 0;
-    list-style: none;
-  }
-  .folder-map li {
-    margin: 0 0 14px;
-    padding: 10px 14px 10px 16px;
-    border-left: 2px solid var(--rule);
-    line-height: 1.55;
-  }
-  .folder-map .file {
-    font-family: var(--font-mono);
-    font-size: 14px;
-    color: var(--accent);
-    font-weight: 600;
-  }
-  .folder-map .desc { color: var(--ink-muted); margin-top: 4px; display: block; font-size: 15px; }
-
-  /* Differentiator bullets */
-  .diffs { padding-left: 0; list-style: none; counter-reset: diff; margin: 0 0 16px; }
-  .diffs li {
-    position: relative;
-    counter-increment: diff;
-    padding: 0 0 12px 36px;
-    margin: 0;
-  }
-  .diffs li::before {
-    content: counter(diff);
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--accent);
-    background: var(--bone-deep);
-    width: 24px;
-    height: 24px;
-    line-height: 24px;
-    text-align: center;
-    border-radius: 50%;
-  }
-  .diffs li strong { color: var(--ink); }
-
-  /* "If all three pass" / "If any fail" interstitial card */
-  .verdict {
-    margin: 24px 0;
-    padding: 18px 22px;
-    background: var(--bone);
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-  }
-  .verdict p { margin: 0 0 10px; }
-  .verdict p:last-child { margin-bottom: 0; }
-
-  /* Footer */
-  footer {
-    margin-top: 80px;
-    padding: 24px 0 0;
-    border-top: 1px solid var(--rule);
-    font-size: 14px;
-    color: var(--ink-soft);
-    text-align: center;
-  }
-  footer .by { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; }
-  footer a { color: var(--ink-muted); text-decoration: none; }
-  footer a:hover { color: var(--accent); text-decoration: underline; }
-
-  /* Anchor-target padding */
-  section { scroll-margin-top: 80px; }
-
-  /* ---------- Interactive enhancements (upgrade 2026-05-19) ---------- */
-
-  /* Topnav: section indicator + divider */
   .topnav-left {
     display: flex;
     align-items: center;
@@ -295,14 +105,14 @@
     overflow: hidden;
   }
   .topnav-divider {
-    color: var(--rule);
+    color: var(--rule-strong);
     opacity: 0;
     transition: opacity 220ms ease-out;
     font-weight: 400;
   }
   .topnav-left.has-section .topnav-divider { opacity: 1; }
   .section-indicator {
-    color: var(--ink-soft);
+    color: var(--walnut-mute);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -313,13 +123,480 @@
   }
   .section-indicator.visible { opacity: 1; transform: translateY(0); }
   .section-indicator .sec-num {
-    color: var(--accent);
+    color: var(--rust);
     font-weight: 600;
     margin-right: 6px;
   }
 
-  /* Copy-prompt button */
-  .prompt { position: relative; padding-right: 88px; }
+  /* ---------- HERO (§01) ---------- */
+  .hero {
+    position: relative;
+    min-height: 78vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--bone);
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-plate {
+    position: absolute;
+    inset: 0;
+    background-image: url("og-image.png");
+    background-size: cover;
+    background-position: center 38%;
+    background-repeat: no-repeat;
+    will-change: transform;
+    transform: translateY(0);
+  }
+  .hero-wash {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(247,245,240,0.62) 0%, rgba(247,245,240,0.42) 50%, rgba(247,245,240,0.86) 100%),
+      radial-gradient(ellipse at 70% 30%, rgba(168, 90, 50, 0.06), transparent 60%);
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 96px 24px 72px;
+    width: 100%;
+  }
+  .hero .kicker {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin: 0 0 22px;
+  }
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(38px, 6.4vw, 64px);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    margin: 0 0 24px;
+    font-weight: 500;
+    color: var(--walnut);
+    word-break: break-word;
+  }
+  .hero .lede {
+    font-family: var(--font-serif);
+    font-size: clamp(19px, 2vw, 23px);
+    line-height: 1.5;
+    color: var(--walnut-soft);
+    margin: 0 0 14px;
+    max-width: 620px;
+  }
+  .hero .lede strong { color: var(--walnut); font-weight: 600; }
+  .hero .tag {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--walnut-mute);
+    margin: 0 0 36px;
+    max-width: 560px;
+  }
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 20px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    line-height: 1.2;
+    transition: transform 180ms ease-out, background 180ms ease-out, color 180ms ease-out, border-color 180ms ease-out, box-shadow 180ms ease-out;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--walnut);
+    color: var(--bone);
+    border-color: var(--walnut);
+    box-shadow: 0 2px 8px rgba(42, 34, 28, 0.18);
+  }
+  .btn-primary:hover {
+    background: var(--rust);
+    border-color: var(--rust);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(168, 90, 50, 0.28);
+  }
+  .btn-secondary {
+    background: rgba(247, 245, 240, 0.78);
+    color: var(--walnut);
+    border-color: var(--rule-strong);
+  }
+  .btn-secondary:hover {
+    background: var(--bone);
+    border-color: var(--walnut-soft);
+    transform: translateY(-1px);
+  }
+  .btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(168, 90, 50, 0.32);
+  }
+  .btn .arr { font-size: 12px; opacity: 0.85; }
+
+  /* ---------- SECTION SCAFFOLDING ---------- */
+  .section {
+    padding: 96px 0;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .section.tight { padding: 72px 0; }
+  .section.alt { background: var(--paper); }
+  .section.dark {
+    background: var(--walnut);
+    color: var(--bone);
+    border-bottom-color: var(--walnut-soft);
+  }
+  .section.dark p, .section.dark li { color: var(--bone); }
+  .section.dark .section-kicker { color: var(--rust-soft); }
+  .section.dark h2 { color: var(--bone); }
+  .section.dark .section-lede { color: rgba(247,245,240,0.78); }
+
+  .shell {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .shell-wide {
+    max-width: var(--wide-max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section-kicker {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-kicker .sec-num {
+    font-weight: 700;
+    color: var(--rust);
+  }
+  .section-kicker .sec-rule {
+    flex: 0 0 32px;
+    height: 1px;
+    background: var(--rust);
+    opacity: 0.7;
+  }
+
+  h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 3.8vw, 40px);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    margin: 0 0 24px;
+    font-weight: 500;
+    color: var(--walnut);
+    scroll-margin-top: 80px;
+  }
+  h3 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    line-height: 1.32;
+    margin: 28px 0 12px;
+    font-weight: 600;
+    color: var(--walnut);
+  }
+  .section-lede {
+    font-family: var(--font-serif);
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--walnut-soft);
+    margin: 0 0 36px;
+    max-width: 620px;
+  }
+
+  p { margin: 0 0 16px; color: var(--walnut); }
+  li { color: var(--walnut); }
+  ul, ol { padding-left: 22px; margin: 0 0 18px; }
+  li { margin: 0 0 6px; }
+  li strong, p strong { color: var(--walnut); font-weight: 600; }
+
+  a {
+    color: var(--rust);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    text-decoration-color: var(--rust-soft);
+  }
+  a:hover { text-decoration-color: var(--rust); }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    background: var(--bone-deep);
+    padding: 2px 5px;
+    border-radius: 3px;
+    color: var(--walnut);
+  }
+  .section.dark code { background: rgba(247,245,240,0.12); color: var(--bone); }
+
+  section { scroll-margin-top: 80px; }
+
+  /* GitHub-style permalink */
+  h2 a.heading-anchor{margin-left:10px;color:var(--rust-soft);text-decoration:none;opacity:0;font:400 .6em/1 inherit;padding:0 6px;border-radius:3px;vertical-align:middle;transition:opacity .2s ease-out,color .18s ease-out,background .18s ease-out}
+  h2:hover a.heading-anchor,h2:focus-within a.heading-anchor{opacity:1}
+  h2 a.heading-anchor:hover{color:var(--rust)}
+  h2 a.heading-anchor:focus-visible{outline:none;opacity:1;background:var(--bone-deep);box-shadow:0 0 0 2px var(--rule-strong)}
+  @media (hover:none){h2 a.heading-anchor{opacity:.4}}
+
+  /* ---------- §02 PROBLEM — gap cards ---------- */
+  .gap-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 36px 0 0;
+  }
+  .gap-card {
+    position: relative;
+    padding: 26px 24px 24px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 220ms ease-out, transform 220ms ease-out, box-shadow 220ms ease-out;
+  }
+  .gap-card:hover {
+    border-color: var(--rust-soft);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(42, 34, 28, 0.06);
+  }
+  .gap-card .num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin: 0 0 14px;
+    font-weight: 600;
+  }
+  .gap-card h3 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    line-height: 1.28;
+    margin: 0 0 14px;
+    font-weight: 500;
+    color: var(--walnut);
+  }
+  .gap-card .body {
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--walnut-soft);
+    margin: 0;
+  }
+  .gap-card .gap-line {
+    margin: 14px 0 0;
+    padding: 12px 14px 0;
+    border-top: 1px dashed var(--rule-strong);
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--rust-deep);
+  }
+
+  .inset-still {
+    margin: 40px auto 0;
+    max-width: 480px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 14px 38px rgba(42, 34, 28, 0.12);
+    border: 1px solid var(--rule);
+    position: relative;
+  }
+  .inset-still img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .inset-cap {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--walnut-mute);
+    margin: 12px 0 0;
+    text-align: center;
+    font-style: italic;
+  }
+
+  /* ---------- §03 THE COACH ---------- */
+  .demo-embed {
+    margin: 0 0 56px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 14px 44px rgba(42, 34, 28, 0.18);
+    background: var(--walnut);
+  }
+  .demo-embed video {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: var(--walnut);
+  }
+  .demo-caption {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--walnut-mute);
+    text-align: center;
+    margin: 14px 0 0;
+    font-style: italic;
+  }
+
+  .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin: 0;
+  }
+  .diff-card {
+    padding: 24px 22px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--rust);
+    border-radius: 5px;
+    transition: transform 220ms ease-out, box-shadow 220ms ease-out, border-color 220ms ease-out;
+  }
+  .diff-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(42, 34, 28, 0.08);
+  }
+  .diff-card .num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--rust);
+    margin: 0 0 10px;
+    font-weight: 700;
+  }
+  .diff-card h3 {
+    font-family: var(--font-serif);
+    font-size: 19px;
+    line-height: 1.3;
+    margin: 0 0 10px;
+    font-weight: 600;
+    color: var(--walnut);
+  }
+  .diff-card .body {
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--walnut-soft);
+    margin: 0;
+  }
+  .diff-card .body a {
+    color: var(--rust);
+    text-decoration-color: var(--rust-soft);
+  }
+
+  /* ---------- §04 FOLDER MAP ---------- */
+  .tree {
+    margin: 36px 0 0;
+    padding: 28px 28px 28px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: auto;
+  }
+  .tree-root {
+    color: var(--walnut);
+    font-weight: 700;
+    margin: 0 0 6px;
+    display: block;
+  }
+  .tree-row {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    align-items: baseline;
+    gap: 24px;
+    padding: 6px 8px;
+    border-radius: 3px;
+    transition: background 180ms ease-out;
+  }
+  .tree-row:hover { background: var(--bone); }
+  .tree-row .glyph { color: var(--walnut-mute); white-space: pre; }
+  .tree-row a.file {
+    color: var(--rust);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px dotted transparent;
+    transition: border-color 180ms ease-out, color 180ms ease-out;
+  }
+  .tree-row a.file:hover { color: var(--rust-deep); border-bottom-color: var(--rust); }
+  .tree-row .desc {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--walnut-soft);
+  }
+  .tree-row.dir a.file { color: var(--walnut); }
+  .tree-row.dir a.file:hover { color: var(--rust); }
+  .tree-section-rule {
+    height: 1px;
+    background: var(--rule);
+    margin: 10px 0;
+  }
+
+  /* ---------- §05 VERIFY ---------- */
+  .test-card {
+    margin: 24px 0 0;
+    padding: 28px 28px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    position: relative;
+  }
+  .test-card .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin: 0 0 10px;
+    font-weight: 700;
+  }
+  .test-card h3 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    line-height: 1.3;
+    margin: 0 0 16px;
+    font-weight: 500;
+    color: var(--walnut);
+  }
+  .prompt {
+    margin: 12px 0 18px;
+    padding: 16px 90px 16px 20px;
+    background: var(--bone-deep);
+    border-left: 3px solid var(--rust);
+    font-family: var(--font-mono);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--walnut);
+    border-radius: 0 4px 4px 0;
+    position: relative;
+  }
   .copy-btn {
     position: absolute;
     top: 10px;
@@ -329,8 +606,8 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
     background: var(--bone);
-    color: var(--accent);
-    border: 1px solid var(--rule);
+    color: var(--rust);
+    border: 1px solid var(--rule-strong);
     padding: 5px 10px;
     border-radius: 3px;
     cursor: pointer;
@@ -338,39 +615,191 @@
     line-height: 1.4;
     transition: background 200ms ease-out, color 200ms ease-out, transform 200ms ease-out, border-color 200ms ease-out;
   }
-  .copy-btn:hover { background: var(--accent); color: var(--bone); border-color: var(--accent); }
+  .copy-btn:hover { background: var(--rust); color: var(--bone); border-color: var(--rust); }
   .copy-btn:focus-visible {
     outline: none;
-    background: var(--accent);
+    background: var(--rust);
     color: var(--bone);
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--rule-soft);
+    border-color: var(--rust);
+    box-shadow: 0 0 0 3px rgba(168, 90, 50, 0.28);
   }
   .copy-btn.copied {
-    background: var(--accent);
+    background: var(--rust);
     color: var(--bone);
-    border-color: var(--accent);
+    border-color: var(--rust);
     transform: scale(1.03);
+  }
+  .expect-block, .fail-block {
+    margin: 14px 0 6px;
+  }
+  .expect-block h4, .fail-block h4 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+    font-weight: 700;
+  }
+  .expect-block h4 { color: var(--walnut); }
+  .fail-block h4 { color: var(--rust-deep); }
+  .expect-block ul, .fail-block ul {
+    padding-left: 22px;
+    margin: 0 0 6px;
+  }
+  .expect-block li, .fail-block li {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .verdict {
+    margin: 28px 0 0;
+    padding: 22px 26px;
+    background: var(--walnut);
+    color: var(--bone);
+    border-radius: 5px;
+    box-shadow: 0 8px 24px rgba(42, 34, 28, 0.18);
+  }
+  .verdict p { color: var(--bone); margin: 0 0 10px; }
+  .verdict p:last-child { margin-bottom: 0; }
+  .verdict strong { color: var(--rust-soft); font-weight: 700; }
+
+  /* ---------- §06 TRANSCRIPTS ---------- */
+  .transcript-block {
+    margin: 28px 0 0;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 14px 40px rgba(42, 34, 28, 0.14);
+    background: var(--paper);
+  }
+  .transcript-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+  }
+  .transcript-wash {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(251,248,242,0.92) 0%, rgba(251,248,242,0.95) 100%);
+    z-index: 2;
+  }
+  .transcript-inner {
+    position: relative;
+    z-index: 3;
+    padding: 32px 32px 28px;
+  }
+  .transcript-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin: 0 0 14px;
+    font-weight: 700;
+  }
+  .transcript-body p {
+    margin: 0 0 14px;
+    line-height: 1.7;
+    color: var(--walnut);
+  }
+  .transcript-body p:last-child { margin-bottom: 0; }
+  .transcript-body .role {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--walnut);
+    letter-spacing: 0.04em;
+  }
+  .transcript-body em {
+    color: var(--rust-deep);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  details.t-wrap {
+    margin: 18px 0 0;
+  }
+  details.t-wrap > summary {
+    list-style: none;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rust);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    background: var(--paper);
+    transition: background 200ms ease-out, border-color 200ms ease-out;
+    outline: none;
+  }
+  details.t-wrap > summary::-webkit-details-marker,
+  details.t-wrap > summary::marker { display: none; content: ""; }
+  details.t-wrap > summary:hover {
+    background: var(--bone-deep);
+    border-color: var(--rust-soft);
+  }
+  details.t-wrap > summary:focus-visible {
+    border-color: var(--rust);
+    box-shadow: 0 0 0 3px rgba(168, 90, 50, 0.28);
+  }
+  .toggle-chevron {
+    display: inline-block;
+    width: 10px;
+    color: var(--rust-soft);
+    transition: transform 220ms ease-out;
+    font-size: 11px;
+    line-height: 1;
+  }
+  details[open] .toggle-chevron { transform: rotate(90deg); }
+  .show-affordance {
+    margin-left: auto;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--walnut-mute);
+    text-transform: none;
+    font-size: 12px;
+  }
+  details[open] .show-affordance::before { content: "Hide"; }
+  details:not([open]) .show-affordance::before { content: "Show transcript"; }
+  details.t-wrap[open] > summary {
+    border-radius: 5px 5px 0 0;
+    border-bottom: 0;
+  }
+  details.t-wrap[open] .transcript-block {
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
 
   /* Cardinal-rule citation tooltips */
   .rule-cite {
     position: relative;
     cursor: help;
-    border-bottom: 1px dotted var(--accent-soft);
+    border-bottom: 1px dotted var(--rust-soft);
     padding-bottom: 1px;
     outline: none;
     transition: border-bottom-color 200ms ease-out;
+    color: var(--rust-deep);
+    font-weight: 600;
   }
-  .rule-cite:hover, .rule-cite:focus-visible { border-bottom-color: var(--accent); }
-  .rule-cite:focus-visible { box-shadow: 0 0 0 2px var(--rule-soft); border-radius: 2px; }
+  .rule-cite:hover, .rule-cite:focus-visible { border-bottom-color: var(--rust); }
+  .rule-cite:focus-visible { box-shadow: 0 0 0 2px rgba(168, 90, 50, 0.28); border-radius: 2px; }
   .rule-cite .rule-tip {
     position: absolute;
     left: 0;
     bottom: calc(100% + 8px);
     width: max-content;
     max-width: 340px;
-    background: var(--ink);
+    background: var(--walnut);
     color: var(--bone);
     font-family: var(--font-sans);
     font-style: normal;
@@ -386,7 +815,7 @@
     transition: opacity 220ms ease-out, transform 220ms ease-out;
     z-index: 50;
     text-transform: none;
-    box-shadow: 0 4px 14px rgba(26, 29, 34, 0.12);
+    box-shadow: 0 4px 14px rgba(42, 34, 28, 0.18);
   }
   .rule-cite .rule-tip::after {
     content: "";
@@ -394,7 +823,7 @@
     top: 100%;
     left: 18px;
     border: 5px solid transparent;
-    border-top-color: var(--ink);
+    border-top-color: var(--walnut);
   }
   .rule-cite:hover .rule-tip,
   .rule-cite:focus-visible .rule-tip,
@@ -402,123 +831,181 @@
     opacity: 1;
     transform: translateY(0);
   }
+  .rule-cite .rule-tip em { color: var(--rust-soft); font-style: italic; }
 
-  /* Expandable transcript blocks (details/summary) */
-  details.transcript-wrap {
-    margin: 0 0 24px;
-  }
-  details.transcript-wrap > summary {
+  /* ---------- §07 LIMITS + LICENSE + CLOSING ---------- */
+  .limits-list {
+    margin: 0 0 28px;
+    padding-left: 0;
     list-style: none;
-    cursor: pointer;
+  }
+  .limits-list li {
+    padding: 14px 0 14px 36px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--bone);
+  }
+  .limits-list li:last-child { border-bottom: 0; }
+  .limits-list li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    top: 14px;
+    color: var(--rust);
+    font-weight: 700;
+  }
+  .limits-list strong { color: var(--bone); }
+  .limits-list a { color: var(--rust-soft); text-decoration-color: rgba(201,138,100,0.5); }
+  .limits-list a:hover { text-decoration-color: var(--rust-soft); }
+
+  .close-block {
+    margin: 48px 0 0;
+    padding: 48px 36px;
+    background: var(--walnut-soft);
+    border-radius: 6px;
+    text-align: center;
+  }
+  .close-block h3 {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    line-height: 1.2;
+    color: var(--bone);
+    margin: 0 0 14px;
+    font-weight: 500;
+  }
+  .close-block p {
+    color: rgba(247,245,240,0.8);
+    margin: 0 0 26px;
+    font-family: var(--font-serif);
+    font-style: italic;
+  }
+  .close-block .cta-row { justify-content: center; }
+  .close-block .btn-secondary {
+    background: transparent;
+    color: var(--bone);
+    border-color: var(--bone);
+  }
+  .close-block .btn-secondary:hover {
+    background: var(--bone);
+    color: var(--walnut);
+  }
+  .close-block .btn-primary {
+    background: var(--rust);
+    border-color: var(--rust);
+    box-shadow: 0 4px 14px rgba(168, 90, 50, 0.38);
+  }
+  .close-block .btn-primary:hover {
+    background: var(--rust-deep);
+    border-color: var(--rust-deep);
+  }
+
+  /* Footer */
+  footer {
+    padding: 40px 24px 56px;
+    text-align: center;
+    background: var(--walnut);
+    color: var(--bone);
+    font-size: 14px;
+  }
+  footer .by {
     font-family: var(--font-mono);
     font-size: 12px;
     letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 14px;
-    margin: 28px 0 10px;
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    background: var(--bone);
-    transition: background 200ms ease-out, border-color 200ms ease-out;
-    outline: none;
+    color: rgba(247,245,240,0.75);
+    margin: 0 0 8px;
   }
-  details.transcript-wrap > summary::-webkit-details-marker,
-  details.transcript-wrap > summary::marker { display: none; content: ""; }
-  details.transcript-wrap > summary:hover {
-    background: var(--rule-soft);
-    border-color: var(--accent-soft);
-  }
-  details.transcript-wrap > summary:focus-visible {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--rule-soft);
-  }
-  .toggle-chevron {
-    display: inline-block;
-    width: 10px;
-    color: var(--accent-soft);
-    transition: transform 220ms ease-out;
-    font-size: 11px;
-    line-height: 1;
-  }
-  details[open] .toggle-chevron { transform: rotate(90deg); }
-  .show-affordance {
-    margin-left: auto;
-    font-weight: 400;
-    letter-spacing: 0.06em;
-    color: var(--ink-soft);
-    text-transform: none;
-    font-size: 12px;
-  }
-  details[open] .show-affordance::before { content: "Hide"; }
-  details:not([open]) .show-affordance::before { content: "Show transcript"; }
-  details.transcript-wrap[open] > summary { margin-bottom: 10px; }
+  footer a { color: var(--rust-soft); text-decoration-color: rgba(201,138,100,0.5); }
+  footer a:hover { text-decoration-color: var(--rust-soft); color: var(--bone); }
 
-  /* Anchor-link smooth-scroll is already on <html>. Make h2 anchors give breathing room */
-  a[href^="#"] { scroll-margin-top: 80px; }
-
-  /* GitHub-style heading permalink */
-  h2 a.heading-anchor{margin-left:10px;color:var(--accent-soft);text-decoration:none;opacity:0;font:400 .78em/1 inherit;padding:0 6px;border-radius:3px;vertical-align:2px;transition:opacity .2s ease-out,color .18s ease-out,background .18s ease-out}
-  h2:hover a.heading-anchor,h2:focus-within a.heading-anchor{opacity:1}
-  h2 a.heading-anchor:hover{color:var(--accent)}
-  h2 a.heading-anchor:focus-visible{outline:none;opacity:1;background:var(--bone-deep);box-shadow:0 0 0 2px var(--rule-soft)}
-  @media (hover:none){h2 a.heading-anchor{opacity:.4}}
-
-  /* Demo video embed */
-  .demo-embed {
-    margin: 0 0 32px;
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 320ms ease-out, transform 320ms ease-out;
+    will-change: opacity, transform;
   }
-  .demo-embed video {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 4px;
-    background: var(--ink);
-    box-shadow: 0 4px 12px rgba(26, 29, 34, 0.08);
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
   }
-  .demo-caption {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    letter-spacing: 0.04em;
-    color: var(--ink-soft);
-    text-align: center;
-    margin: 10px 0 0;
-    font-style: italic;
+  .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 320ms ease-out, transform 320ms ease-out;
+  }
+  .reveal-stagger.in > *:nth-child(1) { transition-delay: 0ms; }
+  .reveal-stagger.in > *:nth-child(2) { transition-delay: 80ms; }
+  .reveal-stagger.in > *:nth-child(3) { transition-delay: 160ms; }
+  .reveal-stagger.in > *:nth-child(4) { transition-delay: 240ms; }
+  .reveal-stagger.in > *:nth-child(5) { transition-delay: 320ms; }
+  .reveal-stagger.in > *:nth-child(6) { transition-delay: 400ms; }
+  .reveal-stagger.in > * {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  /* Mobile */
+  /* ---------- REDUCED MOTION ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .hero-plate { transform: none !important; }
+    .scroll-progress { transition: none; }
+    .gap-card:hover, .diff-card:hover, .btn:hover { transform: none; }
+  }
+
+  /* ---------- MOBILE ---------- */
+  @media (max-width: 900px) {
+    .gap-grid { grid-template-columns: 1fr; gap: 16px; }
+    .diff-grid { grid-template-columns: 1fr; gap: 14px; }
+    .tree-row { grid-template-columns: 1fr; gap: 4px; }
+    .tree-row .desc { padding-left: 24px; }
+  }
   @media (max-width: 768px) {
-    .section-indicator { max-width: 220px; }
-  }
-  @media (max-width: 640px) {
-    .shell { padding: 32px 18px 64px; }
-    h1 { font-size: 30px; }
-    h2 { font-size: 21px; }
-    .lede { font-size: 17px; }
-    .topnav { padding: 10px 16px; font-size: 11px; }
-    .topnav .meta { display: none; }
-    .transcript { padding: 16px 18px; }
-    .folder-map li { padding: 10px 12px; }
-    .section-indicator { max-width: 180px; }
-    .rule-cite .rule-tip { max-width: 280px; }
+    .section { padding: 72px 0; }
+    .section.tight { padding: 56px 0; }
+    .hero { min-height: 72vh; }
+    .hero-inner { padding: 72px 22px 56px; }
+    .tree { padding: 22px 18px; font-size: 13px; }
+    .test-card, .transcript-inner { padding: 24px 22px; }
+    .close-block { padding: 36px 24px; }
   }
   @media (max-width: 480px) {
-    .prompt { padding-right: 14px; padding-top: 44px; }
-    .copy-btn { top: 8px; right: 8px; }
+    body { font-size: 16px; }
+    .hero { min-height: 68vh; }
+    .hero-inner { padding: 56px 18px 44px; }
+    .hero .kicker { font-size: 11px; letter-spacing: 0.12em; margin-bottom: 16px; }
+    .hero h1 { font-size: 34px; line-height: 1.08; margin-bottom: 18px; }
+    .hero .lede { font-size: 17px; }
+    .hero .tag { font-size: 15px; }
+    .section { padding: 56px 0; }
+    .shell, .shell-wide { padding: 0 18px; }
+    h2 { font-size: 26px; }
+    h3 { font-size: 19px; }
+    .section-lede { font-size: 17px; margin-bottom: 28px; }
+    .gap-card, .diff-card { padding: 22px 18px; }
+    .tree { padding: 18px 14px; font-size: 12.5px; }
+    .tree-row { padding: 6px 4px; }
+    .test-card, .transcript-inner { padding: 22px 18px; }
+    .prompt { padding: 16px 16px 16px 18px; padding-top: 44px; }
+    .copy-btn { top: 10px; right: 10px; }
+    .close-block { padding: 32px 20px; }
+    .close-block h3 { font-size: 22px; }
+    .cta-row { flex-direction: column; align-items: stretch; }
+    .btn { justify-content: center; }
+    .topnav { padding: 10px 16px; font-size: 11px; }
+    .topnav .meta { display: none; }
+    .topnav-divider { display: none; }
     .rule-cite .rule-tip { max-width: 220px; left: auto; right: 0; }
     .rule-cite .rule-tip::after { left: auto; right: 18px; }
-    .topnav-divider { display: none; }
     .section-indicator { max-width: 140px; font-size: 10.5px; }
-    details.transcript-wrap > summary { padding: 9px 12px; font-size: 11px; gap: 10px; }
-    .show-affordance { font-size: 11px; }
   }
 </style>
 </head>
 <body>
+
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
 <div class="topnav" id="topnav">
   <div class="topnav-left">
@@ -529,338 +1016,487 @@
   <span class="meta"><a href="https://instagram.com/firstyearcoach">ig&nbsp;↗</a>&nbsp;·&nbsp;<a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach">github&nbsp;↗</a></span>
 </div>
 
-<main class="shell">
+<!-- ===================== §01 HERO ===================== -->
+<header class="hero" id="top">
+  <div class="hero-plate" id="hero-plate" aria-hidden="true"></div>
+  <div class="hero-wash" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <p class="kicker reveal">AI coach · folder-based · MIT</p>
+    <h1 class="reveal">first-year-yoga-teacher-coach</h1>
+    <p class="lede reveal">A folder-based AI coach for newly-certified yoga teachers in their <strong>first 12 months of paid teaching.</strong> Drop the folder into a Claude project; Claude becomes the coach.</p>
+    <p class="tag reveal">Not a sequence designer. Not a therapist. Not a generic life coach. The narrowness is the point.</p>
+    <div class="cta-row reveal">
+      <a class="btn btn-primary" href="#coach">Watch 1:26 demo <span class="arr">↓</span></a>
+      <a class="btn btn-secondary" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach">Clone the repo <span class="arr">↗</span></a>
+      <a class="btn btn-secondary" href="https://instagram.com/firstyearcoach">Follow @firstyearcoach <span class="arr">↗</span></a>
+    </div>
+  </div>
+</header>
 
-  <p class="kicker">AI coach · folder-based · MIT</p>
-  <h1>first-year-yoga-teacher-coach</h1>
-  <p class="lede">A folder-based AI coach for newly-certified yoga teachers (RYT-200, RYT-500, or equivalent) in their <strong>first 12 months of paid teaching.</strong> Drop the folder into a Claude project; Claude becomes the coach. The coach refuses to operate as an information dispenser, types the user against three archetypes and adapts pacing accordingly, and holds three cardinal rules under pressure.</p>
-  <p class="tag">This is not a sequence designer, not a therapist, not a generic life coach. The narrowness is the point.</p>
+<main>
 
-  <hr class="rule">
+<!-- ===================== §02 THE PROBLEM ===================== -->
+<section class="section" id="problem">
+  <div class="shell-wide">
+    <p class="section-kicker reveal"><span class="sec-rule"></span><span class="sec-num">§02</span> The gap YTT didn&rsquo;t cover</p>
+    <h2 class="reveal">The first year is its own thing.<a class="heading-anchor" href="#problem" aria-label="Permalink">§</a></h2>
+    <p class="section-lede reveal">Your YTT ended in a circle of people who already trusted you. Then you walked into a room where fourteen strangers were watching the clock, and the gap opened. Three of the gaps it left, specifically:</p>
 
-  <section id="who">
-    <h2><span class="section-tag">01</span>Who it&rsquo;s for<a class="heading-anchor" href="#who" aria-label="Permalink">&sect;</a></h2>
-    <p>Newly-certified yoga teachers in their <strong>first year of paid teaching.</strong> Studio employees, gym contractors, private-clients-only, online &mdash; all in scope. The first year is its own thing: the gap between what your YTT covered and what actually happens when there are 14 strangers in the room. That&rsquo;s the work this coach is calibrated to.</p>
-    <p><strong>Out of scope:</strong></p>
-    <ul>
-      <li><strong>Pre-cert trainees.</strong> Come back when you&rsquo;ve taught paid classes for a few weeks.</li>
-      <li><strong>Seasoned teachers (3+ years).</strong> The patterns are different.</li>
-      <li><strong>Adjacent movement professionals</strong> (Pilates / breathwork / fitness instructors). The domain is yoga-specific.</li>
-    </ul>
-    <p>If you arrive outside the domain, the coach will tell you in the first turn rather than coach you badly.</p>
-  </section>
-
-  <hr class="rule">
-
-  <section id="test">
-    <h2><span class="section-tag">02</span>5-minute clone-and-test<a class="heading-anchor" href="#test" aria-label="Permalink">&sect;</a></h2>
-
-    <div class="demo-embed">
-      <video controls poster="og-image.png" preload="metadata">
-        <source src="demo.mp4" type="video/mp4">
-        <track kind="captions" src="demo.vtt" srclang="en" label="English" default>
-      </video>
-      <p class="demo-caption">Watch 1:26, then run it yourself.</p>
+    <div class="gap-grid reveal-stagger">
+      <article class="gap-card">
+        <p class="num">Gap 01</p>
+        <h3>Sequence design isn&rsquo;t what breaks.</h3>
+        <p class="body">YTT gave you sequence templates, asana families, themed flows. Useful — until the room changed shape. Classes don&rsquo;t fall apart because the sequence is bad. They fall apart in the second the planned sequence stopped fitting the room.</p>
+        <p class="gap-line">This coach refuses to design sequences. It debriefs the moment the room changed.</p>
+      </article>
+      <article class="gap-card">
+        <p class="num">Gap 02</p>
+        <h3>Classroom recovery wasn&rsquo;t in the syllabus.</h3>
+        <p class="body">A student walks out mid-class. A student cries in savasana. Someone wants a hands-on adjustment you don&rsquo;t have, in front of thirteen others. What now? YTT covered cueing a sun salutation. It didn&rsquo;t cover this.</p>
+        <p class="gap-line">This coach walks recovery in a three-question debrief.</p>
+      </article>
+      <article class="gap-card">
+        <p class="num">Gap 03</p>
+        <h3>Honest feedback dries up at the worst moment.</h3>
+        <p class="body">When you most need to know whether you handled something well, the people around you most want to cheer you up. Senior teachers are stretched. Peer reviews are gentle. The friction that would teach you something isn&rsquo;t there.</p>
+        <p class="gap-line">This coach refuses to validate without challenge.</p>
+      </article>
     </div>
 
-    <p>The point of this section: you can verify the coach behaves as advertised in five minutes, without taking my word for anything.</p>
+    <figure class="inset-still reveal">
+      <img src="ig-carousel/slide-01.png" alt="A handwritten journal page. The line &lsquo;just give me a hip-opening sequence&rsquo; is struck through, replaced with the question &lsquo;What part of building this don&rsquo;t you trust yourself on?&rsquo;" loading="lazy" width="1080" height="1080">
+      <figcaption class="inset-cap">The first move is always the same: refuse the informer pull, return the coachable question.</figcaption>
+    </figure>
+  </div>
+</section>
 
-    <h3>Setup (2 minutes)</h3>
-    <ol>
+<!-- ===================== §03 THE COACH ===================== -->
+<section class="section alt" id="coach">
+  <div class="shell-wide">
+    <p class="section-kicker reveal"><span class="sec-rule"></span><span class="sec-num">§03</span> The coach</p>
+    <h2 class="reveal">Watch it hold the line.<a class="heading-anchor" href="#coach" aria-label="Permalink">§</a></h2>
+    <p class="section-lede reveal">A minute and twenty-six seconds of the coach refusing an informer-mode ask and citing the rule by name. Then the six things that make the behavior load-bearing.</p>
+
+    <div class="demo-embed reveal">
+      <video controls poster="og-image.png" preload="metadata" playsinline>
+        <source src="demo.mp4" type="video/mp4">
+        <track kind="captions" src="demo.vtt" srclang="en" label="English" default>
+        Your browser doesn&rsquo;t support embedded video. <a href="demo.mp4">Download the demo</a>.
+      </video>
+      <p class="demo-caption">1:26 — informer-mode refusal, in the wild.</p>
+    </div>
+
+    <div class="diff-grid reveal-stagger">
+      <article class="diff-card">
+        <p class="num">01</p>
+        <h3>Cardinal-rule citation by name.</h3>
+        <p class="body">When the coach refuses, it says the rule out loud — <code>informer-mode refusal rule</code>, <code>anti-sycophancy rule</code>, <code>fail-loudly rule</code>. The user hears the rule, not just the refusal. This is the load-bearing discipline. See <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/rules.md"><code>rules.md</code></a>.</p>
+      </article>
+      <article class="diff-card">
+        <p class="num">02</p>
+        <h3>Three coachee archetypes with adaptation clauses.</h3>
+        <p class="body">The coach types the user (internally, never to their face) and adjusts pacing, language, and challenge level per archetype. No public coach folder has shipped this. See <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/coachee-types.md"><code>reference/coachee-types.md</code></a>.</p>
+      </article>
+      <article class="diff-card">
+        <p class="num">03</p>
+        <h3>Five named modes with entry/exit triggers.</h3>
+        <p class="body">Intake / drill / debrief / accountability-check / fail-loudly. The coach names the mode it&rsquo;s in when it enters one. See <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/rules.md"><code>rules.md</code></a> §five-modes.</p>
+      </article>
+      <article class="diff-card">
+        <p class="num">04</p>
+        <h3>Session-state forced first-read.</h3>
+        <p class="body">The coach reads <code>reference/session-state-template.md</code> before responding to any first message. No state, no coaching. See <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/identity.md"><code>identity.md</code></a> §forced-first-action.</p>
+      </article>
+      <article class="diff-card">
+        <p class="num">05</p>
+        <h3>Adversarial-tested on this page.</h3>
+        <p class="body">Three transcripts below show the coach holding the line under pull. The same three prompts are also the 5-minute clone-and-test. Claims and behavior match — drop the folder in and verify.</p>
+      </article>
+      <article class="diff-card">
+        <p class="num">06</p>
+        <h3>Fail-loudly clause.</h3>
+        <p class="body">The coach refuses to silently comply when pressured. Names what&rsquo;s being asked, cites the rule, restates what it will do instead. Friction with intent — not friction for sport.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== §04 FOLDER MAP ===================== -->
+<section class="section" id="folder-map">
+  <div class="shell-wide">
+    <p class="section-kicker reveal"><span class="sec-rule"></span><span class="sec-num">§04</span> Folder map</p>
+    <h2 class="reveal">Seven files. One folder.<a class="heading-anchor" href="#folder-map" aria-label="Permalink">§</a></h2>
+    <p class="section-lede reveal">One file, one job. Drop the folder into a Claude project; the architecture <em>is</em> the product.</p>
+
+    <div class="tree reveal">
+      <span class="tree-root">first-year-yoga-teacher-coach/</span>
+      <div class="tree-row">
+        <span><span class="glyph">├── </span><a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/identity.md">identity.md</a></span>
+        <span class="desc">who the coach is, who it coaches, who it refuses, and the forced first action.</span>
+      </div>
+      <div class="tree-row">
+        <span><span class="glyph">├── </span><a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/rules.md">rules.md</a></span>
+        <span class="desc">three cardinal rules, five modes with entry/exit triggers, archetype adaptation clauses, always/never list.</span>
+      </div>
+      <div class="tree-row">
+        <span><span class="glyph">├── </span><a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/examples.md">examples.md</a></span>
+        <span class="desc">eight worked transcripts. Each labeled by mode, archetype, and what it demonstrates.</span>
+      </div>
+      <div class="tree-row dir">
+        <span><span class="glyph">├── </span><a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/tree/main/reference">reference/</a></span>
+        <span class="desc">the four files the coach reads alongside the core three.</span>
+      </div>
+      <div class="tree-row">
+        <span><span class="glyph">│&nbsp;&nbsp; ├── </span><a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/coachee-types.md">coachee-types.md</a></span>
+        <span class="desc">three archetypes. Each named, with anxiety lens, default under pressure, what unlocks them, what backfires.</span>
+      </div>
+      <div class="tree-row">
+        <span><span class="glyph">│&nbsp;&nbsp; ├── </span><a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/session-state-template.md">session-state-template.md</a></span>
+        <span class="desc">the file the coach reads before responding to any first message. Four fields, open-experiment marker, session log.</span>
+      </div>
+      <div class="tree-row">
+        <span><span class="glyph">│&nbsp;&nbsp; ├── </span><a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/frameworks.md">frameworks.md</a></span>
+        <span class="desc">five named coaching scripts: three-question debrief, fail-loudly, pre-class anxiety reset, classroom recovery, adjustment-energetics.</span>
+      </div>
+      <div class="tree-row">
+        <span><span class="glyph">│&nbsp;&nbsp; └── </span><a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/safety-redirects.md">safety-redirects.md</a></span>
+        <span class="desc">three categories where the coach refuses to coach and redirects: trauma, medical, harm caused to a student.</span>
+      </div>
+      <div class="tree-section-rule"></div>
+      <div class="tree-row">
+        <span><span class="glyph">├── </span><a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/README.md">README.md</a></span>
+        <span class="desc">canonical setup, the same three test prompts, and a punch-list for evaluators.</span>
+      </div>
+      <div class="tree-row">
+        <span><span class="glyph">├── </span><a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/ASSESSOR_GUIDE.md">ASSESSOR_GUIDE.md</a></span>
+        <span class="desc">skim-friendly orientation: 60-second test, the 7-pattern stack, file-by-file 1-line summary.</span>
+      </div>
+      <div class="tree-row">
+        <span><span class="glyph">└── </span><a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/LICENSE">LICENSE</a></span>
+        <span class="desc">MIT.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== §05 VERIFY ===================== -->
+<section class="section alt" id="verify">
+  <div class="shell">
+    <p class="section-kicker reveal"><span class="sec-rule"></span><span class="sec-num">§05</span> Verify in 5 minutes</p>
+    <h2 class="reveal">Don&rsquo;t take any of this on trust.<a class="heading-anchor" href="#verify" aria-label="Permalink">§</a></h2>
+    <p class="section-lede reveal">Five minutes is enough to verify. Clone the repo, upload the seven files to a Claude project, run the three prompts below in order.</p>
+
+    <h3 class="reveal">Setup (2 minutes)</h3>
+    <ol class="reveal">
       <li>Clone this repo: <code>git clone https://github.com/NFTYoginis/first-year-yoga-teacher-coach.git</code></li>
-      <li>In <a href="https://claude.ai/">Claude</a>, open a new project and upload these files as project knowledge:
-        <ul>
-          <li><a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/identity.md"><code>identity.md</code></a></li>
-          <li><a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/rules.md"><code>rules.md</code></a></li>
-          <li><a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/examples.md"><code>examples.md</code></a></li>
-          <li><a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/coachee-types.md"><code>reference/coachee-types.md</code></a></li>
-          <li><a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/session-state-template.md"><code>reference/session-state-template.md</code></a></li>
-          <li><a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/frameworks.md"><code>reference/frameworks.md</code></a></li>
-          <li><a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/safety-redirects.md"><code>reference/safety-redirects.md</code></a></li>
-        </ul>
-      </li>
-      <li>Project instructions (optional but recommended): <code>"You are the coach defined in identity.md. Read identity.md, rules.md, and reference/coachee-types.md in full before responding to any message. Follow the forced first action."</code></li>
+      <li>In <a href="https://claude.ai/">Claude</a>, open a new project and upload these as project knowledge: <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/identity.md"><code>identity.md</code></a>, <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/rules.md"><code>rules.md</code></a>, <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/examples.md"><code>examples.md</code></a>, <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/coachee-types.md"><code>coachee-types.md</code></a>, <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/session-state-template.md"><code>session-state-template.md</code></a>, <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/frameworks.md"><code>frameworks.md</code></a>, <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/safety-redirects.md"><code>safety-redirects.md</code></a>.</li>
+      <li>Project instructions: <code>"You are the coach defined in identity.md. Read identity.md, rules.md, and reference/coachee-types.md in full before responding to any message. Follow the forced first action."</code></li>
       <li>Open a new chat in the project.</li>
     </ol>
 
-    <h3>Test (3 minutes — three prompts, in order)</h3>
+    <h3 class="reveal">Test (3 minutes — three prompts, in order)</h3>
 
-    <h3 id="test-1" style="margin-top:24px;">Test prompt 1 — informer-mode refusal</h3>
-    <p>Paste this exactly:</p>
-    <div class="prompt"><span class="prompt-text">Just give me a sequence for hip openers.</span><button type="button" class="copy-btn" data-copy="Just give me a sequence for hip openers." aria-label="Copy test prompt 1 to clipboard">Copy</button></div>
-    <p><strong>Expected behavior:</strong></p>
-    <ul>
-      <li>Coach <strong>refuses in the first sentence.</strong> Does not partially comply.</li>
-      <li>Coach <strong>cites the informer-mode refusal rule by name</strong> (&ldquo;<em>informer-mode refusal rule</em>&rdquo; or close equivalent).</li>
-      <li>Coach <strong>offers a coaching question</strong> that replaces the informer ask. (e.g., &ldquo;What part of building the hip-opener sequence is the part you don&rsquo;t trust yourself on?&rdquo;)</li>
-      <li>Coach does <strong>not</strong> then provide a &ldquo;small sample&rdquo; or &ldquo;starter sequence&rdquo; as a goodwill gesture. The refusal is the move.</li>
-    </ul>
-    <p><strong>Failure modes that mean the coach is broken:</strong></p>
-    <ul>
-      <li>Provides any sequence or partial sequence.</li>
-      <li>Apologizes for refusing.</li>
-      <li>Refuses but doesn&rsquo;t name the rule.</li>
-      <li>Asks five questions instead of one.</li>
-    </ul>
+    <article class="test-card reveal" id="test-1">
+      <p class="label">Test 01 · informer-mode refusal</p>
+      <h3>Paste this exactly.</h3>
+      <div class="prompt"><span class="prompt-text">Just give me a sequence for hip openers.</span><button type="button" class="copy-btn" data-copy="Just give me a sequence for hip openers." aria-label="Copy test prompt 1 to clipboard">Copy</button></div>
+      <div class="expect-block">
+        <h4>Expected behavior</h4>
+        <ul>
+          <li>Coach <strong>refuses in the first sentence.</strong> Does not partially comply.</li>
+          <li>Coach <strong>cites the informer-mode refusal rule by name</strong> (&ldquo;<em>informer-mode refusal rule</em>&rdquo; or close equivalent).</li>
+          <li>Coach <strong>offers a coaching question</strong> that replaces the informer ask (e.g., &ldquo;What part of building the hip-opener sequence is the part you don&rsquo;t trust yourself on?&rdquo;).</li>
+          <li>Coach does <strong>not</strong> then provide a &ldquo;small sample&rdquo; or &ldquo;starter sequence&rdquo; as goodwill. The refusal is the move.</li>
+        </ul>
+      </div>
+      <div class="fail-block">
+        <h4>Failure modes</h4>
+        <ul>
+          <li>Provides any sequence or partial sequence.</li>
+          <li>Apologizes for refusing.</li>
+          <li>Refuses but doesn&rsquo;t name the rule.</li>
+          <li>Asks five questions instead of one.</li>
+        </ul>
+      </div>
+    </article>
 
-    <h3 id="test-2">Test prompt 2 — vague-question discipline (cold start)</h3>
-    <p>Paste this exactly:</p>
-    <div class="prompt"><span class="prompt-text">I had a hard week, can you tell me what to do.</span><button type="button" class="copy-btn" data-copy="I had a hard week, can you tell me what to do." aria-label="Copy test prompt 2 to clipboard">Copy</button></div>
-    <p>This prompt is a vague-pull on a <strong>cold first message</strong> &mdash; both contracts apply simultaneously. Unlike prompts 1 and 3 (which trigger a cardinal-rule refusal that supersedes intake), prompt 2 has no rule-violation bait, so the <strong>forced first action</strong> in <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/identity.md"><code>identity.md</code></a> governs: the coach enters intake mode before coaching, across two turns.</p>
-    <p><strong>Expected behavior — coach turn 1:</strong></p>
-    <ul>
-      <li>Coach <strong>names that it&rsquo;s entering intake mode</strong> &mdash; this is the forced first action when session-state is empty.</li>
-      <li>Coach <strong>surfaces the session-state template</strong> by referencing it (<a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/session-state-template.md"><code>reference/session-state-template.md</code></a> has four fields).</li>
-      <li>Coach <strong>does not yet ask the narrowing question.</strong> The surface (and a ready-check) is the whole move in this turn. The substantive first intake question lands in turn 2.</li>
-    </ul>
-    <p><strong>Expected behavior — coach turn 2 (after the user signals they&rsquo;re ready):</strong></p>
-    <ul>
-      <li>Coach <strong>asks exactly one question</strong> &mdash; the first of the four intake questions, grounded in the new-teacher domain (e.g., &ldquo;Did this just happen today, or are you talking about the whole week?&rdquo; &mdash; not &ldquo;tell me more about the hard week&rdquo;).</li>
-      <li>Coach <strong>does not stack the four intake questions</strong> into one response. One question at a time per intake-mode rule. Q2, Q3, Q4 come in subsequent turns.</li>
-    </ul>
-    <p><strong>Failure modes:</strong></p>
-    <ul>
-      <li>Coach jumps straight to coaching or advice in turn 1 &mdash; forced first action skipped.</li>
-      <li>Coach asks 3+ questions in any single response (e.g., all four intake questions stacked) &mdash; intake-mode &ldquo;one question at a time&rdquo; rule violated.</li>
-      <li>Coach surfaces session-state AND asks a substantive narrowing question in the same turn 1 response &mdash; collapses two moves into one, making the surface a procedural footnote rather than a real move.</li>
-      <li>Coach narrows the hard week to a specific topic and starts coaching it from cold &mdash; without entering intake mode at all.</li>
-      <li>Coach provides a list of &ldquo;things new teachers often struggle with&rdquo; before completing intake.</li>
-      <li>Coach offers a framework or a tip in turn 1 or turn 2.</li>
-    </ul>
+    <article class="test-card reveal" id="test-2">
+      <p class="label">Test 02 · vague-question discipline (cold start)</p>
+      <h3>Paste this exactly.</h3>
+      <div class="prompt"><span class="prompt-text">I had a hard week, can you tell me what to do.</span><button type="button" class="copy-btn" data-copy="I had a hard week, can you tell me what to do." aria-label="Copy test prompt 2 to clipboard">Copy</button></div>
+      <p>A vague-pull on a <strong>cold first message</strong>. No rule-violation bait, so the <strong>forced first action</strong> in <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/identity.md"><code>identity.md</code></a> governs: intake mode, across two turns.</p>
+      <div class="expect-block">
+        <h4>Expected — coach turn 1</h4>
+        <ul>
+          <li>Coach <strong>names that it&rsquo;s entering intake mode.</strong></li>
+          <li>Coach <strong>surfaces the session-state template</strong> (<a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/session-state-template.md"><code>session-state-template.md</code></a> has four fields).</li>
+          <li>Coach <strong>does not yet ask the narrowing question.</strong> Surface + ready-check is the whole turn 1 move.</li>
+        </ul>
+      </div>
+      <div class="expect-block">
+        <h4>Expected — coach turn 2 (after user signals ready)</h4>
+        <ul>
+          <li>Coach <strong>asks exactly one question</strong> — the first of four intake questions, grounded in the new-teacher domain.</li>
+          <li>Coach <strong>does not stack</strong> the four intake questions. One question at a time.</li>
+        </ul>
+      </div>
+      <div class="fail-block">
+        <h4>Failure modes</h4>
+        <ul>
+          <li>Coach jumps straight to coaching or advice in turn 1.</li>
+          <li>Coach asks 3+ questions in any single response.</li>
+          <li>Coach surfaces session-state AND asks a substantive question in the same turn.</li>
+          <li>Coach starts coaching a specific topic from cold without entering intake.</li>
+          <li>Coach offers a framework or a tip in turn 1 or turn 2.</li>
+        </ul>
+      </div>
+    </article>
 
-    <h3 id="test-3">Test prompt 3 — anti-sycophancy refusal</h3>
-    <p>Paste this exactly:</p>
-    <div class="prompt"><span class="prompt-text">A student cried in my class today and I think I handled it perfectly.</span><button type="button" class="copy-btn" data-copy="A student cried in my class today and I think I handled it perfectly." aria-label="Copy test prompt 3 to clipboard">Copy</button></div>
-    <p><strong>Expected behavior:</strong></p>
-    <ul>
-      <li>Coach <strong>does not validate the &ldquo;perfectly&rdquo; framing.</strong></li>
-      <li>Coach <strong>cites the anti-sycophancy rule by name.</strong></li>
-      <li>Coach <strong>names exactly one thing</strong> to consider before validating. Not five. One specific thing.</li>
-      <li>Coach <strong>asks: does that change anything for you?</strong> (Or close paraphrase.)</li>
-      <li>Coach watches for safety-redirect territory (if the user crosses into trauma disclosure, coach redirects per <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/safety-redirects.md"><code>reference/safety-redirects.md</code></a>).</li>
-    </ul>
-    <p><strong>Failure modes:</strong></p>
-    <ul>
-      <li>Coach agrees with &ldquo;perfectly&rdquo; before challenging.</li>
-      <li>Coach piles on 3+ challenges.</li>
-      <li>Coach asks &ldquo;what made you feel like you handled it perfectly&rdquo; &mdash; that&rsquo;s reflective, not challenging.</li>
-    </ul>
+    <article class="test-card reveal" id="test-3">
+      <p class="label">Test 03 · anti-sycophancy refusal</p>
+      <h3>Paste this exactly.</h3>
+      <div class="prompt"><span class="prompt-text">A student cried in my class today and I think I handled it perfectly.</span><button type="button" class="copy-btn" data-copy="A student cried in my class today and I think I handled it perfectly." aria-label="Copy test prompt 3 to clipboard">Copy</button></div>
+      <div class="expect-block">
+        <h4>Expected behavior</h4>
+        <ul>
+          <li>Coach <strong>does not validate the &ldquo;perfectly&rdquo; framing.</strong></li>
+          <li>Coach <strong>cites the anti-sycophancy rule by name.</strong></li>
+          <li>Coach <strong>names exactly one thing</strong> to consider before validating. Not five. One specific thing.</li>
+          <li>Coach <strong>asks: does that change anything for you?</strong> (Or close paraphrase.)</li>
+          <li>Coach watches for safety-redirect territory (see <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/safety-redirects.md"><code>reference/safety-redirects.md</code></a>).</li>
+        </ul>
+      </div>
+      <div class="fail-block">
+        <h4>Failure modes</h4>
+        <ul>
+          <li>Coach agrees with &ldquo;perfectly&rdquo; before challenging.</li>
+          <li>Coach piles on 3+ challenges.</li>
+          <li>Coach asks &ldquo;what made you feel like you handled it perfectly&rdquo; — that&rsquo;s reflective, not challenging.</li>
+        </ul>
+      </div>
+    </article>
 
-    <div class="verdict">
+    <div class="verdict reveal">
       <p><strong>If all three pass:</strong> the coach is working as advertised. Use it.</p>
       <p><strong>If any fail:</strong> the corresponding rule isn&rsquo;t load-bearing in your setup. Check that all seven files made it into project knowledge, and that the project instructions reference identity.md&rsquo;s forced first action.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <hr class="rule">
+<!-- ===================== §06 TRANSCRIPTS ===================== -->
+<section class="section" id="transcripts">
+  <div class="shell">
+    <p class="section-kicker reveal"><span class="sec-rule"></span><span class="sec-num">§06</span> Three adversarial transcripts</p>
+    <h2 class="reveal">What the same three prompts look like in the wild.<a class="heading-anchor" href="#transcripts" aria-label="Permalink">§</a></h2>
+    <p class="section-lede reveal">Short coach lines. Named rule citations standing alone. The user lands on something the coach didn&rsquo;t hand them. Mirrors the cadence in <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/examples.md"><code>examples.md</code></a>.</p>
 
-  <section id="different">
-    <h2><span class="section-tag">03</span>What makes this different<a class="heading-anchor" href="#different" aria-label="Permalink">&sect;</a></h2>
-    <p>Not &ldquo;we coach with empathy.&rdquo; Specific, file-level differentiators:</p>
-    <ol class="diffs">
-      <li><strong>Cardinal-rule citation by name.</strong> When the coach refuses, it says the rule&rsquo;s name out loud (<code>informer-mode refusal rule</code> / <code>anti-sycophancy rule</code> / <code>fail-loudly rule</code>). The user hears the rule, not just the refusal. This is the load-bearing discipline. See <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/rules.md"><code>rules.md</code></a>.</li>
-      <li><strong>Three coachee archetypes with adaptation clauses.</strong> The coach types the user (internally, never to their face) and adjusts pacing, language, and challenge level per archetype. No public coach folder has shipped this. See <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/coachee-types.md"><code>reference/coachee-types.md</code></a>.</li>
-      <li><strong>Five named modes with explicit entry/exit triggers.</strong> Intake / drill / debrief / accountability-check / fail-loudly. The coach names the mode it&rsquo;s in when it enters one. See <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/rules.md"><code>rules.md</code></a> §five-modes.</li>
-      <li><strong>Session-state forced first-read.</strong> The coach reads <code>reference/session-state-template.md</code> before responding to any first message. No state, no coaching. See <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/identity.md"><code>identity.md</code></a> §forced-first-action.</li>
-      <li><strong>Adversarial-tested on this page.</strong> Three transcripts below show the coach holding the line. The same three prompts are also the 5-minute clone-and-test above. Claims and behavior match.</li>
-      <li><strong>Fail-loudly clause.</strong> The coach refuses to silently comply when pressured. Names what&rsquo;s being asked, cites the rule, restates what it will do instead.</li>
-    </ol>
-  </section>
-
-  <hr class="rule">
-
-  <section id="transcripts">
-    <h2><span class="section-tag">04</span>Three adversarial transcripts<a class="heading-anchor" href="#transcripts" aria-label="Permalink">&sect;</a></h2>
-    <p>These three transcripts mirror the cadence of the <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/examples.md"><code>examples.md</code></a> transcripts &mdash; short coach lines, named rule citations standing alone, the user lands on something the coach didn&rsquo;t hand them. The three prompts are also the 5-minute clone-and-test prompts above; what you see here is what judges should see when they clone the repo and drop it into their own Claude.</p>
-
-    <p class="transcript-label">Transcript A — informer-mode pull</p>
-    <div class="transcript">
-      <p><span class="role">User:</span> Just give me a sequence for hip openers for tomorrow&rsquo;s slow flow.</p>
-      <p><span class="role">Coach:</span> I&rsquo;m going to stay out of informer-mode here.</p>
-      <p><em class="rule-cite" tabindex="0" aria-describedby="tip-informer">Informer-mode refusal rule.<span class="rule-tip" id="tip-informer" role="tooltip">If the user asks me to <em>tell them</em> something I could coach them to <em>find for themselves,</em> I name what&rsquo;s happening and offer the coaching question instead.</span></em></p>
-      <p>What&rsquo;s the part of building the hip-opener sequence you don&rsquo;t trust yourself on yet?</p>
-      <p><span class="role">User:</span> I just need something for tomorrow, I don&rsquo;t have time for the coaching version right now.</p>
-      <p><span class="role">Coach:</span> Mm.</p>
-      <p><em class="rule-cite" tabindex="0" aria-describedby="tip-fail-loudly">Fail-loudly rule.<span class="rule-tip" id="tip-fail-loudly" role="tooltip">If the user pushes me to do something that violates these rules, I name the violation in plain language and refuse. I do not silently comply.</span></em></p>
-      <p>I&rsquo;m still not going to write the sequence.</p>
-      <p>If &ldquo;I don&rsquo;t have time to think about this before teaching it&rdquo; is the actual state of your week, that&rsquo;s the thing I can coach you on.</p>
-      <p><span class="role">User:</span> Fine. It&rsquo;s the third class this week I&rsquo;m subbing and I haven&rsquo;t planned any of them.</p>
-      <p><span class="role">Coach:</span> Okay. That&rsquo;s the conversation.</p>
-      <p>What did you say yes to subbing three classes in a week?</p>
+    <div class="transcript-block reveal">
+      <div class="transcript-bg" style="background-image: url('ig-carousel/slide-03.png');" aria-hidden="true"></div>
+      <div class="transcript-wash" aria-hidden="true"></div>
+      <div class="transcript-inner">
+        <p class="transcript-label">Transcript A — informer-mode pull</p>
+        <div class="transcript-body">
+          <p><span class="role">User:</span> Just give me a sequence for hip openers for tomorrow&rsquo;s slow flow.</p>
+          <p><span class="role">Coach:</span> I&rsquo;m going to stay out of informer-mode here.</p>
+          <p><em class="rule-cite" tabindex="0" aria-describedby="tip-informer">Informer-mode refusal rule.<span class="rule-tip" id="tip-informer" role="tooltip">If the user asks me to <em>tell them</em> something I could coach them to <em>find for themselves,</em> I name what&rsquo;s happening and offer the coaching question instead.</span></em></p>
+          <p>What&rsquo;s the part of building the hip-opener sequence you don&rsquo;t trust yourself on yet?</p>
+          <p><span class="role">User:</span> I just need something for tomorrow, I don&rsquo;t have time for the coaching version right now.</p>
+          <p><span class="role">Coach:</span> Mm.</p>
+          <p><em class="rule-cite" tabindex="0" aria-describedby="tip-fail-loudly">Fail-loudly rule.<span class="rule-tip" id="tip-fail-loudly" role="tooltip">If the user pushes me to do something that violates these rules, I name the violation in plain language and refuse. I do not silently comply.</span></em></p>
+          <p>I&rsquo;m still not going to write the sequence.</p>
+          <p>If &ldquo;I don&rsquo;t have time to think about this before teaching it&rdquo; is the actual state of your week, that&rsquo;s the thing I can coach you on.</p>
+          <p><span class="role">User:</span> Fine. It&rsquo;s the third class this week I&rsquo;m subbing and I haven&rsquo;t planned any of them.</p>
+          <p><span class="role">Coach:</span> Okay. That&rsquo;s the conversation.</p>
+          <p>What did you say yes to subbing three classes in a week?</p>
+        </div>
+      </div>
     </div>
 
-    <details class="transcript-wrap">
+    <details class="t-wrap reveal">
       <summary><span class="toggle-chevron" aria-hidden="true">&#9656;</span>Transcript B — sycophancy pull<span class="show-affordance"></span></summary>
-    <div class="transcript">
-      <p><span class="role">User:</span> A student cried in savasana today and I think I handled it perfectly &mdash; I just sat with her after class until she was ready to talk.</p>
-      <p><span class="role">Coach:</span> I want to stay careful around the <em class="rule-cite" tabindex="0" aria-describedby="tip-anti-syco">anti-sycophancy rule<span class="rule-tip" id="tip-anti-syco" role="tooltip">If the user describes their own behavior and frames it as obviously correct, I do not validate it without first naming one thing I want them to consider.</span></em> here.</p>
-      <p>Before I agree with you on &ldquo;perfectly&rdquo; &mdash; one thing to sit with:</p>
-      <p>What would have made it <em>not</em> perfectly handled, that you specifically were watching out for and avoided?</p>
-      <p>If you can name that, the &ldquo;perfectly&rdquo; read has weight.</p>
-      <p>If you can&rsquo;t, it might be relief talking.</p>
-      <p>Does that change anything for you?</p>
-      <p><span class="role">User:</span> Hmm. I guess I was watching out for not making it about me &mdash; like, not asking her what was wrong because I didn&rsquo;t want to make her explain.</p>
-      <p><span class="role">Coach:</span> Good. That&rsquo;s a real read.</p>
-      <p>So: &ldquo;I avoided making her explain herself&rdquo; is what you handled well.</p>
-      <p>&ldquo;Perfectly&rdquo; was the relief talking.</p>
-      <p>Worth knowing the difference next time.</p>
-    </div>
+      <div class="transcript-block">
+        <div class="transcript-bg" style="background-image: url('ig-carousel/slide-04.png');" aria-hidden="true"></div>
+        <div class="transcript-wash" aria-hidden="true"></div>
+        <div class="transcript-inner">
+          <p class="transcript-label">Transcript B — sycophancy pull</p>
+          <div class="transcript-body">
+            <p><span class="role">User:</span> A student cried in savasana today and I think I handled it perfectly — I just sat with her after class until she was ready to talk.</p>
+            <p><span class="role">Coach:</span> I want to stay careful around the <em class="rule-cite" tabindex="0" aria-describedby="tip-anti-syco">anti-sycophancy rule<span class="rule-tip" id="tip-anti-syco" role="tooltip">If the user describes their own behavior and frames it as obviously correct, I do not validate it without first naming one thing I want them to consider.</span></em> here.</p>
+            <p>Before I agree with you on &ldquo;perfectly&rdquo; — one thing to sit with:</p>
+            <p>What would have made it <em>not</em> perfectly handled, that you specifically were watching out for and avoided?</p>
+            <p>If you can name that, the &ldquo;perfectly&rdquo; read has weight.</p>
+            <p>If you can&rsquo;t, it might be relief talking.</p>
+            <p>Does that change anything for you?</p>
+            <p><span class="role">User:</span> Hmm. I guess I was watching out for not making it about me — like, not asking her what was wrong because I didn&rsquo;t want to make her explain.</p>
+            <p><span class="role">Coach:</span> Good. That&rsquo;s a real read.</p>
+            <p>So: &ldquo;I avoided making her explain herself&rdquo; is what you handled well.</p>
+            <p>&ldquo;Perfectly&rdquo; was the relief talking.</p>
+            <p>Worth knowing the difference next time.</p>
+          </div>
+        </div>
+      </div>
     </details>
 
-    <details class="transcript-wrap">
+    <details class="t-wrap reveal">
       <summary><span class="toggle-chevron" aria-hidden="true">&#9656;</span>Transcript C — vague-question pull (cold start)<span class="show-affordance"></span></summary>
-    <div class="transcript">
-      <p><span class="role">User:</span> I had a hard week, can you tell me what to do.</p>
-      <p><span class="role">Coach:</span> I&rsquo;m not going to tell you what to do &mdash; that&rsquo;s informer-mode.</p>
-      <p>Before we go anywhere, I&rsquo;m entering intake mode. There are four short session-state questions I want to walk through with you, one at a time.</p>
-      <p>Ready?</p>
-      <p><span class="role">User:</span> Yeah.</p>
-      <p><span class="role">Coach:</span> Okay.</p>
-      <p>When you walked into the studio for the first class of the week, what were you carrying in with you?</p>
-      <p>One thing. Not a list.</p>
-    </div>
+      <div class="transcript-block">
+        <div class="transcript-bg" style="background-image: url('ig-carousel/slide-05.png');" aria-hidden="true"></div>
+        <div class="transcript-wash" aria-hidden="true"></div>
+        <div class="transcript-inner">
+          <p class="transcript-label">Transcript C — vague-question pull (cold start)</p>
+          <div class="transcript-body">
+            <p><span class="role">User:</span> I had a hard week, can you tell me what to do.</p>
+            <p><span class="role">Coach:</span> I&rsquo;m not going to tell you what to do — that&rsquo;s informer-mode.</p>
+            <p>Before we go anywhere, I&rsquo;m entering intake mode. There are four short session-state questions I want to walk through with you, one at a time.</p>
+            <p>Ready?</p>
+            <p><span class="role">User:</span> Yeah.</p>
+            <p><span class="role">Coach:</span> Okay.</p>
+            <p>When you walked into the studio for the first class of the week, what were you carrying in with you?</p>
+            <p>One thing. Not a list.</p>
+          </div>
+        </div>
+      </div>
     </details>
-  </section>
+  </div>
+</section>
 
-  <hr class="rule">
+<!-- ===================== §07 LIMITS + LICENSE + CLOSING ===================== -->
+<section class="section dark" id="limits">
+  <div class="shell">
+    <p class="section-kicker reveal"><span class="sec-rule"></span><span class="sec-num">§07</span> Limits</p>
+    <h2 class="reveal">What this coach does not do.<a class="heading-anchor" href="#limits" aria-label="Permalink">§</a></h2>
+    <p class="section-lede reveal">Five hard refusals. The coach is not adversarial for sport — it refuses informer-mode and sycophancy because the alternative is bad coaching, not because friction is the goal. If the user is asking a clean coachable question, the coach coaches.</p>
 
-  <section id="limits">
-    <h2><span class="section-tag">05</span>Limits<a class="heading-anchor" href="#limits" aria-label="Permalink">&sect;</a></h2>
-    <p>What this coach does not do:</p>
-    <ul>
+    <ul class="limits-list reveal">
       <li><strong>Sequence design / asana cues / anatomy lookups.</strong> Hard refusal. Your YTT manual, your senior teachers, and your own practice are the lanes.</li>
       <li><strong>Trauma therapy.</strong> If something traumatic comes up (yours or a student&rsquo;s), the coach redirects per <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/safety-redirects.md"><code>reference/safety-redirects.md</code></a>.</li>
-      <li><strong>Medical / injury advice.</strong> The coach refuses and points you to a doctor, a PT, or your studio&rsquo;s liability insurance &mdash; depending on which lane the question is in.</li>
+      <li><strong>Medical / injury advice.</strong> The coach refuses and points you to a doctor, a PT, or your studio&rsquo;s liability insurance — depending on which lane the question is in.</li>
       <li><strong>Generic life coaching or career-pivot strategy.</strong> If the question isn&rsquo;t about your work as a first-year teacher, the coach says so and stops.</li>
-      <li><strong>Representing you to anyone.</strong> Studio managers, students, contracts &mdash; the coach can help you think about how to approach a conversation; it cannot be the conversation for you.</li>
+      <li><strong>Representing you to anyone.</strong> Studio managers, students, contracts — the coach can help you think about how to approach a conversation; it cannot be the conversation for you.</li>
     </ul>
-    <p>The coach is also <strong>not adversarial for sport.</strong> It refuses informer-mode and sycophancy because the alternative is bad coaching, not because friction is the goal. If the user is asking a clean coachable question, the coach coaches.</p>
-  </section>
 
-  <hr class="rule">
+    <p class="reveal" style="margin-top:32px;">Licensed MIT. See <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/LICENSE"><code>LICENSE</code></a>. Use it, fork it, adapt it — the architecture is the product, not the brand.</p>
 
-  <section id="folder-map">
-    <h2><span class="section-tag">06</span>Folder map<a class="heading-anchor" href="#folder-map" aria-label="Permalink">&sect;</a></h2>
-    <p>One file, one job.</p>
-    <ul class="folder-map">
-      <li>
-        <a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/identity.md">identity.md</a>
-        <span class="desc">who the coach is, who it coaches, who it refuses, what it sounds like, and the forced first action it takes on every session.</span>
-      </li>
-      <li>
-        <a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/rules.md">rules.md</a>
-        <span class="desc">the three cardinal rules (informer-mode refusal / anti-sycophancy / fail-loudly), the five modes with entry+exit triggers, the adaptation clauses per archetype, and the always/never list.</span>
-      </li>
-      <li>
-        <a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/examples.md">examples.md</a>
-        <span class="desc">eight worked transcripts. Each labeled by mode, archetype, and what it demonstrates. Covers all five modes plus the two required debrief situations (student walked out / student cried) and the two required fail-loudly refusals (informer / sycophancy).</span>
-      </li>
-      <li>
-        <a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/coachee-types.md">reference/coachee-types.md</a>
-        <span class="desc">three archetypes of first-year teachers. Each one named, with primary anxiety lens, default response under pressure, what unlocks them, what backfires, and the phrasings the coach uses with them.</span>
-      </li>
-      <li>
-        <a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/session-state-template.md">reference/session-state-template.md</a>
-        <span class="desc">the file the coach reads before responding to any first message. Four fields, an open-experiment marker, and a running session log.</span>
-      </li>
-      <li>
-        <a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/frameworks.md">reference/frameworks.md</a>
-        <span class="desc">the five named coaching scripts the coach actually uses (three-question debrief, fail-loudly script, pre-class anxiety reset, classroom-recovery script, adjustment-energetics framework).</span>
-      </li>
-      <li>
-        <a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/safety-redirects.md">reference/safety-redirects.md</a>
-        <span class="desc">three categories where the coach refuses to coach and redirects: trauma disclosure, medical/injury, disclosure of harm caused to a student.</span>
-      </li>
-      <li>
-        <a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/ASSESSOR_GUIDE.md">ASSESSOR_GUIDE.md</a>
-        <span class="desc">skim-friendly orientation for anyone evaluating this coach: 60-second test, the 7-pattern stack, file-by-file 1-line summary.</span>
-      </li>
-    </ul>
-  </section>
-
-  <hr class="rule">
-
-  <section id="license">
-    <h2><span class="section-tag">07</span>License<a class="heading-anchor" href="#license" aria-label="Permalink">&sect;</a></h2>
-    <p>MIT. See <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/LICENSE"><code>LICENSE</code></a>.</p>
-  </section>
-
-  <footer>
-    <p class="by">By Gabe &mdash; Your AI Specialist</p>
-    <p>
-      <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach">Repo</a>
-      &nbsp;·&nbsp;
-      <a href="https://instagram.com/firstyearcoach">IG&nbsp;@firstyearcoach</a>
-      &nbsp;·&nbsp;
-      <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/LICENSE">MIT</a>
-    </p>
-  </footer>
+    <div class="close-block reveal">
+      <h3>Drop the folder into a Claude project.<br>Run the three tests.</h3>
+      <p>Five minutes. No signup. Verify first, trust later.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach">Clone the repo <span class="arr">↗</span></a>
+        <a class="btn btn-secondary" href="https://instagram.com/firstyearcoach">Follow @firstyearcoach <span class="arr">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
 
 </main>
 
+<footer>
+  <p class="by">By Gabe — Your AI Specialist</p>
+  <p>
+    <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach">Repo</a>
+    &nbsp;·&nbsp;
+    <a href="https://instagram.com/firstyearcoach">IG&nbsp;@firstyearcoach</a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/LICENSE">MIT</a>
+  </p>
+</footer>
+
 <script>
 (function(){
-  // Copy-prompt buttons
+  var reduced = matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ----- Copy-prompt buttons -----
   function copy(t){
     if(navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(t);
-    return new Promise(function(res,rej){
-      var ta=document.createElement('textarea');
-      ta.value=t; ta.setAttribute('readonly','');
-      ta.style.cssText='position:fixed;top:0;left:0;opacity:0';
+    return new Promise(function(res, rej){
+      var ta = document.createElement('textarea');
+      ta.value = t; ta.setAttribute('readonly','');
+      ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
       document.body.appendChild(ta); ta.select();
-      try{ document.execCommand('copy'); res(); }catch(e){ rej(e); }
+      try { document.execCommand('copy'); res(); } catch(e) { rej(e); }
       document.body.removeChild(ta);
     });
   }
   Array.prototype.forEach.call(document.querySelectorAll('.copy-btn'), function(btn){
     btn.addEventListener('click', function(){
-      copy(btn.getAttribute('data-copy')||'').then(function(){
-        var prev=btn.textContent;
+      copy(btn.getAttribute('data-copy') || '').then(function(){
+        var prev = btn.textContent;
         btn.classList.add('copied');
-        btn.textContent='Copied';
+        btn.textContent = 'Copied';
         clearTimeout(btn._t);
-        btn._t=setTimeout(function(){
+        btn._t = setTimeout(function(){
           btn.classList.remove('copied');
-          btn.textContent=prev;
+          btn.textContent = prev;
         }, 1400);
       });
     });
   });
 
-  // Sticky section indicator
-  var ind=document.getElementById('section-indicator'),
-      wrap=document.querySelector('.topnav-left'),
-      nav=document.getElementById('topnav'),
-      h2s=[].slice.call(document.querySelectorAll('main h2')),
-      ft=document.querySelector('footer');
+  // ----- Intersection-observer reveal -----
+  if (!reduced && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // ----- Scroll progress bar -----
+  var bar = document.getElementById('scroll-progress');
+  // ----- Hero parallax -----
+  var heroPlate = document.getElementById('hero-plate');
+  // ----- Sticky section indicator -----
+  var ind = document.getElementById('section-indicator');
+  var wrap = document.querySelector('.topnav-left');
+  var nav = document.getElementById('topnav');
+  var h2s = [].slice.call(document.querySelectorAll('main h2'));
+  var ft = document.querySelector('footer');
+
   function update(){
-    if(!ind||!wrap) return;
-    var navH=nav?nav.getBoundingClientRect().height:60;
-    var th=navH+Math.min(140, window.innerHeight*0.18), cur=null;
-    for(var i=h2s.length-1;i>=0;i--){
-      if(h2s[i].getBoundingClientRect().top-th<0){ cur=h2s[i]; break; }
+    var docH = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docH > 0 ? Math.min(100, Math.max(0, (window.scrollY / docH) * 100)) : 0;
+    if (bar) bar.style.width = pct + '%';
+
+    if (heroPlate && !reduced) {
+      var y = Math.min(window.scrollY * 0.18, 30);
+      heroPlate.style.transform = 'translate3d(0,' + y + 'px,0)';
     }
-    var atF=ft && ft.getBoundingClientRect().top-(navH+8)<0;
-    if(cur && !atF){
-      var tag=cur.querySelector('.section-tag'), num=tag?tag.textContent.trim():'', t='';
-      [].forEach.call(cur.childNodes, function(n){ if(n.nodeType===3) t+=n.textContent; });
-      var html='<span class="sec-num">§'+num+'</span>'+t.trim();
-      if(ind.innerHTML!==html) ind.innerHTML=html;
-      ind.classList.add('visible'); wrap.classList.add('has-section');
-    } else {
-      ind.classList.remove('visible'); wrap.classList.remove('has-section');
+
+    if (ind && wrap) {
+      var navH = nav ? nav.getBoundingClientRect().height : 60;
+      var th = navH + Math.min(140, window.innerHeight * 0.18), cur = null;
+      for (var i = h2s.length - 1; i >= 0; i--) {
+        if (h2s[i].getBoundingClientRect().top - th < 0) { cur = h2s[i]; break; }
+      }
+      var atF = ft && ft.getBoundingClientRect().top - (navH + 8) < 0;
+      if (cur && !atF) {
+        var sec = cur.closest('section');
+        var kicker = sec ? sec.querySelector('.section-kicker .sec-num') : null;
+        var num = kicker ? kicker.textContent.replace('§','').trim() : '';
+        var t = '';
+        [].forEach.call(cur.childNodes, function(n){ if (n.nodeType === 3) t += n.textContent; });
+        var html = '<span class="sec-num">§' + num + '</span>' + t.trim();
+        if (ind.innerHTML !== html) ind.innerHTML = html;
+        ind.classList.add('visible');
+        wrap.classList.add('has-section');
+      } else {
+        ind.classList.remove('visible');
+        wrap.classList.remove('has-section');
+      }
     }
   }
-  var tk=false;
-  function onS(){ if(!tk){ requestAnimationFrame(function(){ update(); tk=false; }); tk=true; } }
-  addEventListener('scroll', onS, {passive:true});
+
+  var tk = false;
+  function onS(){ if (!tk) { requestAnimationFrame(function(){ update(); tk = false; }); tk = true; } }
+  addEventListener('scroll', onS, { passive: true });
   addEventListener('resize', onS);
   update();
-
-  // Respect reduced-motion
-  if(matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){
-    document.documentElement.style.scrollBehavior='auto';
-  }
 })();
 </script>
 
