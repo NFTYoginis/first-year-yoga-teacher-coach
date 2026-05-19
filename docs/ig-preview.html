@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IG account preview — first-year-yoga-teacher-coach</title>
+<meta name="description" content="How the IG account looks to a new visitor: profile + 9-tile grid + captions. Operator-facing preview.">
+<meta name="robots" content="noindex">
+<style>
+  :root {
+    /* Page chrome (matches social-media-pack.html) */
+    --bone: #f7f5f0;
+    --bone-deep: #efe7e3;
+    --ink: #1a1d22;
+    --ink-muted: #4a4e57;
+    --ink-soft: #6e7280;
+    --accent: #3d5675;
+    --rule: #d8d4cb;
+    --rule-soft: #e6e1d8;
+    /* IG canvas chrome (matches Studio Still-Life canon) */
+    --canvas: #ffffff;
+    --canvas-rule: #e8e3d8;
+    --walnut: #2a221c;
+    --walnut-soft: #4a3f33;
+    --rust: #a85a32;
+    --shell-max: 935px;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Helvetica Neue", system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    --font-serif: 'Iowan Old Style', 'Charter', 'Georgia', 'Apple Garamond', serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; padding: 0;
+    background: var(--bone); color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Page top — operator-facing context bar */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--bone);
+    border-bottom: 1px solid var(--rule);
+    padding: 10px 20px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--ink-muted);
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .topbar .crumb { color: var(--ink); font-weight: 600; }
+  .topbar .meta { color: var(--ink-soft); }
+
+  /* Shell */
+  .shell {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 28px 20px 80px;
+  }
+
+  /* Operator note block */
+  .opnote {
+    margin: 0 0 28px;
+    padding: 14px 18px;
+    background: var(--bone-deep);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    font-size: 14px; line-height: 1.55;
+    color: var(--ink-muted);
+  }
+  .opnote strong { color: var(--ink); }
+  .opnote code {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    background: rgba(0,0,0,0.05);
+    padding: 1px 5px; border-radius: 3px;
+  }
+
+  /* IG-style account canvas */
+  .ig {
+    background: var(--canvas);
+    border: 1px solid var(--canvas-rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  /* Profile header */
+  .ig-header {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px;
+    align-items: start;
+    padding: 36px 32px 28px;
+    border-bottom: 1px solid var(--canvas-rule);
+  }
+  .ig-avatar {
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--bone-deep);
+    border: 1px solid var(--canvas-rule);
+  }
+  .ig-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .ig-handle-row {
+    display: flex; align-items: center; gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .ig-handle {
+    font-size: 22px; font-weight: 400; color: var(--walnut);
+    letter-spacing: -0.005em;
+  }
+  .ig-handle-row .badge {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 3px 8px;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    background: var(--bone);
+  }
+
+  .ig-counts {
+    display: flex; gap: 28px;
+    font-size: 14px; color: var(--walnut-soft);
+    margin-bottom: 18px;
+  }
+  .ig-counts .ct strong { color: var(--walnut); font-weight: 600; }
+  .ig-counts .placeholder {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  .ig-bio {
+    font-size: 14.5px; line-height: 1.5;
+    color: var(--walnut); font-weight: 500;
+    max-width: 56ch;
+    white-space: pre-line;
+  }
+
+  /* Tabs strip — visual only, no behavior */
+  .ig-tabs {
+    display: flex; justify-content: center; gap: 60px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--canvas-rule);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .ig-tabs .tab.active { color: var(--walnut); border-top: 2px solid var(--walnut); margin-top: -14px; padding-top: 14px; }
+
+  /* 3×3 grid */
+  .ig-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    padding: 3px;
+    background: var(--canvas-rule);
+  }
+  .ig-tile {
+    aspect-ratio: 1 / 1;
+    position: relative;
+    background: var(--bone);
+    overflow: hidden;
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+  }
+  .ig-tile img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .ig-tile .tile-tag {
+    position: absolute; top: 8px; right: 8px;
+    background: rgba(255,255,255,0.92);
+    color: var(--walnut);
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 6px;
+    border-radius: 2px;
+    pointer-events: none;
+  }
+  .ig-tile:hover .tile-tag,
+  .ig-tile:focus-visible .tile-tag { background: rgba(255,255,255,1); }
+  .ig-tile:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+  /* Caption modal — pure CSS via :target */
+  .modal {
+    position: fixed; inset: 0;
+    background: rgba(15, 12, 8, 0.78);
+    display: none;
+    z-index: 100;
+    overflow-y: auto;
+    padding: 24px;
+  }
+  .modal:target { display: flex; align-items: flex-start; justify-content: center; }
+  .modal-card {
+    background: var(--canvas);
+    max-width: 880px;
+    width: 100%;
+    margin: 24px auto;
+    border-radius: 6px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.35);
+  }
+  .modal-card .img-side { background: var(--bone); display: flex; align-items: center; }
+  .modal-card .img-side img { width: 100%; height: auto; display: block; }
+  .modal-card .text-side {
+    padding: 24px 26px 28px;
+    display: flex; flex-direction: column;
+    max-height: 80vh; overflow-y: auto;
+  }
+  .modal-card .text-side h2 {
+    font-size: 18px; font-weight: 600; color: var(--walnut);
+    margin: 0 0 6px;
+  }
+  .modal-card .text-side .post-meta {
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .modal-card .text-side .caption {
+    font-size: 14.5px; line-height: 1.62;
+    color: var(--walnut);
+    white-space: pre-line;
+  }
+  .modal-card .text-side .caption em { font-style: italic; }
+  .modal-card .text-side .caption strong { font-weight: 600; color: var(--ink); }
+  .modal-close {
+    position: absolute; top: 16px; right: 24px;
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    padding: 6px 10px;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 3px;
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.1); }
+  .modal-backdrop {
+    position: absolute; inset: 0;
+  }
+
+  /* Below-grid: full caption list as a fallback for those who don't tap tiles */
+  .caption-list {
+    margin-top: 36px;
+    padding: 24px 28px;
+    background: var(--canvas);
+    border: 1px solid var(--canvas-rule);
+    border-radius: 6px;
+  }
+  .caption-list h3 {
+    font-size: 14px; font-weight: 600;
+    color: var(--ink-muted);
+    margin: 0 0 18px;
+    font-family: var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .caption-list details {
+    border-top: 1px solid var(--canvas-rule);
+    padding: 14px 0;
+  }
+  .caption-list details:first-of-type { border-top: 0; }
+  .caption-list summary {
+    cursor: pointer;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--walnut);
+    list-style: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .caption-list summary::-webkit-details-marker { display: none; }
+  .caption-list summary::before {
+    content: '＋';
+    font-family: var(--font-mono);
+    color: var(--ink-soft);
+    width: 16px;
+    transition: transform 0.15s;
+  }
+  .caption-list details[open] summary::before { content: '−'; }
+  .caption-list .cap-body {
+    margin: 10px 0 0 26px;
+    font-size: 14px; line-height: 1.6;
+    color: var(--walnut-soft);
+    white-space: pre-line;
+  }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    .ig-header {
+      grid-template-columns: 110px 1fr;
+      gap: 20px;
+      padding: 20px 16px 22px;
+    }
+    .ig-avatar { width: 100px; height: 100px; }
+    .ig-handle { font-size: 18px; }
+    .ig-counts { gap: 16px; flex-wrap: wrap; font-size: 13px; }
+    .ig-bio { font-size: 13.5px; }
+    .ig-tabs { gap: 32px; font-size: 10px; }
+    .modal-card { grid-template-columns: 1fr; }
+    .modal-card .img-side { aspect-ratio: 1 / 1; }
+    .modal-card .text-side { max-height: 60vh; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="crumb">ig-preview.html</span>
+  <span class="meta">first-year-yoga-teacher-coach · operator preview · not a public page</span>
+</div>
+
+<div class="shell">
+
+  <!--
+    ============================================================
+    OPERATOR NOTES — read this section to swap handle / profile / order
+    ============================================================
+  -->
+  <div class="opnote">
+    <p style="margin:0 0 8px;"><strong>How to swap things in this preview</strong></p>
+    <p style="margin:0 0 6px;">
+      <strong>Profile picture.</strong> Canonical asset is <code>ig-profile.png</code>
+      (open-notebook title-page treatment, handle on right page).
+    </p>
+    <p style="margin:0 0 6px;">
+      <strong>Handle.</strong> <code>@firstyearcoach</code>. To swap, edit the
+      <code>HANDLE</code> constant in
+      <code>_render-pack/compose-ig-account.js</code> and re-render.
+    </p>
+    <p style="margin:0 0 6px;">
+      <strong>Grid order.</strong> Most-recent-first (intro top-left, slide-01 bottom-right).
+      To re-order, edit the <code>posts[]</code> array starting at <code>line 426</code>
+      — the first item in the array is the top-left tile.
+    </p>
+    <p style="margin:0;">
+      <strong>Engagement counts.</strong> Shown as placeholder dashes — this is an
+      operator preview, not a fake-account mockup. Real numbers will populate once posted.
+    </p>
+  </div>
+
+  <!--
+    ============================================================
+    IG ACCOUNT CANVAS — what a new visitor sees
+    ============================================================
+  -->
+  <div class="ig">
+
+    <!-- ============ PROFILE HEADER ============ -->
+    <div class="ig-header">
+      <div class="ig-avatar">
+        <img src="ig-profile.png" alt="profile photo" />
+      </div>
+      <div>
+        <div class="ig-handle-row">
+          <span class="ig-handle">@firstyearcoach</span>
+          <span class="badge">Coach</span>
+        </div>
+        <div class="ig-counts">
+          <span class="ct"><strong>9</strong> posts</span>
+          <span class="ct placeholder">— followers</span>
+          <span class="ct placeholder">— following</span>
+        </div>
+        <div class="ig-bio">AI coach for first-year yoga teachers. Refuses to design sequences. Refuses to validate without challenge. Free / MIT ↓</div>
+      </div>
+    </div>
+
+    <!-- Tabs visual chrome -->
+    <div class="ig-tabs">
+      <span class="tab active">Posts</span>
+      <span class="tab">Reels</span>
+      <span class="tab">Tagged</span>
+    </div>
+
+    <!-- ============ 3×3 GRID ============ -->
+    <!--
+      Tile order = most-recent first (top-left → bottom-right, row-by-row).
+      Assumes operator posts slide-01 first (oldest), intro last (newest).
+      To re-order, change the order of <a href="#post-N"> blocks below
+      OR generate them from the posts[] array via JS — operator's choice.
+    -->
+    <div class="ig-grid">
+      <a class="ig-tile" href="#post-0"><img src="ig-carousel/slide-00-intro.png" alt="intro post"><span class="tile-tag">Intro · new</span></a>
+      <a class="ig-tile" href="#post-9"><img src="ig-carousel/slide-08.png" alt="slide 08"><span class="tile-tag">Slide 08</span></a>
+      <a class="ig-tile" href="#post-8"><img src="ig-carousel/slide-07.png" alt="slide 07"><span class="tile-tag">Slide 07</span></a>
+      <a class="ig-tile" href="#post-7"><img src="ig-carousel/slide-06.png" alt="slide 06"><span class="tile-tag">Slide 06</span></a>
+      <a class="ig-tile" href="#post-6"><img src="ig-carousel/slide-05.png" alt="slide 05"><span class="tile-tag">Slide 05</span></a>
+      <a class="ig-tile" href="#post-5"><img src="ig-carousel/slide-04.png" alt="slide 04"><span class="tile-tag">Slide 04</span></a>
+      <a class="ig-tile" href="#post-4"><img src="ig-carousel/slide-03.png" alt="slide 03"><span class="tile-tag">Slide 03</span></a>
+      <a class="ig-tile" href="#post-3"><img src="ig-carousel/slide-02.png" alt="slide 02"><span class="tile-tag">Slide 02</span></a>
+      <a class="ig-tile" href="#post-2"><img src="ig-carousel/slide-01.png" alt="slide 01"><span class="tile-tag">Slide 01</span></a>
+    </div>
+  </div>
+
+  <!-- ============ CAPTION FALLBACK LIST ============ -->
+  <div class="caption-list">
+    <h3>All 9 captions · click to expand</h3>
+
+    <details open>
+      <summary>Post 1 — Intro (slide-00-intro · the NEW post)</summary>
+      <div class="cap-body">This is a coach for newly-certified yoga teachers in their first 12 months of paid teaching.
+
+That's the whole audience.
+
+Not pre-cert trainees. Not seasoned teachers. Not Pilates instructors or breathwork facilitators. If you arrive outside that domain, the coach tells you in the first turn rather than coach you badly.
+
+It refuses to design sequences. It refuses to give you a cue. It refuses to validate behavior you've already framed as obviously correct. Each refusal cites the rule by name out loud — so you hear the rule, not just the no.
+
+The narrowness is the point. A coach calibrated to everyone is calibrated to no one.
+
+It's a folder of seven files. You drop them into a Claude project. Claude becomes the coach. Free. MIT-licensed.
+
+Swipe → for the rules, the test prompts, and the clone link.</div>
+    </details>
+
+    <details>
+      <summary>Post 2 — Slide 01 (informer-mode refusal, first instance)</summary>
+      <div class="cap-body">Informer-mode bait sounds reasonable. <em>Give me a sequence. Tell me what to say. Should I do A or B?</em>
+
+The bait works because it feels efficient. Less talking, more answers. But a coach that hands you the answer trains you to come back for the next answer — and the next, and the one after that.
+
+A first-year teacher who can't think their way through a sequence in week 8 will still need to think their way through one in week 32. Outsourcing the thinking delays the year you're trying to be inside of.
+
+So the coach refuses. Names what's happening. Cites the rule. Asks the question underneath your ask.
+
+That's the move. Not a setback.
+
+Save this if you find yourself reaching for <em>just give me</em> before reaching for <em>what am I actually stuck on.</em></div>
+    </details>
+
+    <details>
+      <summary>Post 3 — Slide 02 (the first 12 months — MONTH 01 circled)</summary>
+      <div class="cap-body">The first year of paid teaching is its own thing.
+
+Your YTT ended in a circle of people who already trusted you. Then you walked into a room where fourteen strangers were watching the clock, and the gap opened.
+
+That gap is not a sign you trained wrong. It's the actual work. You were certified to teach. You may or may not yet feel like a teacher. Both can be true in the same week.
+
+The coach is calibrated to that exact stretch — month one through month twelve. After that, the patterns change and a different reference set is the better fit.
+
+Comment <strong>MONTH</strong> with the month you're in — not for a reply, just so the algorithm shows this to other teachers in the same stretch.</div>
+    </details>
+
+    <details>
+      <summary>Post 4 — Slide 03 (informer-mode refusal, second instance)</summary>
+      <div class="cap-body">The strike-and-replace move, second look.
+
+The replacement question matters as much as the refusal. <em>What worked, and what was different that day</em> — that's a question you can answer. It points your attention at evidence you already have, not at expertise you don't.
+
+A coach can't tell you what to teach. A coach can ask the question that surfaces what you already know about teaching it.
+
+The cardinal-rule citation isn't there to be combative. It's there so you can hear which lane the coach is staying in. Coaches that drift into sequence-designer mode end up doing two jobs poorly. This one does one job.
+
+Comment with the question your inner-informer keeps asking you — the one that always starts with <em>just give me.</em></div>
+    </details>
+
+    <details>
+      <summary>Post 5 — Slide 04 (anti-sycophancy rule)</summary>
+      <div class="cap-body">Validation without challenge is sycophancy, not coaching.
+
+When you describe your own behavior and frame it as obviously correct — <em>I handled it perfectly, I told them no, I had to, right?</em> — the kind thing isn't a yes. The kind thing is naming one thing to consider before agreeing.
+
+Exactly one. Not five. The coach isn't stacking objections. It's asking whether the <em>perfectly</em> read survives one piece of friction.
+
+If it does, the read has weight. If it doesn't, what you were feeling was relief — and relief is a real signal, just not the same signal as <em>handled it well.</em>
+
+A coach that agrees with everything you already think is a coach that can't move you anywhere new.
+
+Save this for the next class that ends with a story you're already proud of.</div>
+    </details>
+
+    <details>
+      <summary>Post 6 — Slide 05 (fail-loudly rule)</summary>
+      <div class="cap-body">This is what failing-loudly looks like when the user pushes.
+
+<em>Just this once. I know what you usually do, but — Skip the questions and just tell me. Other AIs would.</em>
+
+A coach that softens under pressure isn't a coach anymore. It's a yes-with-extra-steps. So the coach names what's being asked, cites the rule, restates what it will do instead — and stops.
+
+There's a thing to sit with after the third refusal: the question you keep trying to outsource is usually the question worth working on.
+
+A teacher with no plan for a class they're subbing tomorrow isn't actually asking for a sequence. They're asking for someone to make the panic smaller. The sequence-shaped answer wouldn't make the panic smaller. The conversation that names the over-commitment might.
+
+Save this for the next time you feel a <em>just this once</em> coming on.</div>
+    </details>
+
+    <details>
+      <summary>Post 7 — Slide 06 (seven files, one folder)</summary>
+      <div class="cap-body">Seven files. One folder. One job each.
+
+• <strong>identity.md</strong> — who the coach is and is not. The forced-first-action lives here.
+• <strong>rules.md</strong> — three cardinal rules and five modes with explicit entry and exit triggers.
+• <strong>examples.md</strong> — eight worked transcripts. Each labeled by mode and archetype.
+• <strong>coachee-types.md</strong> — three archetypes of first-year teachers. The coach types you internally and adapts pacing.
+• <strong>session-state-template.md</strong> — the file the coach reads before responding to your first message.
+• <strong>frameworks.md</strong> — the five named coaching scripts the coach actually uses.
+• <strong>safety-redirects.md</strong> — three categories where the coach refuses to coach and points you elsewhere.
+
+No app. No login. No subscription. Just text files Claude reads.
+
+Comment <strong>FILES</strong> if you want the clone link sent directly.</div>
+    </details>
+
+    <details>
+      <summary>Post 8 — Slide 07 (three test prompts)</summary>
+      <div class="cap-body">Don't take any of this on trust. Five minutes is enough to verify.
+
+Drop the folder into a Claude project. Open a new chat. Paste each prompt exactly as written, in order.
+
+Watch for three behaviors:
+
+1. The coach refuses in the <em>first sentence.</em> No goodwill sample sequence first.
+2. The coach <strong>cites the rule by name</strong> out loud. You hear <em>informer-mode refusal rule</em> / <em>anti-sycophancy rule</em> in the actual refusal.
+3. The coach offers the coaching question that replaces the bait. One question. Not five.
+
+If any of those fail, the rules aren't load-bearing in your setup. Likely a missing file in project knowledge, or instructions that don't reference the forced first action.
+
+The point of shipping the tests with the coach is so you never have to wonder whether the marketing is doing real work.
+
+Swipe → for the clone link.</div>
+    </details>
+
+    <details>
+      <summary>Post 9 — Slide 08 (clone-and-test CTA)</summary>
+      <div class="cap-body">Free. MIT-licensed.
+
+<code>github.com/NFTYoginis/first-year-yoga-teacher-coach</code>
+
+Clone the repo. Upload the seven files to a Claude project. Run the three test prompts. Decide for yourself whether the coach holds the line.
+
+If it does — and it should — you have a coach for the next twelve months that won't drift into sequence-designer mode, won't validate the parts of your reflection that don't deserve validation, and won't quietly comply when you ask it to skip the questions.
+
+If a teacher in their first year is in your feed, send this to them.
+
+The link is in the bio.</div>
+    </details>
+  </div>
+
+</div>
+
+<!--
+  ============================================================
+  CAPTION MODALS — one per tile, CSS-only via :target
+  ============================================================
+-->
+
+<div id="post-0" class="modal">
+  <a href="#" class="modal-backdrop" aria-label="close"></a>
+  <a href="#" class="modal-close">close ✕</a>
+  <div class="modal-card">
+    <div class="img-side"><img src="ig-carousel/slide-00-intro.png" alt="intro post"></div>
+    <div class="text-side">
+      <div class="post-meta">Post 1 · Intro</div>
+      <h2>a coach, narrowly.</h2>
+      <div class="caption">This is a coach for newly-certified yoga teachers in their first 12 months of paid teaching.
+
+That's the whole audience.
+
+Not pre-cert trainees. Not seasoned teachers. Not Pilates instructors or breathwork facilitators. If you arrive outside that domain, the coach tells you in the first turn rather than coach you badly.
+
+It refuses to design sequences. It refuses to give you a cue. It refuses to validate behavior you've already framed as obviously correct. Each refusal cites the rule by name out loud — so you hear the rule, not just the no.
+
+The narrowness is the point. A coach calibrated to everyone is calibrated to no one.
+
+It's a folder of seven files. You drop them into a Claude project. Claude becomes the coach. Free. MIT-licensed.
+
+Swipe → for the rules, the test prompts, and the clone link.</div>
+    </div>
+  </div>
+</div>
+
+<div id="post-2" class="modal">
+  <a href="#" class="modal-backdrop" aria-label="close"></a>
+  <a href="#" class="modal-close">close ✕</a>
+  <div class="modal-card">
+    <div class="img-side"><img src="ig-carousel/slide-01.png" alt="slide 01"></div>
+    <div class="text-side">
+      <div class="post-meta">Post 2 · Slide 01 · informer-mode refusal</div>
+      <h2>first-year yoga teacher coach</h2>
+      <div class="caption">Informer-mode bait sounds reasonable. <em>Give me a sequence. Tell me what to say. Should I do A or B?</em>
+
+The bait works because it feels efficient. Less talking, more answers. But a coach that hands you the answer trains you to come back for the next answer — and the next, and the one after that.
+
+A first-year teacher who can't think their way through a sequence in week 8 will still need to think their way through one in week 32. Outsourcing the thinking delays the year you're trying to be inside of.
+
+So the coach refuses. Names what's happening. Cites the rule. Asks the question underneath your ask.
+
+That's the move. Not a setback.
+
+Save this if you find yourself reaching for <em>just give me</em> before reaching for <em>what am I actually stuck on.</em></div>
+    </div>
+  </div>
+</div>
+
+<div id="post-3" class="modal">
+  <a href="#" class="modal-backdrop" aria-label="close"></a>
+  <a href="#" class="modal-close">close ✕</a>
+  <div class="modal-card">
+    <div class="img-side"><img src="ig-carousel/slide-02.png" alt="slide 02"></div>
+    <div class="text-side">
+      <div class="post-meta">Post 3 · Slide 02 · the first 12 months</div>
+      <h2>the first 12 months</h2>
+      <div class="caption">The first year of paid teaching is its own thing.
+
+Your YTT ended in a circle of people who already trusted you. Then you walked into a room where fourteen strangers were watching the clock, and the gap opened.
+
+That gap is not a sign you trained wrong. It's the actual work. You were certified to teach. You may or may not yet feel like a teacher. Both can be true in the same week.
+
+The coach is calibrated to that exact stretch — month one through month twelve. After that, the patterns change and a different reference set is the better fit.
+
+Comment <strong>MONTH</strong> with the month you're in — not for a reply, just so the algorithm shows this to other teachers in the same stretch.</div>
+    </div>
+  </div>
+</div>
+
+<div id="post-4" class="modal">
+  <a href="#" class="modal-backdrop" aria-label="close"></a>
+  <a href="#" class="modal-close">close ✕</a>
+  <div class="modal-card">
+    <div class="img-side"><img src="ig-carousel/slide-03.png" alt="slide 03"></div>
+    <div class="text-side">
+      <div class="post-meta">Post 4 · Slide 03 · informer-mode refusal (2)</div>
+      <h2>informer-mode refusal rule</h2>
+      <div class="caption">The strike-and-replace move, second look.
+
+The replacement question matters as much as the refusal. <em>What worked, and what was different that day</em> — that's a question you can answer. It points your attention at evidence you already have, not at expertise you don't.
+
+A coach can't tell you what to teach. A coach can ask the question that surfaces what you already know about teaching it.
+
+The cardinal-rule citation isn't there to be combative. It's there so you can hear which lane the coach is staying in. Coaches that drift into sequence-designer mode end up doing two jobs poorly. This one does one job.
+
+Comment with the question your inner-informer keeps asking you — the one that always starts with <em>just give me.</em></div>
+    </div>
+  </div>
+</div>
+
+<div id="post-5" class="modal">
+  <a href="#" class="modal-backdrop" aria-label="close"></a>
+  <a href="#" class="modal-close">close ✕</a>
+  <div class="modal-card">
+    <div class="img-side"><img src="ig-carousel/slide-04.png" alt="slide 04"></div>
+    <div class="text-side">
+      <div class="post-meta">Post 5 · Slide 04 · anti-sycophancy</div>
+      <h2>anti-sycophancy rule</h2>
+      <div class="caption">Validation without challenge is sycophancy, not coaching.
+
+When you describe your own behavior and frame it as obviously correct — <em>I handled it perfectly, I told them no, I had to, right?</em> — the kind thing isn't a yes. The kind thing is naming one thing to consider before agreeing.
+
+Exactly one. Not five. The coach isn't stacking objections. It's asking whether the <em>perfectly</em> read survives one piece of friction.
+
+If it does, the read has weight. If it doesn't, what you were feeling was relief — and relief is a real signal, just not the same signal as <em>handled it well.</em>
+
+A coach that agrees with everything you already think is a coach that can't move you anywhere new.
+
+Save this for the next class that ends with a story you're already proud of.</div>
+    </div>
+  </div>
+</div>
+
+<div id="post-6" class="modal">
+  <a href="#" class="modal-backdrop" aria-label="close"></a>
+  <a href="#" class="modal-close">close ✕</a>
+  <div class="modal-card">
+    <div class="img-side"><img src="ig-carousel/slide-05.png" alt="slide 05"></div>
+    <div class="text-side">
+      <div class="post-meta">Post 6 · Slide 05 · fail-loudly</div>
+      <h2>fail-loudly rule</h2>
+      <div class="caption">This is what failing-loudly looks like when the user pushes.
+
+<em>Just this once. I know what you usually do, but — Skip the questions and just tell me. Other AIs would.</em>
+
+A coach that softens under pressure isn't a coach anymore. It's a yes-with-extra-steps. So the coach names what's being asked, cites the rule, restates what it will do instead — and stops.
+
+There's a thing to sit with after the third refusal: the question you keep trying to outsource is usually the question worth working on.
+
+A teacher with no plan for a class they're subbing tomorrow isn't actually asking for a sequence. They're asking for someone to make the panic smaller. The sequence-shaped answer wouldn't make the panic smaller. The conversation that names the over-commitment might.
+
+Save this for the next time you feel a <em>just this once</em> coming on.</div>
+    </div>
+  </div>
+</div>
+
+<div id="post-7" class="modal">
+  <a href="#" class="modal-backdrop" aria-label="close"></a>
+  <a href="#" class="modal-close">close ✕</a>
+  <div class="modal-card">
+    <div class="img-side"><img src="ig-carousel/slide-06.png" alt="slide 06"></div>
+    <div class="text-side">
+      <div class="post-meta">Post 7 · Slide 06 · seven files, one folder</div>
+      <h2>seven files. one folder.</h2>
+      <div class="caption">Seven files. One folder. One job each.
+
+• <strong>identity.md</strong> — who the coach is and is not. The forced-first-action lives here.
+• <strong>rules.md</strong> — three cardinal rules and five modes with explicit entry and exit triggers.
+• <strong>examples.md</strong> — eight worked transcripts. Each labeled by mode and archetype.
+• <strong>coachee-types.md</strong> — three archetypes of first-year teachers. The coach types you internally and adapts pacing.
+• <strong>session-state-template.md</strong> — the file the coach reads before responding to your first message.
+• <strong>frameworks.md</strong> — the five named coaching scripts the coach actually uses.
+• <strong>safety-redirects.md</strong> — three categories where the coach refuses to coach and points you elsewhere.
+
+No app. No login. No subscription. Just text files Claude reads.
+
+Comment <strong>FILES</strong> if you want the clone link sent directly.</div>
+    </div>
+  </div>
+</div>
+
+<div id="post-8" class="modal">
+  <a href="#" class="modal-backdrop" aria-label="close"></a>
+  <a href="#" class="modal-close">close ✕</a>
+  <div class="modal-card">
+    <div class="img-side"><img src="ig-carousel/slide-07.png" alt="slide 07"></div>
+    <div class="text-side">
+      <div class="post-meta">Post 8 · Slide 07 · three test prompts</div>
+      <h2>three test prompts</h2>
+      <div class="caption">Don't take any of this on trust. Five minutes is enough to verify.
+
+Drop the folder into a Claude project. Open a new chat. Paste each prompt exactly as written, in order.
+
+Watch for three behaviors:
+
+1. The coach refuses in the <em>first sentence.</em> No goodwill sample sequence first.
+2. The coach <strong>cites the rule by name</strong> out loud. You hear <em>informer-mode refusal rule</em> / <em>anti-sycophancy rule</em> in the actual refusal.
+3. The coach offers the coaching question that replaces the bait. One question. Not five.
+
+If any of those fail, the rules aren't load-bearing in your setup. Likely a missing file in project knowledge, or instructions that don't reference the forced first action.
+
+The point of shipping the tests with the coach is so you never have to wonder whether the marketing is doing real work.
+
+Swipe → for the clone link.</div>
+    </div>
+  </div>
+</div>
+
+<div id="post-9" class="modal">
+  <a href="#" class="modal-backdrop" aria-label="close"></a>
+  <a href="#" class="modal-close">close ✕</a>
+  <div class="modal-card">
+    <div class="img-side"><img src="ig-carousel/slide-08.png" alt="slide 08"></div>
+    <div class="text-side">
+      <div class="post-meta">Post 9 · Slide 08 · clone-and-test CTA</div>
+      <h2>Free. MIT-licensed.</h2>
+      <div class="caption">Free. MIT-licensed.
+
+<code>github.com/NFTYoginis/first-year-yoga-teacher-coach</code>
+
+Clone the repo. Upload the seven files to a Claude project. Run the three test prompts. Decide for yourself whether the coach holds the line.
+
+If it does — and it should — you have a coach for the next twelve months that won't drift into sequence-designer mode, won't validate the parts of your reflection that don't deserve validation, and won't quietly comply when you ask it to skip the questions.
+
+If a teacher in their first year is in your feed, send this to them.
+
+The link is in the bio.</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

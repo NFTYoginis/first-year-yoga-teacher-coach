@@ -1,0 +1,21 @@
+# Underscore-prefixed working files + workspaces
+# (internal worker dispatches, render pipelines, content scratchpads)
+_*
+
+# Legacy "Studio Quiet" visual-identity backups (kept locally for A/B reference)
+*-studio-quiet*
+
+# Working HTML files for visual-direction exploration
+asset-pack-direction-a.html
+visual-direction-brainstorm.html
+
+# Rendering tooling (kept locally only)
+docs/ig-carousel/render.js
+
+# OS / editor artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+node_modules/
+*.log

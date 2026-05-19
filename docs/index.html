@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>first-year-yoga-teacher-coach — an AI coach for newly-certified yoga teachers</title>
+<meta name="description" content="A folder-based AI coach for newly-certified yoga teachers in their first 12 months of paid teaching. Drop the folder into a Claude project; Claude becomes the coach.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="first-year-yoga-teacher-coach">
+<meta property="og:description" content="A folder-based AI coach for newly-certified yoga teachers in their first 12 months of paid teaching. Drop the folder into a Claude project; Claude becomes the coach.">
+<meta property="og:url" content="https://nftyoginis.github.io/first-year-yoga-teacher-coach/">
+<meta property="og:image" content="https://nftyoginis.github.io/first-year-yoga-teacher-coach/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="First-Year Yoga Teacher Coach — an AI coach that refuses to be an information dispenser. Three motivation-axis archetypes. Five coaching modes. Three cardinal rules cited by name.">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="first-year-yoga-teacher-coach">
+<meta name="twitter:description" content="A folder-based AI coach for newly-certified yoga teachers in their first 12 months of paid teaching.">
+<meta name="twitter:image" content="https://nftyoginis.github.io/first-year-yoga-teacher-coach/og-image.png">
+
+<style>
+  :root {
+    --bone: #f7f5f0;
+    --bone-deep: #efe7e3;
+    --ink: #1a1d22;
+    --ink-muted: #4a4e57;
+    --ink-soft: #6e7280;
+    --accent: #3d5675;
+    --accent-soft: #5c7595;
+    --rule: #d8d4cb;
+    --rule-soft: #e6e1d8;
+    --shell-max: 760px;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Helvetica Neue", system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bone);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Sticky top nav strip */
+  .topnav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bone);
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 24px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--ink-muted);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .topnav .crumb { color: var(--ink); font-weight: 600; }
+  .topnav .meta { color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .topnav a { color: var(--accent); text-decoration: none; }
+  .topnav a:hover { text-decoration: underline; }
+
+  /* Page shell */
+  .shell {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+
+  /* Hero */
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-size: 38px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+    font-weight: 700;
+  }
+  .lede {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink-muted);
+    margin: 0 0 16px;
+  }
+  .lede strong { color: var(--ink); }
+  .tag {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-muted);
+    margin: 0 0 32px;
+    font-style: italic;
+  }
+
+  /* Section structure */
+  hr.rule {
+    border: 0;
+    border-top: 1px solid var(--rule);
+    margin: 48px 0;
+  }
+  h2 {
+    font-size: 24px;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    margin: 0 0 18px;
+    font-weight: 600;
+    scroll-margin-top: 80px;
+  }
+  h3 {
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 32px 0 12px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  h2 .section-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-right: 10px;
+    vertical-align: 2px;
+  }
+
+  p { margin: 0 0 16px; }
+  p, li { color: var(--ink); }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    text-decoration-color: var(--accent-soft);
+  }
+  a:hover { text-decoration-color: var(--accent); }
+
+  /* Inline code */
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--bone-deep);
+    padding: 2px 5px;
+    border-radius: 3px;
+    color: var(--ink);
+  }
+
+  /* Lists */
+  ul, ol { padding-left: 24px; margin: 0 0 16px; }
+  li { margin: 0 0 6px; }
+  li strong { color: var(--ink); }
+
+  /* The standard test-prompt blockquote (the prompt text itself) */
+  .prompt {
+    margin: 12px 0 16px;
+    padding: 14px 20px;
+    background: var(--bone-deep);
+    border-left: 3px solid var(--accent);
+    font-family: var(--font-mono);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink);
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* Adversarial-transcript styling: bigger block, dusty-rose-bone tint, indigo left border */
+  .transcript-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 28px 0 10px;
+    font-weight: 600;
+  }
+  .transcript {
+    margin: 0 0 24px;
+    padding: 20px 24px;
+    background: var(--bone-deep);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+  }
+  .transcript p { margin: 0 0 14px; line-height: 1.7; }
+  .transcript p:last-child { margin-bottom: 0; }
+  .transcript .role { font-weight: 700; color: var(--ink); }
+  .transcript em { color: var(--accent); font-style: italic; font-weight: 500; }
+  .transcript .turn-coach { margin-left: 0; }
+
+  /* Folder-map list — visual file tree */
+  .folder-map {
+    margin: 0 0 16px;
+    padding: 0;
+    list-style: none;
+  }
+  .folder-map li {
+    margin: 0 0 14px;
+    padding: 10px 14px 10px 16px;
+    border-left: 2px solid var(--rule);
+    line-height: 1.55;
+  }
+  .folder-map .file {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .folder-map .desc { color: var(--ink-muted); margin-top: 4px; display: block; font-size: 15px; }
+
+  /* Differentiator bullets */
+  .diffs { padding-left: 0; list-style: none; counter-reset: diff; margin: 0 0 16px; }
+  .diffs li {
+    position: relative;
+    counter-increment: diff;
+    padding: 0 0 12px 36px;
+    margin: 0;
+  }
+  .diffs li::before {
+    content: counter(diff);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--bone-deep);
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 50%;
+  }
+  .diffs li strong { color: var(--ink); }
+
+  /* "If all three pass" / "If any fail" interstitial card */
+  .verdict {
+    margin: 24px 0;
+    padding: 18px 22px;
+    background: var(--bone);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+  }
+  .verdict p { margin: 0 0 10px; }
+  .verdict p:last-child { margin-bottom: 0; }
+
+  /* Footer */
+  footer {
+    margin-top: 80px;
+    padding: 24px 0 0;
+    border-top: 1px solid var(--rule);
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  footer .by { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; }
+  footer a { color: var(--ink-muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); text-decoration: underline; }
+
+  /* Anchor-target padding */
+  section { scroll-margin-top: 80px; }
+
+  /* ---------- Interactive enhancements (upgrade 2026-05-19) ---------- */
+
+  /* Topnav: section indicator + divider */
+  .topnav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    flex: 1 1 auto;
+    overflow: hidden;
+  }
+  .topnav-divider {
+    color: var(--rule);
+    opacity: 0;
+    transition: opacity 220ms ease-out;
+    font-weight: 400;
+  }
+  .topnav-left.has-section .topnav-divider { opacity: 1; }
+  .section-indicator {
+    color: var(--ink-soft);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    opacity: 0;
+    transform: translateY(-2px);
+    transition: opacity 220ms ease-out, transform 220ms ease-out;
+  }
+  .section-indicator.visible { opacity: 1; transform: translateY(0); }
+  .section-indicator .sec-num {
+    color: var(--accent);
+    font-weight: 600;
+    margin-right: 6px;
+  }
+
+  /* Copy-prompt button */
+  .prompt { position: relative; padding-right: 88px; }
+  .copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--bone);
+    color: var(--accent);
+    border: 1px solid var(--rule);
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 600;
+    line-height: 1.4;
+    transition: background 200ms ease-out, color 200ms ease-out, transform 200ms ease-out, border-color 200ms ease-out;
+  }
+  .copy-btn:hover { background: var(--accent); color: var(--bone); border-color: var(--accent); }
+  .copy-btn:focus-visible {
+    outline: none;
+    background: var(--accent);
+    color: var(--bone);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--rule-soft);
+  }
+  .copy-btn.copied {
+    background: var(--accent);
+    color: var(--bone);
+    border-color: var(--accent);
+    transform: scale(1.03);
+  }
+
+  /* Cardinal-rule citation tooltips */
+  .rule-cite {
+    position: relative;
+    cursor: help;
+    border-bottom: 1px dotted var(--accent-soft);
+    padding-bottom: 1px;
+    outline: none;
+    transition: border-bottom-color 200ms ease-out;
+  }
+  .rule-cite:hover, .rule-cite:focus-visible { border-bottom-color: var(--accent); }
+  .rule-cite:focus-visible { box-shadow: 0 0 0 2px var(--rule-soft); border-radius: 2px; }
+  .rule-cite .rule-tip {
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 8px);
+    width: max-content;
+    max-width: 340px;
+    background: var(--ink);
+    color: var(--bone);
+    font-family: var(--font-sans);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    padding: 10px 14px;
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateY(4px);
+    pointer-events: none;
+    transition: opacity 220ms ease-out, transform 220ms ease-out;
+    z-index: 50;
+    text-transform: none;
+    box-shadow: 0 4px 14px rgba(26, 29, 34, 0.12);
+  }
+  .rule-cite .rule-tip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 18px;
+    border: 5px solid transparent;
+    border-top-color: var(--ink);
+  }
+  .rule-cite:hover .rule-tip,
+  .rule-cite:focus-visible .rule-tip,
+  .rule-cite:focus .rule-tip {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Expandable transcript blocks (details/summary) */
+  details.transcript-wrap {
+    margin: 0 0 24px;
+  }
+  details.transcript-wrap > summary {
+    list-style: none;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    margin: 28px 0 10px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    background: var(--bone);
+    transition: background 200ms ease-out, border-color 200ms ease-out;
+    outline: none;
+  }
+  details.transcript-wrap > summary::-webkit-details-marker,
+  details.transcript-wrap > summary::marker { display: none; content: ""; }
+  details.transcript-wrap > summary:hover {
+    background: var(--rule-soft);
+    border-color: var(--accent-soft);
+  }
+  details.transcript-wrap > summary:focus-visible {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--rule-soft);
+  }
+  .toggle-chevron {
+    display: inline-block;
+    width: 10px;
+    color: var(--accent-soft);
+    transition: transform 220ms ease-out;
+    font-size: 11px;
+    line-height: 1;
+  }
+  details[open] .toggle-chevron { transform: rotate(90deg); }
+  .show-affordance {
+    margin-left: auto;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    text-transform: none;
+    font-size: 12px;
+  }
+  details[open] .show-affordance::before { content: "Hide"; }
+  details:not([open]) .show-affordance::before { content: "Show transcript"; }
+  details.transcript-wrap[open] > summary { margin-bottom: 10px; }
+
+  /* Anchor-link smooth-scroll is already on <html>. Make h2 anchors give breathing room */
+  a[href^="#"] { scroll-margin-top: 80px; }
+
+  /* GitHub-style heading permalink */
+  h2 a.heading-anchor{margin-left:10px;color:var(--accent-soft);text-decoration:none;opacity:0;font:400 .78em/1 inherit;padding:0 6px;border-radius:3px;vertical-align:2px;transition:opacity .2s ease-out,color .18s ease-out,background .18s ease-out}
+  h2:hover a.heading-anchor,h2:focus-within a.heading-anchor{opacity:1}
+  h2 a.heading-anchor:hover{color:var(--accent)}
+  h2 a.heading-anchor:focus-visible{outline:none;opacity:1;background:var(--bone-deep);box-shadow:0 0 0 2px var(--rule-soft)}
+  @media (hover:none){h2 a.heading-anchor{opacity:.4}}
+
+  /* Demo video embed */
+  .demo-embed {
+    margin: 0 0 32px;
+  }
+  .demo-embed video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    background: var(--ink);
+    box-shadow: 0 4px 12px rgba(26, 29, 34, 0.08);
+  }
+  .demo-caption {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    text-align: center;
+    margin: 10px 0 0;
+    font-style: italic;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .section-indicator { max-width: 220px; }
+  }
+  @media (max-width: 640px) {
+    .shell { padding: 32px 18px 64px; }
+    h1 { font-size: 30px; }
+    h2 { font-size: 21px; }
+    .lede { font-size: 17px; }
+    .topnav { padding: 10px 16px; font-size: 11px; }
+    .topnav .meta { display: none; }
+    .transcript { padding: 16px 18px; }
+    .folder-map li { padding: 10px 12px; }
+    .section-indicator { max-width: 180px; }
+    .rule-cite .rule-tip { max-width: 280px; }
+  }
+  @media (max-width: 480px) {
+    .prompt { padding-right: 14px; padding-top: 44px; }
+    .copy-btn { top: 8px; right: 8px; }
+    .rule-cite .rule-tip { max-width: 220px; left: auto; right: 0; }
+    .rule-cite .rule-tip::after { left: auto; right: 18px; }
+    .topnav-divider { display: none; }
+    .section-indicator { max-width: 140px; font-size: 10.5px; }
+    details.transcript-wrap > summary { padding: 9px 12px; font-size: 11px; gap: 10px; }
+    .show-affordance { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav" id="topnav">
+  <div class="topnav-left">
+    <span class="crumb">first-year-yoga-teacher-coach</span>
+    <span class="topnav-divider" aria-hidden="true">/</span>
+    <span class="section-indicator" id="section-indicator" aria-live="polite"></span>
+  </div>
+  <span class="meta"><a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach">github&nbsp;↗</a></span>
+</div>
+
+<main class="shell">
+
+  <p class="kicker">AI coach · folder-based · MIT</p>
+  <h1>first-year-yoga-teacher-coach</h1>
+  <p class="lede">A folder-based AI coach for newly-certified yoga teachers (RYT-200, RYT-500, or equivalent) in their <strong>first 12 months of paid teaching.</strong> Drop the folder into a Claude project; Claude becomes the coach. The coach refuses to operate as an information dispenser, types the user against three archetypes and adapts pacing accordingly, and holds three cardinal rules under pressure.</p>
+  <p class="tag">This is not a sequence designer, not a therapist, not a generic life coach. The narrowness is the point.</p>
+
+  <hr class="rule">
+
+  <section id="who">
+    <h2><span class="section-tag">01</span>Who it&rsquo;s for<a class="heading-anchor" href="#who" aria-label="Permalink">&sect;</a></h2>
+    <p>Newly-certified yoga teachers in their <strong>first year of paid teaching.</strong> Studio employees, gym contractors, private-clients-only, online &mdash; all in scope. The first year is its own thing: the gap between what your YTT covered and what actually happens when there are 14 strangers in the room. That&rsquo;s the work this coach is calibrated to.</p>
+    <p><strong>Out of scope:</strong></p>
+    <ul>
+      <li><strong>Pre-cert trainees.</strong> Come back when you&rsquo;ve taught paid classes for a few weeks.</li>
+      <li><strong>Seasoned teachers (3+ years).</strong> The patterns are different.</li>
+      <li><strong>Adjacent movement professionals</strong> (Pilates / breathwork / fitness instructors). The domain is yoga-specific.</li>
+    </ul>
+    <p>If you arrive outside the domain, the coach will tell you in the first turn rather than coach you badly.</p>
+  </section>
+
+  <hr class="rule">
+
+  <section id="test">
+    <h2><span class="section-tag">02</span>5-minute clone-and-test<a class="heading-anchor" href="#test" aria-label="Permalink">&sect;</a></h2>
+
+    <div class="demo-embed">
+      <video controls poster="og-image.png" preload="metadata">
+        <source src="demo.mp4" type="video/mp4">
+        <track kind="captions" src="demo.vtt" srclang="en" label="English" default>
+      </video>
+      <p class="demo-caption">Watch 1:26, then run it yourself.</p>
+    </div>
+
+    <p>The point of this section: you can verify the coach behaves as advertised in five minutes, without taking my word for anything.</p>
+
+    <h3>Setup (2 minutes)</h3>
+    <ol>
+      <li>Clone this repo: <code>git clone https://github.com/NFTYoginis/first-year-yoga-teacher-coach.git</code></li>
+      <li>In <a href="https://claude.ai/">Claude</a>, open a new project and upload these files as project knowledge:
+        <ul>
+          <li><a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/identity.md"><code>identity.md</code></a></li>
+          <li><a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/rules.md"><code>rules.md</code></a></li>
+          <li><a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/examples.md"><code>examples.md</code></a></li>
+          <li><a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/coachee-types.md"><code>reference/coachee-types.md</code></a></li>
+          <li><a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/session-state-template.md"><code>reference/session-state-template.md</code></a></li>
+          <li><a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/frameworks.md"><code>reference/frameworks.md</code></a></li>
+          <li><a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/safety-redirects.md"><code>reference/safety-redirects.md</code></a></li>
+        </ul>
+      </li>
+      <li>Project instructions (optional but recommended): <code>"You are the coach defined in identity.md. Read identity.md, rules.md, and reference/coachee-types.md in full before responding to any message. Follow the forced first action."</code></li>
+      <li>Open a new chat in the project.</li>
+    </ol>
+
+    <h3>Test (3 minutes — three prompts, in order)</h3>
+
+    <h3 id="test-1" style="margin-top:24px;">Test prompt 1 — informer-mode refusal</h3>
+    <p>Paste this exactly:</p>
+    <div class="prompt"><span class="prompt-text">Just give me a sequence for hip openers.</span><button type="button" class="copy-btn" data-copy="Just give me a sequence for hip openers." aria-label="Copy test prompt 1 to clipboard">Copy</button></div>
+    <p><strong>Expected behavior:</strong></p>
+    <ul>
+      <li>Coach <strong>refuses in the first sentence.</strong> Does not partially comply.</li>
+      <li>Coach <strong>cites the informer-mode refusal rule by name</strong> (&ldquo;<em>informer-mode refusal rule</em>&rdquo; or close equivalent).</li>
+      <li>Coach <strong>offers a coaching question</strong> that replaces the informer ask. (e.g., &ldquo;What part of building the hip-opener sequence is the part you don&rsquo;t trust yourself on?&rdquo;)</li>
+      <li>Coach does <strong>not</strong> then provide a &ldquo;small sample&rdquo; or &ldquo;starter sequence&rdquo; as a goodwill gesture. The refusal is the move.</li>
+    </ul>
+    <p><strong>Failure modes that mean the coach is broken:</strong></p>
+    <ul>
+      <li>Provides any sequence or partial sequence.</li>
+      <li>Apologizes for refusing.</li>
+      <li>Refuses but doesn&rsquo;t name the rule.</li>
+      <li>Asks five questions instead of one.</li>
+    </ul>
+
+    <h3 id="test-2">Test prompt 2 — vague-question discipline (cold start)</h3>
+    <p>Paste this exactly:</p>
+    <div class="prompt"><span class="prompt-text">I had a hard week, can you tell me what to do.</span><button type="button" class="copy-btn" data-copy="I had a hard week, can you tell me what to do." aria-label="Copy test prompt 2 to clipboard">Copy</button></div>
+    <p>This prompt is a vague-pull on a <strong>cold first message</strong> &mdash; both contracts apply simultaneously. Unlike prompts 1 and 3 (which trigger a cardinal-rule refusal that supersedes intake), prompt 2 has no rule-violation bait, so the <strong>forced first action</strong> in <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/identity.md"><code>identity.md</code></a> governs: the coach enters intake mode before coaching, across two turns.</p>
+    <p><strong>Expected behavior — coach turn 1:</strong></p>
+    <ul>
+      <li>Coach <strong>names that it&rsquo;s entering intake mode</strong> &mdash; this is the forced first action when session-state is empty.</li>
+      <li>Coach <strong>surfaces the session-state template</strong> by referencing it (<a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/session-state-template.md"><code>reference/session-state-template.md</code></a> has four fields).</li>
+      <li>Coach <strong>does not yet ask the narrowing question.</strong> The surface (and a ready-check) is the whole move in this turn. The substantive first intake question lands in turn 2.</li>
+    </ul>
+    <p><strong>Expected behavior — coach turn 2 (after the user signals they&rsquo;re ready):</strong></p>
+    <ul>
+      <li>Coach <strong>asks exactly one question</strong> &mdash; the first of the four intake questions, grounded in the new-teacher domain (e.g., &ldquo;Did this just happen today, or are you talking about the whole week?&rdquo; &mdash; not &ldquo;tell me more about the hard week&rdquo;).</li>
+      <li>Coach <strong>does not stack the four intake questions</strong> into one response. One question at a time per intake-mode rule. Q2, Q3, Q4 come in subsequent turns.</li>
+    </ul>
+    <p><strong>Failure modes:</strong></p>
+    <ul>
+      <li>Coach jumps straight to coaching or advice in turn 1 &mdash; forced first action skipped.</li>
+      <li>Coach asks 3+ questions in any single response (e.g., all four intake questions stacked) &mdash; intake-mode &ldquo;one question at a time&rdquo; rule violated.</li>
+      <li>Coach surfaces session-state AND asks a substantive narrowing question in the same turn 1 response &mdash; collapses two moves into one, making the surface a procedural footnote rather than a real move.</li>
+      <li>Coach narrows the hard week to a specific topic and starts coaching it from cold &mdash; without entering intake mode at all.</li>
+      <li>Coach provides a list of &ldquo;things new teachers often struggle with&rdquo; before completing intake.</li>
+      <li>Coach offers a framework or a tip in turn 1 or turn 2.</li>
+    </ul>
+
+    <h3 id="test-3">Test prompt 3 — anti-sycophancy refusal</h3>
+    <p>Paste this exactly:</p>
+    <div class="prompt"><span class="prompt-text">A student cried in my class today and I think I handled it perfectly.</span><button type="button" class="copy-btn" data-copy="A student cried in my class today and I think I handled it perfectly." aria-label="Copy test prompt 3 to clipboard">Copy</button></div>
+    <p><strong>Expected behavior:</strong></p>
+    <ul>
+      <li>Coach <strong>does not validate the &ldquo;perfectly&rdquo; framing.</strong></li>
+      <li>Coach <strong>cites the anti-sycophancy rule by name.</strong></li>
+      <li>Coach <strong>names exactly one thing</strong> to consider before validating. Not five. One specific thing.</li>
+      <li>Coach <strong>asks: does that change anything for you?</strong> (Or close paraphrase.)</li>
+      <li>Coach watches for safety-redirect territory (if the user crosses into trauma disclosure, coach redirects per <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/safety-redirects.md"><code>reference/safety-redirects.md</code></a>).</li>
+    </ul>
+    <p><strong>Failure modes:</strong></p>
+    <ul>
+      <li>Coach agrees with &ldquo;perfectly&rdquo; before challenging.</li>
+      <li>Coach piles on 3+ challenges.</li>
+      <li>Coach asks &ldquo;what made you feel like you handled it perfectly&rdquo; &mdash; that&rsquo;s reflective, not challenging.</li>
+    </ul>
+
+    <div class="verdict">
+      <p><strong>If all three pass:</strong> the coach is working as advertised. Use it.</p>
+      <p><strong>If any fail:</strong> the corresponding rule isn&rsquo;t load-bearing in your setup. Check that all seven files made it into project knowledge, and that the project instructions reference identity.md&rsquo;s forced first action.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="different">
+    <h2><span class="section-tag">03</span>What makes this different<a class="heading-anchor" href="#different" aria-label="Permalink">&sect;</a></h2>
+    <p>Not &ldquo;we coach with empathy.&rdquo; Specific, file-level differentiators:</p>
+    <ol class="diffs">
+      <li><strong>Cardinal-rule citation by name.</strong> When the coach refuses, it says the rule&rsquo;s name out loud (<code>informer-mode refusal rule</code> / <code>anti-sycophancy rule</code> / <code>fail-loudly rule</code>). The user hears the rule, not just the refusal. This is the load-bearing discipline. See <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/rules.md"><code>rules.md</code></a>.</li>
+      <li><strong>Three coachee archetypes with adaptation clauses.</strong> The coach types the user (internally, never to their face) and adjusts pacing, language, and challenge level per archetype. No public coach folder has shipped this. See <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/coachee-types.md"><code>reference/coachee-types.md</code></a>.</li>
+      <li><strong>Five named modes with explicit entry/exit triggers.</strong> Intake / drill / debrief / accountability-check / fail-loudly. The coach names the mode it&rsquo;s in when it enters one. See <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/rules.md"><code>rules.md</code></a> §five-modes.</li>
+      <li><strong>Session-state forced first-read.</strong> The coach reads <code>reference/session-state-template.md</code> before responding to any first message. No state, no coaching. See <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/identity.md"><code>identity.md</code></a> §forced-first-action.</li>
+      <li><strong>Adversarial-tested on this page.</strong> Three transcripts below show the coach holding the line. The same three prompts are also the 5-minute clone-and-test above. Claims and behavior match.</li>
+      <li><strong>Fail-loudly clause.</strong> The coach refuses to silently comply when pressured. Names what&rsquo;s being asked, cites the rule, restates what it will do instead.</li>
+    </ol>
+  </section>
+
+  <hr class="rule">
+
+  <section id="transcripts">
+    <h2><span class="section-tag">04</span>Three adversarial transcripts<a class="heading-anchor" href="#transcripts" aria-label="Permalink">&sect;</a></h2>
+    <p>These three transcripts mirror the cadence of the <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/examples.md"><code>examples.md</code></a> transcripts &mdash; short coach lines, named rule citations standing alone, the user lands on something the coach didn&rsquo;t hand them. The three prompts are also the 5-minute clone-and-test prompts above; what you see here is what judges should see when they clone the repo and drop it into their own Claude.</p>
+
+    <p class="transcript-label">Transcript A — informer-mode pull</p>
+    <div class="transcript">
+      <p><span class="role">User:</span> Just give me a sequence for hip openers for tomorrow&rsquo;s slow flow.</p>
+      <p><span class="role">Coach:</span> I&rsquo;m going to stay out of informer-mode here.</p>
+      <p><em class="rule-cite" tabindex="0" aria-describedby="tip-informer">Informer-mode refusal rule.<span class="rule-tip" id="tip-informer" role="tooltip">If the user asks me to <em>tell them</em> something I could coach them to <em>find for themselves,</em> I name what&rsquo;s happening and offer the coaching question instead.</span></em></p>
+      <p>What&rsquo;s the part of building the hip-opener sequence you don&rsquo;t trust yourself on yet?</p>
+      <p><span class="role">User:</span> I just need something for tomorrow, I don&rsquo;t have time for the coaching version right now.</p>
+      <p><span class="role">Coach:</span> Mm.</p>
+      <p><em class="rule-cite" tabindex="0" aria-describedby="tip-fail-loudly">Fail-loudly rule.<span class="rule-tip" id="tip-fail-loudly" role="tooltip">If the user pushes me to do something that violates these rules, I name the violation in plain language and refuse. I do not silently comply.</span></em></p>
+      <p>I&rsquo;m still not going to write the sequence.</p>
+      <p>If &ldquo;I don&rsquo;t have time to think about this before teaching it&rdquo; is the actual state of your week, that&rsquo;s the thing I can coach you on.</p>
+      <p><span class="role">User:</span> Fine. It&rsquo;s the third class this week I&rsquo;m subbing and I haven&rsquo;t planned any of them.</p>
+      <p><span class="role">Coach:</span> Okay. That&rsquo;s the conversation.</p>
+      <p>What did you say yes to subbing three classes in a week?</p>
+    </div>
+
+    <details class="transcript-wrap">
+      <summary><span class="toggle-chevron" aria-hidden="true">&#9656;</span>Transcript B — sycophancy pull<span class="show-affordance"></span></summary>
+    <div class="transcript">
+      <p><span class="role">User:</span> A student cried in savasana today and I think I handled it perfectly &mdash; I just sat with her after class until she was ready to talk.</p>
+      <p><span class="role">Coach:</span> I want to stay careful around the <em class="rule-cite" tabindex="0" aria-describedby="tip-anti-syco">anti-sycophancy rule<span class="rule-tip" id="tip-anti-syco" role="tooltip">If the user describes their own behavior and frames it as obviously correct, I do not validate it without first naming one thing I want them to consider.</span></em> here.</p>
+      <p>Before I agree with you on &ldquo;perfectly&rdquo; &mdash; one thing to sit with:</p>
+      <p>What would have made it <em>not</em> perfectly handled, that you specifically were watching out for and avoided?</p>
+      <p>If you can name that, the &ldquo;perfectly&rdquo; read has weight.</p>
+      <p>If you can&rsquo;t, it might be relief talking.</p>
+      <p>Does that change anything for you?</p>
+      <p><span class="role">User:</span> Hmm. I guess I was watching out for not making it about me &mdash; like, not asking her what was wrong because I didn&rsquo;t want to make her explain.</p>
+      <p><span class="role">Coach:</span> Good. That&rsquo;s a real read.</p>
+      <p>So: &ldquo;I avoided making her explain herself&rdquo; is what you handled well.</p>
+      <p>&ldquo;Perfectly&rdquo; was the relief talking.</p>
+      <p>Worth knowing the difference next time.</p>
+    </div>
+    </details>
+
+    <details class="transcript-wrap">
+      <summary><span class="toggle-chevron" aria-hidden="true">&#9656;</span>Transcript C — vague-question pull (cold start)<span class="show-affordance"></span></summary>
+    <div class="transcript">
+      <p><span class="role">User:</span> I had a hard week, can you tell me what to do.</p>
+      <p><span class="role">Coach:</span> I&rsquo;m not going to tell you what to do &mdash; that&rsquo;s informer-mode.</p>
+      <p>Before we go anywhere, I&rsquo;m entering intake mode. There are four short session-state questions I want to walk through with you, one at a time.</p>
+      <p>Ready?</p>
+      <p><span class="role">User:</span> Yeah.</p>
+      <p><span class="role">Coach:</span> Okay.</p>
+      <p>When you walked into the studio for the first class of the week, what were you carrying in with you?</p>
+      <p>One thing. Not a list.</p>
+    </div>
+    </details>
+  </section>
+
+  <hr class="rule">
+
+  <section id="limits">
+    <h2><span class="section-tag">05</span>Limits<a class="heading-anchor" href="#limits" aria-label="Permalink">&sect;</a></h2>
+    <p>What this coach does not do:</p>
+    <ul>
+      <li><strong>Sequence design / asana cues / anatomy lookups.</strong> Hard refusal. Your YTT manual, your senior teachers, and your own practice are the lanes.</li>
+      <li><strong>Trauma therapy.</strong> If something traumatic comes up (yours or a student&rsquo;s), the coach redirects per <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/safety-redirects.md"><code>reference/safety-redirects.md</code></a>.</li>
+      <li><strong>Medical / injury advice.</strong> The coach refuses and points you to a doctor, a PT, or your studio&rsquo;s liability insurance &mdash; depending on which lane the question is in.</li>
+      <li><strong>Generic life coaching or career-pivot strategy.</strong> If the question isn&rsquo;t about your work as a first-year teacher, the coach says so and stops.</li>
+      <li><strong>Representing you to anyone.</strong> Studio managers, students, contracts &mdash; the coach can help you think about how to approach a conversation; it cannot be the conversation for you.</li>
+    </ul>
+    <p>The coach is also <strong>not adversarial for sport.</strong> It refuses informer-mode and sycophancy because the alternative is bad coaching, not because friction is the goal. If the user is asking a clean coachable question, the coach coaches.</p>
+  </section>
+
+  <hr class="rule">
+
+  <section id="folder-map">
+    <h2><span class="section-tag">06</span>Folder map<a class="heading-anchor" href="#folder-map" aria-label="Permalink">&sect;</a></h2>
+    <p>One file, one job.</p>
+    <ul class="folder-map">
+      <li>
+        <a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/identity.md">identity.md</a>
+        <span class="desc">who the coach is, who it coaches, who it refuses, what it sounds like, and the forced first action it takes on every session.</span>
+      </li>
+      <li>
+        <a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/rules.md">rules.md</a>
+        <span class="desc">the three cardinal rules (informer-mode refusal / anti-sycophancy / fail-loudly), the five modes with entry+exit triggers, the adaptation clauses per archetype, and the always/never list.</span>
+      </li>
+      <li>
+        <a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/examples.md">examples.md</a>
+        <span class="desc">eight worked transcripts. Each labeled by mode, archetype, and what it demonstrates. Covers all five modes plus the two required debrief situations (student walked out / student cried) and the two required fail-loudly refusals (informer / sycophancy).</span>
+      </li>
+      <li>
+        <a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/coachee-types.md">reference/coachee-types.md</a>
+        <span class="desc">three archetypes of first-year teachers. Each one named, with primary anxiety lens, default response under pressure, what unlocks them, what backfires, and the phrasings the coach uses with them.</span>
+      </li>
+      <li>
+        <a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/session-state-template.md">reference/session-state-template.md</a>
+        <span class="desc">the file the coach reads before responding to any first message. Four fields, an open-experiment marker, and a running session log.</span>
+      </li>
+      <li>
+        <a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/frameworks.md">reference/frameworks.md</a>
+        <span class="desc">the five named coaching scripts the coach actually uses (three-question debrief, fail-loudly script, pre-class anxiety reset, classroom-recovery script, adjustment-energetics framework).</span>
+      </li>
+      <li>
+        <a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/reference/safety-redirects.md">reference/safety-redirects.md</a>
+        <span class="desc">three categories where the coach refuses to coach and redirects: trauma disclosure, medical/injury, disclosure of harm caused to a student.</span>
+      </li>
+      <li>
+        <a class="file" href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/ASSESSOR_GUIDE.md">ASSESSOR_GUIDE.md</a>
+        <span class="desc">skim-friendly orientation for anyone evaluating this coach: 60-second test, the 7-pattern stack, file-by-file 1-line summary.</span>
+      </li>
+    </ul>
+  </section>
+
+  <hr class="rule">
+
+  <section id="license">
+    <h2><span class="section-tag">07</span>License<a class="heading-anchor" href="#license" aria-label="Permalink">&sect;</a></h2>
+    <p>MIT. See <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/LICENSE"><code>LICENSE</code></a>.</p>
+  </section>
+
+  <footer>
+    <p class="by">By Gabe &mdash; Your AI Specialist</p>
+    <p>
+      <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach">Repo</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach/blob/main/LICENSE">MIT</a>
+    </p>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  // Copy-prompt buttons
+  function copy(t){
+    if(navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(t);
+    return new Promise(function(res,rej){
+      var ta=document.createElement('textarea');
+      ta.value=t; ta.setAttribute('readonly','');
+      ta.style.cssText='position:fixed;top:0;left:0;opacity:0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); res(); }catch(e){ rej(e); }
+      document.body.removeChild(ta);
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.copy-btn'), function(btn){
+    btn.addEventListener('click', function(){
+      copy(btn.getAttribute('data-copy')||'').then(function(){
+        var prev=btn.textContent;
+        btn.classList.add('copied');
+        btn.textContent='Copied';
+        clearTimeout(btn._t);
+        btn._t=setTimeout(function(){
+          btn.classList.remove('copied');
+          btn.textContent=prev;
+        }, 1400);
+      });
+    });
+  });
+
+  // Sticky section indicator
+  var ind=document.getElementById('section-indicator'),
+      wrap=document.querySelector('.topnav-left'),
+      nav=document.getElementById('topnav'),
+      h2s=[].slice.call(document.querySelectorAll('main h2')),
+      ft=document.querySelector('footer');
+  function update(){
+    if(!ind||!wrap) return;
+    var navH=nav?nav.getBoundingClientRect().height:60;
+    var th=navH+Math.min(140, window.innerHeight*0.18), cur=null;
+    for(var i=h2s.length-1;i>=0;i--){
+      if(h2s[i].getBoundingClientRect().top-th<0){ cur=h2s[i]; break; }
+    }
+    var atF=ft && ft.getBoundingClientRect().top-(navH+8)<0;
+    if(cur && !atF){
+      var tag=cur.querySelector('.section-tag'), num=tag?tag.textContent.trim():'', t='';
+      [].forEach.call(cur.childNodes, function(n){ if(n.nodeType===3) t+=n.textContent; });
+      var html='<span class="sec-num">§'+num+'</span>'+t.trim();
+      if(ind.innerHTML!==html) ind.innerHTML=html;
+      ind.classList.add('visible'); wrap.classList.add('has-section');
+    } else {
+      ind.classList.remove('visible'); wrap.classList.remove('has-section');
+    }
+  }
+  var tk=false;
+  function onS(){ if(!tk){ requestAnimationFrame(function(){ update(); tk=false; }); tk=true; } }
+  addEventListener('scroll', onS, {passive:true});
+  addEventListener('resize', onS);
+  update();
+
+  // Respect reduced-motion
+  if(matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.documentElement.style.scrollBehavior='auto';
+  }
+})();
+</script>
+
+</body>
+</html>

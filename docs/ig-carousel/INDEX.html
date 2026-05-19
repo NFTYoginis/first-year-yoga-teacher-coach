@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IG Carousel preview — first-year-yoga-teacher-coach</title>
+<style>
+  :root {
+    --bone: #f7f5f0;
+    --ink: #1a1d22;
+    --ink-soft: #6e7280;
+    --indigo: #3d5675;
+    --rule: #d8d4cb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 48px 64px;
+    background: var(--bone);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", system-ui, sans-serif;
+    line-height: 1.5;
+  }
+  header { max-width: 960px; margin: 0 auto 32px; }
+  h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin: 0 0 8px; }
+  .tag {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12px;
+    color: var(--indigo);
+    letter-spacing: 1.8px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .meta { color: var(--ink-soft); font-size: 14px; margin: 4px 0 24px; }
+  .meta a { color: var(--indigo); text-decoration: none; }
+  .meta a:hover { text-decoration: underline; }
+
+  section { max-width: 960px; margin: 0 auto 56px; }
+  h2 { font-size: 16px; margin: 0 0 16px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--ink-soft); }
+
+  /* mobile-feed simulation: square crops at IG grid scale */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .card img { display: block; width: 100%; height: auto; }
+  .card .cap {
+    padding: 8px 10px 10px;
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    letter-spacing: 0.4px;
+  }
+
+  /* big preview row */
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .num {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 13px;
+    color: var(--indigo);
+    letter-spacing: 1.6px;
+    font-weight: 700;
+    padding-top: 4px;
+  }
+  .row img {
+    width: 100%;
+    max-width: 720px;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border: 1px solid var(--rule);
+  }
+
+  /* thumbnail strip */
+  .strip {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+  }
+  .strip img { width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="tag">IG Carousel · 2026-05-19</div>
+  <h1>first-year-yoga-teacher-coach — 8-slide carousel</h1>
+  <p class="meta">
+    8 × 1080×1080 PNG &middot; bone #f7f5f0 / indigo #3d5675 / dusty-rose callouts &middot;
+    typographic + geometric only &middot;
+    <a href="carousel.pdf">carousel.pdf</a> &middot;
+    <a href="render.js">render.js</a>
+  </p>
+</header>
+
+<section>
+  <h2>Thumbnail strip — feed-scale legibility</h2>
+  <div class="strip">
+    <img src="slide-01.png" alt="Slide 1">
+    <img src="slide-02.png" alt="Slide 2">
+    <img src="slide-03.png" alt="Slide 3">
+    <img src="slide-04.png" alt="Slide 4">
+    <img src="slide-05.png" alt="Slide 5">
+    <img src="slide-06.png" alt="Slide 6">
+    <img src="slide-07.png" alt="Slide 7">
+    <img src="slide-08.png" alt="Slide 8">
+  </div>
+</section>
+
+<section>
+  <h2>IG profile-grid simulation (4-col)</h2>
+  <div class="grid">
+    <div class="card"><img src="slide-01.png" alt="01"><div class="cap">01 · HOOK</div></div>
+    <div class="card"><img src="slide-02.png" alt="02"><div class="cap">02 · DOMAIN</div></div>
+    <div class="card"><img src="slide-03.png" alt="03"><div class="cap">03 · RULE 1</div></div>
+    <div class="card"><img src="slide-04.png" alt="04"><div class="cap">04 · RULE 2</div></div>
+    <div class="card"><img src="slide-05.png" alt="05"><div class="cap">05 · RULE 3</div></div>
+    <div class="card"><img src="slide-06.png" alt="06"><div class="cap">06 · HOW</div></div>
+    <div class="card"><img src="slide-07.png" alt="07"><div class="cap">07 · TESTS</div></div>
+    <div class="card"><img src="slide-08.png" alt="08"><div class="cap">08 · CTA</div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Full-size slides</h2>
+  <div class="stack">
+    <div class="row"><div class="num">01 · HOOK</div><img src="slide-01.png" alt="Slide 1"></div>
+    <div class="row"><div class="num">02 · DOMAIN</div><img src="slide-02.png" alt="Slide 2"></div>
+    <div class="row"><div class="num">03 · RULE 1</div><img src="slide-03.png" alt="Slide 3"></div>
+    <div class="row"><div class="num">04 · RULE 2</div><img src="slide-04.png" alt="Slide 4"></div>
+    <div class="row"><div class="num">05 · RULE 3</div><img src="slide-05.png" alt="Slide 5"></div>
+    <div class="row"><div class="num">06 · HOW</div><img src="slide-06.png" alt="Slide 6"></div>
+    <div class="row"><div class="num">07 · TESTS</div><img src="slide-07.png" alt="Slide 7"></div>
+    <div class="row"><div class="num">08 · CTA</div><img src="slide-08.png" alt="Slide 8"></div>
+  </div>
+</section>
+
+</body>
+</html>

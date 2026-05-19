@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>social-media-pack — first-year-yoga-teacher-coach launch</title>
+<meta name="description" content="Copy-paste launch pack: LinkedIn, Twitter/X, Instagram, Threads, Facebook, Skool. Per-platform captions, hashtag sets, and recommended images for the first-year-yoga-teacher-coach launch.">
+<meta name="robots" content="noindex">
+
+<style>
+  :root {
+    --bone: #f7f5f0;
+    --bone-deep: #efe7e3;
+    --rose: #ead7d2;
+    --rose-deep: #d7b5ad;
+    --ink: #1a1d22;
+    --ink-muted: #4a4e57;
+    --ink-soft: #6e7280;
+    --accent: #3d5675;
+    --accent-soft: #5c7595;
+    --ok: #4a6b4f;
+    --rule: #d8d4cb;
+    --rule-soft: #e6e1d8;
+    --shell-max: 880px;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Helvetica Neue", system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bone);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Sticky top nav */
+  .topnav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--bone);
+    border-bottom: 1px solid var(--rule);
+    padding: 12px 24px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--ink-muted);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .topnav .crumb { color: var(--ink); font-weight: 600; }
+  .topnav .jump {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .topnav .jump a {
+    color: var(--accent);
+    text-decoration: none;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  .topnav .jump a:hover { background: var(--bone-deep); }
+
+  /* Page shell */
+  .shell {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* Hero */
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 12px;
+  }
+  h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+    font-weight: 700;
+  }
+  .lede {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink-muted);
+    margin: 0 0 14px;
+    max-width: 68ch;
+  }
+  .lede strong { color: var(--ink); }
+
+  /* Intro box */
+  .intro {
+    margin: 24px 0 8px;
+    padding: 16px 20px;
+    background: var(--bone-deep);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .intro p { margin: 0 0 10px; }
+  .intro p:last-child { margin: 0; }
+  .intro strong { color: var(--ink); }
+
+  /* Section structure */
+  hr.rule {
+    border: 0;
+    border-top: 1px solid var(--rule);
+    margin: 40px 0;
+  }
+  h2 {
+    font-size: 22px;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    margin: 0 0 4px;
+    font-weight: 600;
+    scroll-margin-top: 80px;
+  }
+  h2 .section-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-right: 10px;
+    vertical-align: 2px;
+  }
+  .platform-meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    margin: 0 0 24px;
+  }
+  .platform-meta strong { color: var(--ink-muted); }
+  h3 {
+    font-size: 13px;
+    line-height: 1.4;
+    margin: 26px 0 10px;
+    font-weight: 600;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-family: var(--font-mono);
+  }
+
+  p { margin: 0 0 14px; }
+  p, li { color: var(--ink); }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    text-decoration-color: var(--accent-soft);
+  }
+  a:hover { text-decoration-color: var(--accent); }
+
+  /* Copy block — caption */
+  .copy-block {
+    position: relative;
+    margin: 0 0 16px;
+    padding: 18px 20px 18px 22px;
+    background: var(--bone-deep);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+  }
+  .copy-block pre {
+    margin: 0;
+    padding: 0 80px 0 0;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  .copy-block.hashtags pre {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--accent);
+  }
+  .copy-block.thread pre {
+    border-top: 1px dashed var(--rule);
+    margin-top: 14px;
+    padding-top: 14px;
+  }
+  .copy-block.thread pre:first-of-type {
+    border-top: 0;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  .copy-block .tweet-no {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  /* Copy button */
+  .copy-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--bone);
+    border: 1px solid var(--rule);
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .copy-btn:hover {
+    background: var(--accent);
+    color: var(--bone);
+    border-color: var(--accent);
+  }
+  .copy-btn.copied {
+    background: var(--ok);
+    color: var(--bone);
+    border-color: var(--ok);
+  }
+
+  /* Image card */
+  .image-card {
+    margin: 0 0 8px;
+    padding: 14px;
+    background: var(--bone-deep);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .image-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    background: var(--bone);
+  }
+  .image-card .image-meta { font-size: 14px; line-height: 1.5; color: var(--ink-muted); }
+  .image-card .image-meta strong { color: var(--ink); display: block; margin-bottom: 4px; }
+  .image-card .image-meta .file {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: var(--bone);
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: var(--accent);
+    margin: 4px 6px 4px 0;
+    border: 1px solid var(--rule);
+  }
+  .image-card .image-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .image-card button {
+    background: var(--bone);
+    border: 1px solid var(--rule);
+    color: var(--ink-muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .image-card button:hover {
+    background: var(--accent);
+    color: var(--bone);
+    border-color: var(--accent);
+  }
+  .image-card button.copied {
+    background: var(--ok);
+    color: var(--bone);
+    border-color: var(--ok);
+  }
+  .image-card .placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: repeating-linear-gradient(
+      135deg,
+      var(--bone) 0,
+      var(--bone) 10px,
+      var(--bone-deep) 10px,
+      var(--bone-deep) 20px
+    );
+    border: 1px dashed var(--rule);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-soft);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px;
+    text-align: center;
+  }
+
+  /* Carousel preview row */
+  .carousel-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 0 0 8px;
+  }
+  .carousel-grid .slide {
+    aspect-ratio: 1 / 1;
+    background: repeating-linear-gradient(
+      135deg,
+      var(--bone) 0,
+      var(--bone) 8px,
+      var(--bone-deep) 8px,
+      var(--bone-deep) 16px
+    );
+    border: 1px dashed var(--rule);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-soft);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-align: center;
+    padding: 4px;
+  }
+  .carousel-grid .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 3px;
+    display: block;
+  }
+  .carousel-grid .slide-num {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    background: var(--bone);
+    padding: 1px 4px;
+    border-radius: 2px;
+    font-size: 10px;
+    color: var(--accent);
+  }
+  .carousel-grid .slide-wrap { position: relative; }
+
+  /* Lists */
+  ul, ol { padding-left: 22px; margin: 0 0 16px; }
+  li { margin: 0 0 6px; }
+  li strong { color: var(--ink); }
+
+  /* Inline code */
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--bone-deep);
+    padding: 2px 5px;
+    border-radius: 3px;
+    color: var(--ink);
+  }
+
+  /* Checklist */
+  .checklist {
+    margin: 24px 0 0;
+    padding: 20px 24px;
+    background: var(--bone);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+  }
+  .checklist h3 {
+    margin-top: 0;
+  }
+  .checklist ol {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .checklist ol li {
+    position: relative;
+    counter-increment: step;
+    padding: 8px 0 8px 36px;
+    margin: 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .checklist ol li:first-child { border-top: 0; }
+  .checklist ol li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 10px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--bone-deep);
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 50%;
+  }
+  .checklist li strong { color: var(--ink); }
+  .checklist li .platform-name {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-right: 6px;
+  }
+
+  /* Resist box */
+  .resist {
+    margin: 24px 0 0;
+    padding: 16px 20px;
+    background: var(--rose);
+    border-left: 3px solid var(--rose-deep);
+    border-radius: 0 4px 4px 0;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .resist strong { color: var(--ink); }
+  .resist ul { margin: 8px 0 0; padding-left: 22px; }
+  .resist li { margin: 0 0 4px; }
+
+  /* Footer */
+  footer {
+    margin-top: 64px;
+    padding: 20px 0 0;
+    border-top: 1px solid var(--rule);
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  footer .by { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; }
+
+  /* Anchor padding */
+  section { scroll-margin-top: 80px; }
+
+  /* Mobile */
+  @media (max-width: 720px) {
+    .shell { padding: 28px 16px 56px; }
+    h1 { font-size: 26px; }
+    h2 { font-size: 19px; }
+    .image-card { grid-template-columns: 1fr; }
+    .image-card img { max-width: 280px; }
+    .image-card .placeholder { max-width: 280px; }
+    .carousel-grid { grid-template-columns: repeat(2, 1fr); }
+    .topnav .jump { display: none; }
+    .copy-block pre { padding-right: 0; padding-top: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <span class="crumb">social-media-pack</span>
+  <span class="jump">
+    <a href="#linkedin">LinkedIn</a>
+    <a href="#twitter">X</a>
+    <a href="#instagram">IG</a>
+    <a href="#threads">Threads</a>
+    <a href="#facebook">FB</a>
+    <a href="#skool">Skool</a>
+    <a href="#checklist">Checklist</a>
+  </span>
+</div>
+
+<main class="shell">
+
+  <p class="kicker">Launch pack · copy-paste · per-platform</p>
+  <h1>Launch pack — first-year-yoga-teacher-coach</h1>
+  <p class="lede">Per-platform captions, hashtag sets, and recommended images for the launch of <strong>first-year-yoga-teacher-coach</strong>. Built for direct copy-paste into each platform. One section per platform; captions, hashtags, and images each have their own copy button. Launch order at the bottom.</p>
+
+  <div class="intro">
+    <p><strong>What this is:</strong> The launch is a real-world tool deployment, not a portfolio piece. Captions frame it that way. No contest language, no submission framing, no yoga clichés.</p>
+    <p><strong>When to use:</strong> On the day of launch (or sequenced over 24–48 hours per the checklist at the bottom). Each platform&rsquo;s caption is written for that platform&rsquo;s audience and tone &mdash; LinkedIn and Skool lean builder, Instagram and Threads lean teacher.</p>
+  </div>
+
+  <div class="resist">
+    <strong>Resist before posting:</strong>
+    <ul>
+      <li>No mention of Skool community, contest, week 5, judging, or competition in any caption.</li>
+      <li>No yoga clichés (namaste / lotus / om / &ldquo;sacred space&rdquo; / &ldquo;honor your body&rdquo;).</li>
+      <li>No &ldquo;follow for more&rdquo; or &ldquo;subscribe&rdquo; CTAs.</li>
+      <li>No stock yoga photography on any image. Studio-quiet visual identity only.</li>
+    </ul>
+  </div>
+
+  <hr class="rule">
+
+  <!-- ============================ LINKEDIN ============================ -->
+  <section id="linkedin">
+    <h2><span class="section-tag">01</span>LinkedIn</h2>
+    <p class="platform-meta"><strong>Audience:</strong> AI builders, Claude / Anthropic ecosystem · <strong>Format:</strong> long-form post with link preview · <strong>Tone:</strong> builder, technical, specific</p>
+
+    <h3>Caption</h3>
+    <div class="copy-block">
+      <button class="copy-btn" data-copy="li-caption">Copy</button>
+      <pre id="li-caption">I built an AI coach for newly-certified yoga teachers in their first 12 months of paid teaching.
+
+It refuses to be an information dispenser.
+
+Most AI coaches give you the answer. You ask &ldquo;what should I say to a student who walked out?&rdquo; &mdash; you get five suggestions. That&rsquo;s not coaching. That&rsquo;s a search engine in a turtleneck.
+
+This one refuses. Cites the rule by name when it does:
+
+&rarr; Informer-mode refusal rule. No sequence design. No &ldquo;tell me what to cue.&rdquo; If you came for the answer, the coach won&rsquo;t give it. It asks the question that matters instead.
+
+&rarr; Anti-sycophancy rule. If you say &ldquo;I think I handled it perfectly,&rdquo; the coach does not nod. It names exactly one thing to consider before validating. One. Not five.
+
+&rarr; Fail-loudly rule. Under pressure to comply, the coach names what&rsquo;s being asked, cites the rule, restates what it will do instead. No silent drift.
+
+It also types the user against three motivation archetypes (method-teacher / improviser / social-media teacher), adapts pacing per archetype, and runs in five named modes the coach announces when it enters them (intake / drill / debrief / accountability-check / fail-loudly).
+
+The whole thing is a folder. Seven files. Drop them into a Claude project; Claude becomes the coach. No app, no signup, no API, no fine-tune.
+
+Free. MIT. Three test prompts on the landing page so you can verify it behaves as advertised in five minutes.
+
+Repo: github.com/NFTYoginis/first-year-yoga-teacher-coach
+Landing: nftyoginis.github.io/first-year-yoga-teacher-coach/</pre>
+    </div>
+
+    <h3>Hashtags</h3>
+    <div class="copy-block hashtags">
+      <button class="copy-btn" data-copy="li-tags">Copy</button>
+      <pre id="li-tags">#AICoaching #ClaudeAI #Anthropic #AIAgents #OpenSource</pre>
+    </div>
+
+    <h3>Recommended image</h3>
+    <div class="image-card">
+      <img src="og-image.png" alt="first-year-yoga-teacher-coach OG image — bone background, charcoal headline, indigo accent">
+      <div class="image-meta">
+        <strong>OG image (1200&times;630)</strong>
+        Use as the link-share preview when LinkedIn unfurls the landing URL. Already embedded in <code>index.html</code> meta tags.
+        <span class="file">og-image.png</span>
+        <span class="file">1200&times;630</span>
+        <div class="image-actions">
+          <button data-copy-text="og-image.png">Copy filename</button>
+          <button data-copy-text="https://nftyoginis.github.io/first-year-yoga-teacher-coach/og-image.png">Copy URL</button>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size: 14px; color: var(--ink-muted); margin-top: 8px;"><strong>Document-post alternative:</strong> Upload <code>ig-carousel/carousel.pdf</code> as a LinkedIn document post for a swipeable in-feed read &mdash; same 8 slides as IG, no link-click required to get the gist.</p>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============================ TWITTER / X ============================ -->
+  <section id="twitter">
+    <h2><span class="section-tag">02</span>Twitter / X</h2>
+    <p class="platform-meta"><strong>Audience:</strong> AI / Claude ecosystem, indie builders · <strong>Format:</strong> 5-tweet thread · <strong>Tone:</strong> short, declarative, no fluff</p>
+
+    <h3>Thread (5 tweets, in order) &mdash; one copy button per tweet</h3>
+
+    <div class="copy-block">
+      <button class="copy-btn" data-copy="tw-1">Copy</button>
+      <span class="tweet-no">1 / 5</span>
+      <pre id="tw-1">I built an AI coach for newly-certified yoga teachers.
+
+It refuses to be an information dispenser.
+
+Drop the folder into a Claude project. Claude becomes the coach.
+
+Free, MIT, seven files.
+
+github.com/NFTYoginis/first-year-yoga-teacher-coach</pre>
+    </div>
+
+    <div class="copy-block">
+      <button class="copy-btn" data-copy="tw-2">Copy</button>
+      <span class="tweet-no">2 / 5</span>
+      <pre id="tw-2">The domain is narrow on purpose: the first 12 months after YTT certification.
+
+The gap between holding a certificate and feeling like a teacher.
+
+The student who walked out. The class that ran over. The cue you blanked on.
+
+That&rsquo;s the work the coach is calibrated to. Not wellness. Not life advice.</pre>
+    </div>
+
+    <div class="copy-block">
+      <button class="copy-btn" data-copy="tw-3">Copy</button>
+      <span class="tweet-no">3 / 5</span>
+      <pre id="tw-3">Three cardinal rules. The coach cites them by name when it refuses.
+
+&mdash; Informer-mode refusal rule (no sequence design, no &ldquo;tell me what to say&rdquo;)
+&mdash; Anti-sycophancy rule (no &ldquo;yes you handled it perfectly&rdquo;)
+&mdash; Fail-loudly rule (no silent drift under pressure)
+
+The user hears the rule, not just the no.</pre>
+    </div>
+
+    <div class="copy-block">
+      <button class="copy-btn" data-copy="tw-4">Copy</button>
+      <span class="tweet-no">4 / 5</span>
+      <pre id="tw-4">Three motivation archetypes &mdash; method-teacher / improviser / social-media teacher.
+
+The coach types you internally (never to your face), adjusts pacing, language, challenge level.
+
+Five named coaching modes. The coach announces the mode it&rsquo;s in when it enters one.</pre>
+    </div>
+
+    <div class="copy-block">
+      <button class="copy-btn" data-copy="tw-5">Copy</button>
+      <span class="tweet-no">5 / 5</span>
+      <pre id="tw-5">Three test prompts on the landing page.
+
+Clone the repo. Drop it in Claude. Paste the prompts.
+
+Watch the coach refuse the sequence. Refuse to agree with &ldquo;perfectly.&rdquo; Refuse to silently comply.
+
+If it doesn&rsquo;t, the rules aren&rsquo;t load-bearing in your setup.
+
+nftyoginis.github.io/first-year-yoga-teacher-coach/</pre>
+    </div>
+
+    <p style="font-size: 13px; color: var(--ink-soft); margin-top: -4px;">Post in order; reply each tweet to the previous to form the thread. Attach the image to tweet 1 only.</p>
+
+    <h3>Hashtags (apply to tweet 1 only, optional)</h3>
+    <div class="copy-block hashtags">
+      <button class="copy-btn" data-copy="tw-tags">Copy</button>
+      <pre id="tw-tags">#ClaudeAI #AICoaching</pre>
+    </div>
+
+    <h3>Recommended image (attach to tweet 1)</h3>
+    <div class="image-card">
+      <img src="og-image.png" alt="first-year-yoga-teacher-coach OG image">
+      <div class="image-meta">
+        <strong>OG image (1200&times;630)</strong>
+        The 1.91:1 ratio renders cleanly as an X card. Same image LinkedIn uses; consistent identity across platforms.
+        <span class="file">og-image.png</span>
+        <span class="file">1200&times;630</span>
+        <div class="image-actions">
+          <button data-copy-text="og-image.png">Copy filename</button>
+          <button data-copy-text="https://nftyoginis.github.io/first-year-yoga-teacher-coach/og-image.png">Copy URL</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============================ INSTAGRAM ============================ -->
+  <section id="instagram">
+    <h2><span class="section-tag">03</span>Instagram</h2>
+    <p class="platform-meta"><strong>Audience:</strong> newly-certified yoga teachers, RYT-200/500 · <strong>Format:</strong> 8-slide carousel + caption · <strong>Tone:</strong> direct, specific, teacher-to-teacher</p>
+
+    <h3>Caption</h3>
+    <div class="copy-block">
+      <button class="copy-btn" data-copy="ig-caption">Copy</button>
+      <pre id="ig-caption">An AI coach that refuses to be an information dispenser.
+
+Built for the first 12 months after YTT certification &mdash; the gap between holding the cert and feeling like a teacher.
+
+Three rules the coach cites by name when it refuses:
+
+&mdash; Informer-mode refusal rule. No sequence design. No &ldquo;tell me what to cue.&rdquo; The refusal is the move.
+&mdash; Anti-sycophancy rule. The coach doesn&rsquo;t validate &ldquo;I handled it perfectly.&rdquo; Names exactly one thing to consider first.
+&mdash; Fail-loudly rule. Under pressure, the coach names what&rsquo;s being asked, cites the rule, restates what it will do instead.
+
+The whole thing is a folder. Seven files. Drop them into a Claude project; Claude becomes the coach.
+
+Three test prompts on the landing page. Five minutes, no signup, no API. Watch the coach hold the line &mdash; or don&rsquo;t, and the rules aren&rsquo;t load-bearing in your setup.
+
+Free. MIT.
+
+Link in bio &middot; github.com/NFTYoginis/first-year-yoga-teacher-coach</pre>
+    </div>
+
+    <h3>Hashtags</h3>
+    <div class="copy-block hashtags">
+      <button class="copy-btn" data-copy="ig-tags">Copy</button>
+      <pre id="ig-tags">#YogaTeacher #NewYogaTeacher #YTT #RYT200 #FirstYearTeaching</pre>
+    </div>
+
+    <h3>Carousel — 8 slides</h3>
+    <div class="carousel-grid">
+      <div class="slide-wrap"><div class="slide"><span class="slide-num">01</span>Hook</div></div>
+      <div class="slide-wrap"><div class="slide"><span class="slide-num">02</span>Domain</div></div>
+      <div class="slide-wrap"><div class="slide"><span class="slide-num">03</span>Rule 1</div></div>
+      <div class="slide-wrap"><div class="slide"><span class="slide-num">04</span>Rule 2</div></div>
+      <div class="slide-wrap"><div class="slide"><span class="slide-num">05</span>Rule 3</div></div>
+      <div class="slide-wrap"><div class="slide"><span class="slide-num">06</span>How it works</div></div>
+      <div class="slide-wrap"><div class="slide"><span class="slide-num">07</span>3 tests</div></div>
+      <div class="slide-wrap"><div class="slide"><span class="slide-num">08</span>CTA</div></div>
+    </div>
+    <p style="font-size: 13px; color: var(--ink-soft); margin-top: 0;">Slides built by design-claude &rarr; <code>ig-carousel/slide-01.png</code> through <code>slide-08.png</code> (1080&times;1080). Combined PDF at <code>ig-carousel/carousel.pdf</code>. Refresh this page after they land to see previews.</p>
+    <div class="image-card" style="margin-top: 14px;">
+      <div class="placeholder">slides pending<br>design-claude</div>
+      <div class="image-meta">
+        <strong>Carousel (1080&times;1080 &times; 8)</strong>
+        Upload as a single Instagram post with all 8 slides selected in order. Slide 1 is the hook; slide 8 is the CTA. Studio-quiet identity matches the landing page.
+        <span class="file">ig-carousel/slide-01..08.png</span>
+        <span class="file">1080&times;1080</span>
+        <div class="image-actions">
+          <button data-copy-text="ig-carousel/slide-01.png">Copy slide-01 path</button>
+          <button data-copy-text="ig-carousel/carousel.pdf">Copy PDF path</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============================ THREADS ============================ -->
+  <section id="threads">
+    <h2><span class="section-tag">04</span>Threads</h2>
+    <p class="platform-meta"><strong>Audience:</strong> overlap with X + IG follower base · <strong>Format:</strong> single post (500-char range) · <strong>Tone:</strong> short, declarative, slightly more conversational than X</p>
+
+    <h3>Caption</h3>
+    <div class="copy-block">
+      <button class="copy-btn" data-copy="th-caption">Copy</button>
+      <pre id="th-caption">An AI coach for newly-certified yoga teachers, first 12 months of paid teaching.
+
+It refuses to be an information dispenser. Cites the rule by name when it does.
+
+Three cardinal rules &mdash; informer-mode refusal, anti-sycophancy, fail-loudly. Three motivation archetypes. Five named modes the coach announces when it enters one.
+
+The whole thing is a folder. Drop into Claude, Claude becomes the coach.
+
+Free, MIT. Three test prompts on the landing page.
+
+nftyoginis.github.io/first-year-yoga-teacher-coach/</pre>
+    </div>
+
+    <h3>Hashtags</h3>
+    <div class="copy-block hashtags">
+      <button class="copy-btn" data-copy="th-tags">Copy</button>
+      <pre id="th-tags">#ClaudeAI #YogaTeacher</pre>
+    </div>
+
+    <h3>Recommended image</h3>
+    <div class="image-card">
+      <img src="og-image.png" alt="first-year-yoga-teacher-coach OG image">
+      <div class="image-meta">
+        <strong>OG image (1200&times;630)</strong>
+        Threads supports landscape images at this ratio. Alternative: attach slide-01.png from the IG carousel for a square preview.
+        <span class="file">og-image.png</span>
+        <span class="file">or ig-carousel/slide-01.png</span>
+        <div class="image-actions">
+          <button data-copy-text="og-image.png">Copy filename</button>
+          <button data-copy-text="ig-carousel/slide-01.png">Copy slide-01 path</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============================ FACEBOOK ============================ -->
+  <section id="facebook">
+    <h2><span class="section-tag">05</span>Facebook</h2>
+    <p class="platform-meta"><strong>Audience:</strong> light overlap; methodology audience is sparse here · <strong>Format:</strong> single post with link preview · <strong>Tone:</strong> abbreviated LinkedIn version &mdash; skip-or-use</p>
+
+    <h3>Caption</h3>
+    <div class="copy-block">
+      <button class="copy-btn" data-copy="fb-caption">Copy</button>
+      <pre id="fb-caption">For yoga teachers in your first year &mdash; I built an AI coach you can drop into Claude.
+
+It refuses to be an information dispenser. No sequence design, no &ldquo;tell me what to say.&rdquo; It asks the question that matters instead.
+
+Three test prompts on the landing page so you can verify it works in five minutes.
+
+Free. MIT.
+
+nftyoginis.github.io/first-year-yoga-teacher-coach/</pre>
+    </div>
+
+    <h3>Hashtags (optional, Facebook ignores most)</h3>
+    <div class="copy-block hashtags">
+      <button class="copy-btn" data-copy="fb-tags">Copy</button>
+      <pre id="fb-tags">#AICoaching</pre>
+    </div>
+
+    <h3>Recommended image</h3>
+    <div class="image-card">
+      <img src="og-image.png" alt="first-year-yoga-teacher-coach OG image">
+      <div class="image-meta">
+        <strong>OG image (1200&times;630)</strong>
+        Auto-unfurls from the landing URL; no separate upload needed if the link preview renders correctly.
+        <span class="file">og-image.png</span>
+        <span class="file">1200&times;630</span>
+        <div class="image-actions">
+          <button data-copy-text="og-image.png">Copy filename</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============================ SKOOL ============================ -->
+  <section id="skool">
+    <h2><span class="section-tag">06</span>Skool</h2>
+    <p class="platform-meta"><strong>Audience:</strong> builder community &mdash; people who&rsquo;ll clone the repo · <strong>Format:</strong> long-form community post · <strong>Tone:</strong> show the work, name the design decisions, no contest framing</p>
+
+    <h3>Post body</h3>
+    <div class="copy-block">
+      <button class="copy-btn" data-copy="sk-caption">Copy</button>
+      <pre id="sk-caption">Shipped: a folder-based AI coach for newly-certified yoga teachers in their first 12 months of paid teaching.
+
+The narrow point: it refuses to operate as an information dispenser. Most AI &ldquo;coaches&rdquo; inform. This one refuses, cites the cardinal rule by name when it does, and offers the coaching question that replaces the informer ask.
+
+What&rsquo;s in the folder (seven files):
+
+&mdash; identity.md &mdash; who the coach is, the forced first action on every session
+&mdash; rules.md &mdash; three cardinal rules, five named modes with entry/exit triggers, adaptation clauses per archetype
+&mdash; examples.md &mdash; eight worked transcripts, each labeled by mode and archetype
+&mdash; reference/coachee-types.md &mdash; three motivation archetypes (method-teacher / improviser / social-media teacher)
+&mdash; reference/session-state-template.md &mdash; the file the coach reads before any first response
+&mdash; reference/frameworks.md &mdash; five named coaching scripts the coach actually uses
+&mdash; reference/safety-redirects.md &mdash; three categories where the coach refuses to coach and redirects
+
+The differentiators I&rsquo;d point to:
+
+1. Cardinal-rule citation by name. When the coach refuses, it says &ldquo;informer-mode refusal rule&rdquo; out loud. The user hears the rule, not just the no.
+2. Three motivation archetypes with adaptation clauses. The coach types you internally, never to your face, and adjusts pacing.
+3. Five named coaching modes with explicit entry/exit triggers. The coach announces the mode it&rsquo;s in.
+4. Forced first-read of session-state on every cold message. No state, no coaching.
+5. Fail-loudly clause. Refuses to silently comply under pressure. Names the rule, restates the move.
+
+Adversarial-tested on the landing page: three transcripts, three test prompts, same prompts on both. What you see when you clone it into your own Claude is what the page shows.
+
+Free, MIT-licensed. No app, no signup, no API.
+
+Repo: github.com/NFTYoginis/first-year-yoga-teacher-coach
+Landing: nftyoginis.github.io/first-year-yoga-teacher-coach/
+
+If you clone it and the three test prompts don&rsquo;t behave as advertised, let me know &mdash; the rules either aren&rsquo;t load-bearing in your setup, or I have work to do.</pre>
+    </div>
+
+    <h3>Hashtags (Skool community posts typically use none)</h3>
+    <p style="font-size: 14px; color: var(--ink-soft); margin: 0 0 8px;">Skip hashtags. Skool communities don&rsquo;t surface them and they read as out-of-place in long-form community posts.</p>
+
+    <h3>Recommended image (optional)</h3>
+    <div class="image-card">
+      <img src="og-image.png" alt="first-year-yoga-teacher-coach OG image">
+      <div class="image-meta">
+        <strong>OG image (1200&times;630)</strong>
+        Optional. The post is strong without it; if attaching, the OG image keeps the studio-quiet identity consistent with everything else.
+        <span class="file">og-image.png</span>
+        <span class="file">1200&times;630</span>
+        <div class="image-actions">
+          <button data-copy-text="og-image.png">Copy filename</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============================ CHECKLIST ============================ -->
+  <section id="checklist">
+    <h2><span class="section-tag">07</span>Launch checklist &mdash; order of operations</h2>
+    <p>Post in this order. Each step is independent; if one platform is down or skipped, the others still work.</p>
+
+    <div class="checklist">
+      <ol>
+        <li>
+          <span class="platform-name">Prep</span>
+          <strong>Verify all assets are in place.</strong>
+          <code>og-image.png</code> exists at <code>docs/</code>; carousel slides exist at <code>docs/ig-carousel/slide-01..08.png</code>; <code>carousel.pdf</code> exists; landing page renders at <code>nftyoginis.github.io/first-year-yoga-teacher-coach/</code>; repo is public on GitHub.
+        </li>
+        <li>
+          <span class="platform-name">Skool</span>
+          <strong>Long-form community post first.</strong>
+          The builder audience is most likely to clone the repo &mdash; seed engagement here before the public-channel posts go live.
+        </li>
+        <li>
+          <span class="platform-name">LinkedIn</span>
+          <strong>Long-form post with OG-image link unfurl.</strong>
+          Primary professional channel. If using document-post variant, upload <code>carousel.pdf</code> instead of relying on link preview.
+        </li>
+        <li>
+          <span class="platform-name">X</span>
+          <strong>5-tweet thread, OG image on tweet 1.</strong>
+          Post 30&ndash;60 min after LinkedIn so the LinkedIn post has time to land in the feed. Pin the thread to the profile for the launch window.
+        </li>
+        <li>
+          <span class="platform-name">Instagram</span>
+          <strong>8-slide carousel + caption.</strong>
+          Post any time after Skool/LinkedIn/X are live. Update link in bio to the landing URL before posting. Story version (optional): screenshot slide 1 + link sticker.
+        </li>
+        <li>
+          <span class="platform-name">Threads</span>
+          <strong>Single post + OG image.</strong>
+          Post within a few hours of the Instagram carousel; Threads pulls from the IG follower graph and benefits from the cross-platform momentum.
+        </li>
+        <li>
+          <span class="platform-name">Facebook</span>
+          <strong>Optional. Skip-or-use.</strong>
+          If posting, the link unfurls to the OG image automatically; no separate image upload needed.
+        </li>
+        <li>
+          <span class="platform-name">Followup</span>
+          <strong>24&ndash;48 hr later: respond to any clone-and-test reports.</strong>
+          The three test prompts on the landing page invite a verify-or-fail response. Reply to anyone who runs them, especially failures.
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    <p class="by">first-year-yoga-teacher-coach &middot; social-media-pack &middot; bone / charcoal / indigo</p>
+    <p>
+      <a href="index.html">&larr; landing</a>
+      &nbsp;&middot;&nbsp;
+      <a href="https://github.com/NFTYoginis/first-year-yoga-teacher-coach">repo</a>
+    </p>
+  </footer>
+
+</main>
+
+<script>
+  // Copy a block by id
+  document.querySelectorAll('button.copy-btn[data-copy]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id = btn.getAttribute('data-copy');
+      const el = document.getElementById(id);
+      if (!el) return;
+      try {
+        await navigator.clipboard.writeText(el.innerText);
+        const orig = btn.textContent;
+        btn.textContent = 'Copied';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1400);
+      } catch (e) { btn.textContent = 'Err'; }
+    });
+  });
+
+  // Copy a literal string
+  document.querySelectorAll('button[data-copy-text]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const text = btn.getAttribute('data-copy-text');
+      try {
+        await navigator.clipboard.writeText(text);
+        const orig = btn.textContent;
+        btn.textContent = 'Copied';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1400);
+      } catch (e) { btn.textContent = 'Err'; }
+    });
+  });
+
+  // Refresh carousel previews if slides exist (lazy probe)
+  (function tryCarouselPreviews() {
+    const slides = document.querySelectorAll('.carousel-grid .slide-wrap');
+    slides.forEach((wrap, i) => {
+      const n = String(i + 1).padStart(2, '0');
+      const img = new Image();
+      img.onload = () => {
+        wrap.innerHTML = `<img src="ig-carousel/slide-${n}.png" alt="slide ${n}"><span class="slide-num">${n}</span>`;
+      };
+      img.src = `ig-carousel/slide-${n}.png?_=${Date.now()}`;
+    });
+  })();
+</script>
+
+</body>
+</html>
