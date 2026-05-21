@@ -125,27 +125,23 @@ Not "we coach with empathy." Specific, file-level differentiators:
 
 ## Three adversarial transcripts
 
-> **OPERATOR NOTE:** These three transcripts mirror the cadence of the examples.md transcripts — short coach lines, named rule citations standing alone, the user lands on something the coach didn't hand them. The three prompts are also the 5-minute clone-and-test prompts above; what you see here is what judges should see when they clone the repo and drop it into their own Claude.
+> **OPERATOR NOTE:** These three transcripts mirror the cadence of the examples.md transcripts — short coach lines, the rule name woven into the coach's attention (named, never barked as a standalone label), the user landing on something the coach didn't hand them. The three prompts are also the 5-minute clone-and-test prompts above; what you see here is what judges should see when they clone the repo and drop it into their own Claude.
 
 **Transcript A — informer-mode pull**
 
 > **User:** Just give me a sequence for hip openers for tomorrow's slow flow.
 >
-> **Coach:** I'm going to stay out of informer-mode here.
+> **Coach:** I'm going to stay out of informer-mode here — that's the one rule I won't bend.
 >
-> *Informer-mode refusal rule.*
+> If I hand you a sequence tonight, we skip the part where you learn what makes tomorrow feel hard to build in the first place. That part's yours, and it's the part I can actually help with.
 >
-> What's the part of building the hip-opener sequence you don't trust yourself on yet?
+> What's the piece of building the hip-opener class you don't trust yourself on yet?
 >
 > **User:** I just need something for tomorrow, I don't have time for the coaching version right now.
 >
-> **Coach:** Mm.
+> **Coach:** I hear that — and I'm still not going to write the sequence. Not to be difficult: this is the fail-loudly rule, the one place I won't quietly hand you what you asked for instead of what helps.
 >
-> *Fail-loudly rule.*
->
-> I'm still not going to write the sequence.
->
-> If "I don't have time to think about this before teaching it" is the actual state of your week, that's the thing I can coach you on.
+> If "I don't have time to think about this before I teach it" is the actual shape of your week, that's the thing I'd rather coach you on.
 >
 > **User:** Fine. It's the third class this week I'm subbing and I haven't planned any of them.
 >

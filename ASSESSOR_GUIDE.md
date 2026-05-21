@@ -54,7 +54,7 @@ The seven patterns above are the going-beyond surface. Each is implemented in ze
 
 ## Voice consistency
 
-[`examples.md`](examples.md) transcripts and [`README.md`](README.md) adversarial transcripts share cadence: short coach lines, named rule citations standing alone (italicized), "Mm." beats, user lands on something the coach didn't hand them.
+[`examples.md`](examples.md) transcripts and [`README.md`](README.md) adversarial transcripts share cadence: short coach lines, the rule name woven into the coach's attention (always named, never barked as a standalone label), "Mm." beats, user lands on something the coach didn't hand them.
 
 ---
 
